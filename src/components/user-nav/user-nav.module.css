@@ -1,0 +1,12 @@
+.profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  border-radius: 40px;
+  padding: 16px 20px;
+}
+
+.profile_icon {
+  margin-right: 11px;
+}
