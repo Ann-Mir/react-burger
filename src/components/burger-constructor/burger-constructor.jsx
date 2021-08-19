@@ -7,6 +7,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import {data as mockData} from '../../utils/data';
 import Price from '../price/price';
+import ScrolledArea from '../scrolled-container/scrolled-area';
 
 import styles from './burger-constructor.module.css';
 
@@ -36,26 +37,28 @@ function BurgerConstructor({ data= mockData }) {
             thumbnail={bun.image}
           />
         </div>
-        <ul className={styles.list}>
-          {
-            ingredients.map((ingredient) => {
-              return (
-                <li key={ingredient._id} className={styles.list_item}>
-                  <div className={styles.drag}>
-                    <DragIcon type="primary" />
-                  </div>
-                  <div className={styles.element}>
-                    <ConstructorElement
-                      text={ingredient.name}
-                      price={ingredient.price}
-                      thumbnail={ingredient.image}
-                    />
-                  </div>
-                </li>
-              )
-            })
-          }
-        </ul>
+        <ScrolledArea maxHeight={'400 px'}>
+          <ul className={styles.list}>
+            {
+              ingredients.map((ingredient) => {
+                return (
+                  <li key={ingredient._id} className={styles.list_item}>
+                    <div className={styles.drag}>
+                      <DragIcon type="primary" />
+                    </div>
+                    <div className={styles.element}>
+                      <ConstructorElement
+                        text={ingredient.name}
+                        price={ingredient.price}
+                        thumbnail={ingredient.image}
+                      />
+                    </div>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </ScrolledArea>
         <div className={bunClasses}>
           <ConstructorElement
             type="bottom"

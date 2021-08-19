@@ -9,7 +9,7 @@ import styles from './tab-bar.module.css';
 function TabBar({ className }) {
 
   const tabClasses = cn(className, styles.wrapper)
-  const [current, setCurrent] = React.useState('one');
+  const [current, setCurrent] = React.useState(TABS.bun);
 
   return (
     <div className={tabClasses}>
