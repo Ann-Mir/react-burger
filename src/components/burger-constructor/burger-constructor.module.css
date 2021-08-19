@@ -8,12 +8,13 @@
   max-width: 568px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 40px;
 }
 
 .list {
   list-style: none;
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   padding: 0;
 }
 
@@ -29,7 +30,7 @@
 }
 
 .list_item:not(:last-child) {
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 .bun {
@@ -43,6 +44,23 @@
   width: 24px;
   height: 24px;
   margin-right: 8px;
+}
+
+.price_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.price {
+  margin-right: 40px;
+  line-height: 36px;
+}
+
+.price svg {
+  width: 36px;
+  height: 36px;
 }
 
 

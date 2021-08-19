@@ -1,17 +1,24 @@
 import React from 'react';
 import cn from 'classnames';
-import {ConstructorElement, DragIcon, Button} from '@ya.praktikum/react-developer-burger-ui-components';
+import {
+  ConstructorElement,
+  DragIcon,
+  Button
+} from '@ya.praktikum/react-developer-burger-ui-components';
 import {data as mockData} from '../../utils/data';
 import Price from '../price/price';
 
 import styles from './burger-constructor.module.css';
 
+
 const getPrice = (ingredients, bun) => ingredients
   .reduce((sum, ingredient) => Number(ingredient.price) + sum, 0) + 2 * Number(bun.price);
+
 
 function BurgerConstructor({ data= mockData }) {
 
   const bunClasses = cn(styles.list_item, styles.bun, styles.element);
+  const priceClasses = cn('text_type_digits-medium', styles.price)
   const bun = data[0];
   const ingredients = data.filter((ingredient) => ingredient.type !== 'bun');
   const totalPrice = getPrice(ingredients, bun);
@@ -59,8 +66,8 @@ function BurgerConstructor({ data= mockData }) {
           />
         </div>
       </div>
-      <div>
-        <Price price={totalPrice} type="primary" />
+      <div className={styles.price_wrapper}>
+        <Price price={totalPrice} type="primary" className={priceClasses} />
         <Button type="primary" size="large">
           Оформить заказ
         </Button>

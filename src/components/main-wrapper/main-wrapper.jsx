@@ -9,10 +9,12 @@ function MainWrapper() {
 
   const titleClasses = cn('text text_type_main-large', styles.title);
   return (
-    <main>
+    <main class={styles.main}>
       <h1 className={titleClasses}>Соберите бургер</h1>
-      <BurgerIngredients />
-      <BurgerConstructor />
+      <div className={styles.menu}>
+        <BurgerIngredients />
+        <BurgerConstructor />
+      </div>
     </main>
   )
 }
