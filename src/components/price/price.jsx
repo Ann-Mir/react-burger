@@ -5,12 +5,12 @@ import cn from 'classnames';
 import styles from './price.module.css';
 
 
-function Price({ className, price }) {
+function Price({ className, price, type }) {
 
   const classes = cn(styles.price, 'text text_type_digits-default', className);
 
   return (
-    <p className={classes}>{price}&nbsp;<CurrencyIcon type="primary" /></p>
+    <p className={classes}>{price}&nbsp;<CurrencyIcon type={type} /></p>
   );
 }
 

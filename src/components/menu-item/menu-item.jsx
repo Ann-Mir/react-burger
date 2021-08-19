@@ -18,7 +18,7 @@ function MenuItem({ className, item, isChosen }) {
       <div className={styles.image_wrapper}>
         <img src={image} alt={name} className={styles.image}/>
       </div>
-      <Price className={styles.price} price={price}/>
+      <Price className={styles.price} price={price} type="primary"/>
       <p className="text text_type_main-default">{name}</p>
     </article>
   );

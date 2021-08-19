@@ -1,0 +1,48 @@
+.section {
+  width: 600px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.wrapper {
+  max-width: 568px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.list_item {
+  width: 568px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.element div {
+  min-width: 538px;
+}
+
+.list_item:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.bun {
+  align-self: flex-end;
+  padding-left: 32px;
+}
+
+.drag {
+  display: flex;
+  align-self: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+

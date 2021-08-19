@@ -1,7 +1,5 @@
 import React from 'react';
-import MenuItem from '../menu-item/menu-item';
-import MenuList from '../menu-list/menu-list';
-import Price from '../price/price';
+import MainWrapper from '../main-wrapper/main-wrapper';
 import styles from './app.module.css';
 import AppHeader from '../app-header/app-header';
 
@@ -11,8 +9,7 @@ function App() {
   return (
     <div className={styles.wrapper}>
       <AppHeader />
-      {/*<MenuItem item={data[0]} isChosen />*/}
-      <MenuList />
+      <MainWrapper />
     </div>
   )
 }
