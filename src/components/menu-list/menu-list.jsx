@@ -1,13 +1,12 @@
 import React from 'react';
 import {mapItemsByType} from '../../utils/common';
 import {TABS} from '../../utils/constants';
-import {data} from '../../utils/data';
 import MenuSublist from '../menu-sublist/menu-sublist';
 import ScrolledArea from '../scrolled-container/scrolled-area';
 
 import styles from './menu-list.module.css';
 
-function MenuList() {
+function MenuList({ data }) {
 
   const itemsByType = mapItemsByType(data);
 

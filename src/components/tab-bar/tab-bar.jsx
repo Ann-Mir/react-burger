@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
@@ -22,6 +23,10 @@ function TabBar({ className }) {
     </div>
   )
 }
+
+TabBar.propTypes = {
+  className: PropTypes.string,
+};
 
 
 export default TabBar;

@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
+import ingredientProp from '../../utils/ingredient.prop';
 import MenuItem from '../menu-item/menu-item';
 
 import styles from './menu-sublist.module.css';
@@ -19,6 +21,12 @@ function MenuSublist({ className, title, items}) {
     </>
   )
 }
+
+MenuSublist.propTypes = {
+  className: PropTypes.string,
+  isChosen: PropTypes.bool,
+  items: PropTypes.arrayOf(ingredientProp.isRequired).isRequired,
+};
 
 
 export default MenuSublist;

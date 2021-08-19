@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
 import {
@@ -5,7 +6,7 @@ import {
   DragIcon,
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import {data as mockData} from '../../utils/data';
+import ingredientProp from '../../utils/ingredient.prop';
 import Price from '../price/price';
 import ScrolledArea from '../scrolled-container/scrolled-area';
 
@@ -16,7 +17,7 @@ const getPrice = (ingredients, bun) => ingredients
   .reduce((sum, ingredient) => Number(ingredient.price) + sum, 0) + 2 * Number(bun.price);
 
 
-function BurgerConstructor({ data= mockData }) {
+function BurgerConstructor({ data }) {
 
   const bunClasses = cn(styles.list_item, styles.bun, styles.element);
   const priceClasses = cn('text_type_digits-medium', styles.price)
@@ -25,7 +26,7 @@ function BurgerConstructor({ data= mockData }) {
   const totalPrice = getPrice(ingredients, bun);
 
   return (
-    <section class={styles.section}>
+    <section className={styles.section}>
       <h2 className="visually-hidden">Ваш заказ:</h2>
       <div className={styles.wrapper}>
         <div className={bunClasses}>
@@ -40,9 +41,9 @@ function BurgerConstructor({ data= mockData }) {
         <ScrolledArea maxHeight={'400 px'}>
           <ul className={styles.list}>
             {
-              ingredients.map((ingredient) => {
+              ingredients.map((ingredient, index) => {
                 return (
-                  <li key={ingredient._id} className={styles.list_item}>
+                  <li key={index} className={styles.list_item}>
                     <div className={styles.drag}>
                       <DragIcon type="primary" />
                     </div>
@@ -79,6 +80,9 @@ function BurgerConstructor({ data= mockData }) {
   )
 }
 
+BurgerConstructor.propTypes = {
+  data: PropTypes.arrayOf(ingredientProp.isRequired).isRequired,
+};
 
 
 export default BurgerConstructor;

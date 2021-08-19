@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Logo from '../logo/logo';
 import MainNav from '../main-nav/main-nav';
@@ -22,5 +23,9 @@ function AppHeader({ className }) {
   )
 }
 
+
+AppHeader.propTypes = {
+  className: PropTypes.string,
+};
 
 export default AppHeader;

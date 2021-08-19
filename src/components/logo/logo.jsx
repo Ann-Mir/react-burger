@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import {Logo  as LogoIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -15,5 +16,10 @@ function Logo({ className }) {
     </a>
   )
 }
+
+Logo.propTypes = {
+  className: PropTypes.string,
+};
+
 
 export default Logo;

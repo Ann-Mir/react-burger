@@ -1,5 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
+import ingredientProp from '../../utils/ingredient.prop';
 import Counter from '../counter/counter';
 import Price from '../price/price';
 
@@ -10,7 +12,6 @@ function MenuItem({ className, item, isChosen }) {
 
   const classes = cn(styles.article, className);
   const { image, name, price } = item;
-
 
   return (
     <article className={classes}>
@@ -23,6 +24,12 @@ function MenuItem({ className, item, isChosen }) {
     </article>
   );
 }
+
+MenuItem.propTypes = {
+  className: PropTypes.string,
+  isChosen: PropTypes.bool,
+  item: ingredientProp.isRequired,
+};
 
 
 export default MenuItem;

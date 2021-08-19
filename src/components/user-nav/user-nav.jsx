@@ -1,4 +1,5 @@
 import {ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
 
@@ -20,6 +21,10 @@ function UserNav({ className }) {
     </a>
   );
 }
+
+UserNav.propTypes = {
+  className: PropTypes.string,
+};
 
 
 export default UserNav;
