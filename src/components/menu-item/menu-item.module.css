@@ -1,0 +1,32 @@
+.article {
+  position: relative;
+  width: 272px;
+  min-height: 208px;
+  padding: 0px 16px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.image_wrapper {
+  width: 240px;
+  height: 120px;
+  display: flex;
+}
+
+.image {
+  width: 240px;
+  height: 120px;
+}
+
+.price {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.counter {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

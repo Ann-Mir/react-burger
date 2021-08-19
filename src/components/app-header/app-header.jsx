@@ -1,0 +1,31 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import cn from 'classnames';
+import Logo from '../logo/logo';
+import MainNav from '../main-nav/main-nav';
+import UserNav from '../user-nav/user-nav';
+
+import styles from './app-header.module.css';
+
+
+function AppHeader({ className }) {
+
+  const headerClasses = cn(styles.header, className);
+
+  return (
+    <header className={headerClasses}>
+      <div className={styles.wrapper}>
+        <MainNav className={styles.nav}/>
+        <Logo className={styles.logo}/>
+        <UserNav className={styles.profile}/>
+      </div>
+    </header>
+  )
+}
+
+
+AppHeader.propTypes = {
+  className: PropTypes.string,
+};
+
+export default AppHeader;

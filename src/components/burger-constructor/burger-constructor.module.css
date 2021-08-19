@@ -1,0 +1,68 @@
+.section {
+  width: 600px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.wrapper {
+  max-width: 584px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  margin-right: -16px;
+}
+
+.list {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-left: 0;
+}
+
+.list_item {
+  width: 568px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.element div {
+  min-width: 538px;
+}
+
+.list_item:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.bun {
+  align-self: flex-end;
+  padding-left: 32px;
+  margin-right: 16px;
+}
+
+.drag {
+  display: flex;
+  align-self: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.price_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.price {
+  margin-right: 40px;
+  line-height: 36px;
+}
+
+.price svg {
+  width: 36px;
+  height: 36px;
+}
+
+

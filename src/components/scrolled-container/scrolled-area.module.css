@@ -1,0 +1,17 @@
+.wrapper {
+  height: 100vh;
+  overflow: auto;
+}
+
+.wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.wrapper::-webkit-scrollbar-track {
+  background: #2F2F37;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+  border: 3px solid #8585AD;
+}

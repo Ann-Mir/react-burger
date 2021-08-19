@@ -1,0 +1,26 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.nav_link {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  border-radius: 40px;
+  padding: 16px 20px;
+}
+
+.nav_link:first-child {
+  margin-right: 8px;
+}
+
+.burger {
+  margin-right: 9px;
+}
+
+.list_icon {
+  margin-right: 9px;
+}
