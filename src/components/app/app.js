@@ -5,6 +5,13 @@ import {data} from '../../utils/data';
 
 
 function App() {
+
+  const state = React.useState({
+    isLoading: false,
+    ingredients: [],
+    isError: false,
+  });
+
   return <MainPage data={data}/>
 }
 

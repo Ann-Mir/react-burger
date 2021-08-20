@@ -1,0 +1,13 @@
+.alert {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  background-color: #494c8f;
+  color: #FFFFFF;
+  font-size: 22px;
+  line-height: 26px;
+  z-index: 1000;
+}
