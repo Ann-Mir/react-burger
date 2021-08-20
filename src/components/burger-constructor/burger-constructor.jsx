@@ -19,6 +19,9 @@ const getPrice = (ingredients, bun) => ingredients
 
 function BurgerConstructor({ data }) {
 
+  console.log(`burger constructor:`);
+  console.log(data);
+
   const bunClasses = cn(styles.list_item, styles.bun, styles.element);
   const priceClasses = cn('text_type_digits-medium', styles.price)
   const bun = data[0];
