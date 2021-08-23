@@ -3,7 +3,7 @@ import React from 'react';
 import cn from 'classnames';
 import ingredientProp from '../../utils/ingredient.prop';
 import Counter from '../counter/counter';
-import Modal from '../modal/modal';
+import ModalIngredient from '../modal-ingredients/modal-ingredients';
 import Price from '../price/price';
 
 import styles from './menu-item.module.css';
@@ -12,7 +12,7 @@ import styles from './menu-item.module.css';
 function MenuItem({ className, item }) {
 
   const classes = cn(styles.article, className);
-  const { image, imageLarge, name, price, proteins, fat, carbohydrates, calories } = item;
+  const { image, name, price } = item;
 
   const [modalIsVisible, setModalIsVisible] = React.useState(false);
 
@@ -21,29 +21,9 @@ function MenuItem({ className, item }) {
   const handleModalClose = () => setModalIsVisible(false);
   const handleModalOpen = () => setModalIsVisible(true);
 
-  const modal = (
-    <Modal title="Детали ингредиента" onClose={handleModalClose}>
-      <div>
-        <img src={imageLarge} alt={name} />
-        <h3>{name}</h3>
-        <dl>
-          <dt>Калории</dt>
-          <dd>{calories}</dd>
-          <dt>Белки</dt>
-          <dd>{proteins}</dd>
-          <dt>Жиры</dt>
-          <dd>{fat}</dd>
-          <dt>Углеводы</dt>
-          <dd>{carbohydrates}</dd>
-        </dl>
-
-      </div>
-    </Modal>
-  );
-
   return (
     <>
-      {modalIsVisible && modal}
+      {modalIsVisible && <ModalIngredient ingredient={item} onClose={handleModalClose}/>}
       <article className={classes} onClick={handleModalOpen}>
         {count > 0 && <Counter className={styles.counter} count={count} />}
         <div className={styles.image_wrapper}>

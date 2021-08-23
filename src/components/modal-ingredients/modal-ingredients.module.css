@@ -1,0 +1,40 @@
+.modal_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.modal_img_wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 520px;
+  min-height: 240px;
+  margin-bottom: 16px;
+}
+
+.title {
+  margin-bottom: 32px;
+}
+
+.table {
+  min-width: 520px;
+}
+
+.table tr {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.table tr:first-child {
+  margin-bottom: 8px;
+}
+
+.table td,
+.table th {
+  width: 120px;
+  text-align: center;
+}
