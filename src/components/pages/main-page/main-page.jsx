@@ -7,7 +7,7 @@ import styles from './main-page.module.css';
 
 
 function MainPage({ data }) {
-  console.log(data);
+
   return (
     <div className={styles.wrapper}>
       <AppHeader className={styles.header}/>

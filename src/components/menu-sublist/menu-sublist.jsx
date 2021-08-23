@@ -24,7 +24,7 @@ function MenuSublist({ className, title, items}) {
 
 MenuSublist.propTypes = {
   className: PropTypes.string,
-  isChosen: PropTypes.bool,
+  title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(ingredientProp.isRequired).isRequired,
 };
 
