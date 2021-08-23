@@ -35,7 +35,6 @@ function App() {
       {isLoading && <Spinner />}
       {isError && <ErrorAlert />}
       {!isLoading && !isError && <MainPage data={ingredients} />}
-      <Modal></Modal>
     </>
   )
 }

@@ -16,7 +16,7 @@ function MenuSublist({ className, title, items}) {
     <>
       <h3 className={titleClasses}>{title}</h3>
       <ul className={classes}>
-        {items.map((item) => <MenuItem key={item._id} item={item} isChosen />)}
+        {items.map((item) => <MenuItem key={item._id} item={item} />)}
       </ul>
     </>
   )

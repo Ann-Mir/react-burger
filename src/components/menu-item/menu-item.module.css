@@ -1,4 +1,5 @@
 .article {
+  cursor: pointer;
   position: relative;
   width: 272px;
   min-height: 208px;

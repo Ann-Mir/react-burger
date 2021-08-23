@@ -28,6 +28,8 @@ const Modal = ({ title, children, onClose }) => {
         return;
       }
 
+      firstFocusableElement.focus();
+
       if (evt.shiftKey) {
         if (document.activeElement === firstFocusableElement) {
           lastFocusableElement.focus();
@@ -53,7 +55,7 @@ const Modal = ({ title, children, onClose }) => {
     document.addEventListener('keydown', onTabPressed(firstFocusableElement, lastFocusableElement));
     document.addEventListener('keydown', onEscKeyDown);
 
-    firstFocusableElement.focus();
+
 
     return () => {
       document.body.style.overflow = 'unset';
