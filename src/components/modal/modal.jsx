@@ -28,8 +28,6 @@ const Modal = ({ title, children, onClose }) => {
         return;
       }
 
-      firstFocusableElement.focus();
-
       if (evt.shiftKey) {
         if (document.activeElement === firstFocusableElement) {
           lastFocusableElement.focus();
@@ -50,6 +48,8 @@ const Modal = ({ title, children, onClose }) => {
     const firstFocusableElement = modal.querySelectorAll(FOCUSABLE_ELEMENTS)[0];
     const focusableContent = modal.querySelectorAll(FOCUSABLE_ELEMENTS);
     const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+    firstFocusableElement.focus();
 
     document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', onTabPressed(firstFocusableElement, lastFocusableElement));

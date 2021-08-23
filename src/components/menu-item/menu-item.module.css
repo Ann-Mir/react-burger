@@ -8,6 +8,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  border-radius: 10%;
+}
+
+.article:hover {
+  background-color: #2f2c34;
 }
 
 .image_wrapper {

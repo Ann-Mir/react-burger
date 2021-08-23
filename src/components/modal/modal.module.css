@@ -26,6 +26,14 @@
   background: transparent;
 }
 
+.close:hover {
+  opacity: 0.7;
+}
+
+.close:active {
+  opacity: 0.4;
+}
+
 .header {
   width: 100%;
   display: flex;

@@ -14,7 +14,7 @@ function MenuItem({ className, item }) {
   const classes = cn(styles.article, className);
   const { image, name, price } = item;
 
-  const [modalIsVisible, setModalIsVisible] = React.useState(false);
+  const [isModalVisible, setModalIsVisible] = React.useState(false);
 
   const count = React.useState(0);
 
@@ -23,7 +23,7 @@ function MenuItem({ className, item }) {
 
   return (
     <>
-      {modalIsVisible && <ModalIngredient ingredient={item} onClose={handleModalClose}/>}
+      {isModalVisible && <ModalIngredient ingredient={item} onClose={handleModalClose}/>}
       <article className={classes} onClick={handleModalOpen}>
         {count > 0 && <Counter className={styles.counter} count={count} />}
         <div className={styles.image_wrapper}>

@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {adaptIngredientToClient} from '../../adapter/adapter';
 import {BASE_URL} from '../../utils/constants';
 import ErrorAlert from '../error-alert/error-alert';
-import Modal from '../modal/modal';
 import MainPage from '../pages/main-page/main-page';
 
 import Spinner from '../spinner/spinner';
