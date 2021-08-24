@@ -14,13 +14,13 @@ const Modal = ({ title, children, onClose }) => {
 
   const modalRef = useRef(null);
 
-  const onEscKeyDown = ( { code } ) => {
+  const onEscKeyDown = React.useCallback(( { code } ) => {
     if ( code === 'Escape' ) {
       onClose();
     }
-  };
+  }, [onClose]);
 
-  const onTabPressed = (firstFocusableElement, lastFocusableElement) => {
+  const onTabPressed = React.useCallback((firstFocusableElement, lastFocusableElement) => {
     return (evt) => {
       const isTabPressed = evt.key === 'Tab' || evt.keyCode === 9;
 
@@ -40,7 +40,7 @@ const Modal = ({ title, children, onClose }) => {
         }
       }
     }
-  };
+  }, []);
 
   useEffect(() => {
     const modal = document.querySelector('#modal');
@@ -62,7 +62,7 @@ const Modal = ({ title, children, onClose }) => {
       document.removeEventListener('keydown', onTabPressed(firstFocusableElement, lastFocusableElement));
       document.removeEventListener('keydown', onEscKeyDown);
     }
-  }, []);
+  }, [onEscKeyDown, onTabPressed]);
 
   useOutsideClick(modalRef, onClose);
 

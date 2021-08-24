@@ -1,11 +1,15 @@
 import React from 'react';
+import cn from 'classnames';
 
 import styles from './spinner.module.css';
 
 
-function Spinner() {
+function Spinner({ className }) {
+
+  const classes = cn(className, styles.spinner);
+
   return (
-    <div className={styles.spinner}>
+    <div className={classes}>
       <div></div>
       <div></div>
       <div></div>

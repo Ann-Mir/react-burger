@@ -2,10 +2,10 @@ import React from 'react';
 import cn from 'classnames';
 import Modal from '../modal/modal';
 
-import styles from './modal-confirmation.module.css';
+import styles from './order-details.module.css';
 
 
-function ModalConfirmation({ confirmationNumber='034536', onClose }) {
+function OrderDetails({ confirmationNumber='034536', onClose }) {
 
   const numberClasses = cn('text text_type_digits-large', styles.number);
   const idClasses = cn('text text_type_main-medium', styles.id);
@@ -26,4 +26,4 @@ function ModalConfirmation({ confirmationNumber='034536', onClose }) {
 }
 
 
-export default ModalConfirmation;
+export default OrderDetails;

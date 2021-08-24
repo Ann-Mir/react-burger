@@ -3,8 +3,9 @@ import {adaptIngredientToClient} from '../../adapter/adapter';
 import {BASE_URL} from '../../utils/constants';
 import ErrorAlert from '../error-alert/error-alert';
 import MainPage from '../pages/main-page/main-page';
-
 import Spinner from '../spinner/spinner';
+
+import styles from './app.module.css';
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
 
   return (
     <>
-      {isLoading && <Spinner />}
+      {isLoading && <Spinner className={styles.spinner}/>}
       {isError && <ErrorAlert />}
       {!isLoading && !isError && <MainPage data={ingredients} />}
     </>

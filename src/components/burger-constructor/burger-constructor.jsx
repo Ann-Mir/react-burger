@@ -7,7 +7,7 @@ import {
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import ingredientProp from '../../utils/ingredient.prop';
-import ModalConfirmation from '../modal-confirmation/modal-confirmation';
+import OrderDetails from '../order-details/order-details';
 import Price from '../price/price';
 import ScrolledArea from '../scrolled-container/scrolled-area';
 
@@ -22,8 +22,8 @@ function BurgerConstructor({ data }) {
 
   const [isModalVisible, setModalIsVisible] = React.useState(false);
 
-  const handleModalClose = () => setModalIsVisible(false);
-  const handleModalOpen = () => setModalIsVisible(true);
+  const handleModalClose = React.useCallback(() => setModalIsVisible(false), []);
+  const handleModalOpen = React.useCallback(() => setModalIsVisible(true), []);
 
   const bunClasses = cn(styles.list_item, styles.bun, styles.element);
   const priceClasses = cn('text_type_digits-medium', styles.price)
@@ -33,7 +33,7 @@ function BurgerConstructor({ data }) {
 
   return (
     <>
-      {isModalVisible && <ModalConfirmation onClose={handleModalClose}/>}
+      {isModalVisible && <OrderDetails onClose={handleModalClose}/>}
       <section className={styles.section}>
         <h2 className="visually-hidden">Ваш заказ:</h2>
         <div className={styles.wrapper}>
@@ -94,4 +94,4 @@ BurgerConstructor.propTypes = {
 };
 
 
-export default BurgerConstructor;
+export default React.memo(BurgerConstructor);

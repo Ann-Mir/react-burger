@@ -3,7 +3,7 @@ import React from 'react';
 import cn from 'classnames';
 import ingredientProp from '../../utils/ingredient.prop';
 import Counter from '../counter/counter';
-import ModalIngredient from '../modal-ingredients/modal-ingredients';
+import IngredientDetails from '../ingredient-details/ingredient-details';
 import Price from '../price/price';
 
 import styles from './menu-item.module.css';
@@ -18,12 +18,12 @@ function MenuItem({ className, item }) {
 
   const count = React.useState(0);
 
-  const handleModalClose = () => setModalIsVisible(false);
-  const handleModalOpen = () => setModalIsVisible(true);
+  const handleModalClose = React.useCallback(() => setModalIsVisible(false), []);
+  const handleModalOpen = React.useCallback(() => setModalIsVisible(true), []);
 
   return (
     <>
-      {isModalVisible && <ModalIngredient ingredient={item} onClose={handleModalClose}/>}
+      {isModalVisible && <IngredientDetails ingredient={item} onClose={handleModalClose}/>}
       <article className={classes} onClick={handleModalOpen}>
         {count > 0 && <Counter className={styles.counter} count={count} />}
         <div className={styles.image_wrapper}>
@@ -43,4 +43,4 @@ MenuItem.propTypes = {
 };
 
 
-export default MenuItem;
+export default React.memo(MenuItem);

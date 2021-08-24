@@ -1,10 +1,10 @@
 import React from 'react';
 import cn from 'classnames';
-import styles from './modal-ingredients.module.css'
+import styles from './ingredients-details.module.css'
 import Modal from '../modal/modal';
 
 
-function ModalIngredient({ ingredient, onClose }) {
+function IngredientDetails({ ingredient, onClose }) {
 
   const { imageLarge, name, calories, proteins, fat, carbohydrates } = ingredient;
 
@@ -28,7 +28,7 @@ function ModalIngredient({ ingredient, onClose }) {
           </tr>
           </thead>
           <tbody>
-          <tr className={styles.tr}>
+          <tr>
             <td className="text text_type_digits-default text_color_inactive">{calories}</td>
             <td className="text text_type_digits-default text_color_inactive">{proteins}</td>
             <td className="text text_type_digits-default text_color_inactive">{fat}</td>
@@ -42,4 +42,4 @@ function ModalIngredient({ ingredient, onClose }) {
 }
 
 
-export default ModalIngredient;
+export default IngredientDetails;
