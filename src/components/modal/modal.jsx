@@ -20,14 +20,21 @@ const Modal = ({ title, children, onClose }) => {
     }
   }, [onClose]);
 
-  const onTabPressed = React.useCallback((firstFocusableElement, lastFocusableElement) => {
-    return (evt) => {
+
+  useEffect(() => {
+    const modal = document.querySelector('#modal');
+
+    const firstFocusableElement = modal.querySelectorAll(FOCUSABLE_ELEMENTS)[0];
+    const focusableContent = modal.querySelectorAll(FOCUSABLE_ELEMENTS);
+    const lastFocusableElement = focusableContent[focusableContent.length - 1];
+    firstFocusableElement.focus();
+
+    const onTabPressed = (evt) => {
       const isTabPressed = evt.key === 'Tab' || evt.keyCode === 9;
 
       if (!isTabPressed) {
         return;
       }
-
       if (evt.shiftKey) {
         if (document.activeElement === firstFocusableElement) {
           lastFocusableElement.focus();
@@ -39,30 +46,20 @@ const Modal = ({ title, children, onClose }) => {
           evt.preventDefault();
         }
       }
-    }
-  }, []);
-
-  useEffect(() => {
-    const modal = document.querySelector('#modal');
-
-    const firstFocusableElement = modal.querySelectorAll(FOCUSABLE_ELEMENTS)[0];
-    const focusableContent = modal.querySelectorAll(FOCUSABLE_ELEMENTS);
-    const lastFocusableElement = focusableContent[focusableContent.length - 1];
-
-    firstFocusableElement.focus();
+    };
 
     document.body.style.overflow = 'hidden';
-    document.addEventListener('keydown', onTabPressed(firstFocusableElement, lastFocusableElement));
+    document.addEventListener('keydown', onTabPressed);
     document.addEventListener('keydown', onEscKeyDown);
 
 
 
     return () => {
       document.body.style.overflow = 'unset';
-      document.removeEventListener('keydown', onTabPressed(firstFocusableElement, lastFocusableElement));
+      document.removeEventListener('keydown', onTabPressed);
       document.removeEventListener('keydown', onEscKeyDown);
     }
-  }, [onEscKeyDown, onTabPressed]);
+  }, [onEscKeyDown]);
 
   useOutsideClick(modalRef, onClose);
 
