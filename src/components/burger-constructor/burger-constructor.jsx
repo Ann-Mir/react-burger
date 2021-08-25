@@ -7,6 +7,7 @@ import {
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import ingredientProp from '../../utils/ingredient.prop';
+import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import Price from '../price/price';
 import ScrolledArea from '../scrolled-container/scrolled-area';
@@ -33,7 +34,12 @@ function BurgerConstructor({ data }) {
 
   return (
     <>
-      {isModalVisible && <OrderDetails onClose={handleModalClose}/>}
+      {
+        isModalVisible && (
+        <Modal onClose={handleModalClose}>
+          <OrderDetails onClose={handleModalClose} />
+        </Modal>)
+      }
       <section className={styles.section}>
         <h2 className="visually-hidden">Ваш заказ:</h2>
         <div className={styles.wrapper}>

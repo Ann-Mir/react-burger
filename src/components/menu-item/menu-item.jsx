@@ -4,6 +4,7 @@ import cn from 'classnames';
 import ingredientProp from '../../utils/ingredient.prop';
 import Counter from '../counter/counter';
 import IngredientDetails from '../ingredient-details/ingredient-details';
+import Modal from '../modal/modal';
 import Price from '../price/price';
 
 import styles from './menu-item.module.css';
@@ -23,7 +24,11 @@ function MenuItem({ className, item }) {
 
   return (
     <>
-      {isModalVisible && <IngredientDetails ingredient={item} onClose={handleModalClose}/>}
+      {isModalVisible && (
+        <Modal title='Детали ингредиента' onClose={handleModalClose}>
+          <IngredientDetails ingredient={item} />
+        </Modal>)
+      }
       <article className={classes} onClick={handleModalOpen}>
         {count > 0 && <Counter className={styles.counter} count={count} />}
         <div className={styles.image_wrapper}>
