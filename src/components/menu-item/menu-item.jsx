@@ -43,7 +43,6 @@ function MenuItem({ className, item }) {
 
 MenuItem.propTypes = {
   className: PropTypes.string,
-  isChosen: PropTypes.bool,
   item: ingredientProp.isRequired,
 };
 

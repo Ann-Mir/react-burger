@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
 
@@ -21,6 +22,11 @@ function OrderDetails({ confirmationNumber='034536', onClose }) {
     </div>
   )
 }
+
+OrderDetails.propTypes = {
+  confirmationNumber: PropTypes.string,
+  onClose: PropTypes.func.isRequired,
+};
 
 
 export default OrderDetails;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
 
@@ -20,6 +21,12 @@ function ModalOverlay({ children, className, onClose }) {
     </div>
   )
 }
+
+ModalOverlay.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.any,
+  onClose: PropTypes.func.isRequired,
+};
 
 
 export default ModalOverlay;

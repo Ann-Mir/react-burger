@@ -1,5 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
+import ingredientProp from '../../utils/ingredient.prop';
 
 import styles from './ingredients-details.module.css';
 
@@ -38,6 +39,11 @@ function IngredientDetails({ ingredient }) {
     </div>
   )
 }
+
+IngredientDetails.propTypes = {
+  ingredient: ingredientProp.isRequired,
+};
+
 
 
 export default IngredientDetails;
