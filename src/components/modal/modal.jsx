@@ -31,7 +31,6 @@ const Modal = ({ title, children, onClose }) => {
 
     const onTabPressed = (evt) => {
       const isTabPressed = evt.key === 'Tab' || evt.keyCode === 9;
-
       if (!isTabPressed) {
         return;
       }
@@ -41,6 +40,9 @@ const Modal = ({ title, children, onClose }) => {
           evt.preventDefault();
         }
       } else {
+        if (!Array.from(focusableContent).includes(document.activeElement)) {
+          firstFocusableElement.focus();
+        }
         if (document.activeElement === lastFocusableElement) {
           firstFocusableElement.focus();
           evt.preventDefault();
@@ -51,8 +53,6 @@ const Modal = ({ title, children, onClose }) => {
     document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', onTabPressed);
     document.addEventListener('keydown', onEscKeyDown);
-
-
 
     return () => {
       document.body.style.overflow = 'unset';
@@ -67,7 +67,7 @@ const Modal = ({ title, children, onClose }) => {
     <ModalOverlay onClose={onClose}>
       <div className={styles.modal} id="modal" ref={modalRef}>
         <button className={styles.close} aria-label="Закрыть модальное окно" onClick={onClose}>
-          <CloseIcon type="primary"/>
+          <CloseIcon type="primary" />
         </button>
         <div className={styles.header}>
           <h2 className="text text_type_main-large">{title}</h2>
