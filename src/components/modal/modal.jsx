@@ -1,8 +1,7 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import useOutsideClick from '../../hooks/use-outside-click';
 import ModalOverlay from '../modal-overlay/modal-overlay';
 
 import styles from './modal.module.css';
@@ -13,14 +12,11 @@ const FOCUSABLE_ELEMENTS = 'button, [href], input, select, textarea, [tabindex]:
 
 const Modal = ({ title, children, onClose }) => {
 
-  const modalRef = useRef(null);
-
   const onEscKeyDown = React.useCallback(( { code } ) => {
     if ( code === 'Escape' ) {
       onClose();
     }
   }, [onClose]);
-
 
   useEffect(() => {
     const modal = document.querySelector('#modal');
@@ -62,11 +58,9 @@ const Modal = ({ title, children, onClose }) => {
     }
   }, [onEscKeyDown]);
 
-  useOutsideClick(modalRef, onClose);
-
   return ReactDOM.createPortal(
     <ModalOverlay onClose={onClose}>
-      <div className={styles.modal} id="modal" ref={modalRef}>
+      <div className={styles.modal} id="modal">
         <button className={styles.close} aria-label="Закрыть модальное окно" onClick={onClose}>
           <CloseIcon type="primary" />
         </button>

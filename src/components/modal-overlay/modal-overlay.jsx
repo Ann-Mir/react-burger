@@ -10,7 +10,7 @@ function ModalOverlay({ children, className, onClose }) {
   const classNames = cn(styles.overlay, className);
 
   const handleClick = (evt) => {
-    if (evt.target === evt.target.current) {
+    if (evt.target === evt.currentTarget) {
       onClose();
     }
   };
