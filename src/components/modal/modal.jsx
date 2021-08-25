@@ -64,7 +64,7 @@ const Modal = ({ title, children, onClose }) => {
   useOutsideClick(modalRef, onClose);
 
   return ReactDOM.createPortal(
-    <ModalOverlay>
+    <ModalOverlay onClose={onClose}>
       <div className={styles.modal} id="modal" ref={modalRef}>
         <button className={styles.close} aria-label="Закрыть модальное окно" onClick={onClose}>
           <CloseIcon type="primary"/>
