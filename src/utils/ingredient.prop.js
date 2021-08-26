@@ -11,7 +11,7 @@ export default PropTypes.shape({
   calories: PropTypes.number.isRequired,
   price: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
-  image_mobile: PropTypes.string.isRequired,
-  image_large: PropTypes.string.isRequired,
+  imageMobile: PropTypes.string.isRequired,
+  imageLarge: PropTypes.string.isRequired,
   __v: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 });

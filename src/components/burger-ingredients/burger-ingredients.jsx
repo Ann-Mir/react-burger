@@ -4,7 +4,7 @@ import ingredientProp from '../../utils/ingredient.prop';
 import MenuList from '../menu-list/menu-list';
 import TabBar from '../tab-bar/tab-bar';
 
-import styles from './burger-ingedients.module.css';
+import styles from './burger-ingredients.module.css';
 
 
 function BurgerIngredients({ data }) {

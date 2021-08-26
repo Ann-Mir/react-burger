@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.number {
+  margin-top: 0;
+  margin-bottom: 32px;
+}
+
+.id {
+  margin-top: 0;
+  margin-bottom: 60px;
+}
+
+.button {
+  cursor: pointer;
+  width: 107px;
+  height: 102px;
+  border: none;
+  background-color: transparent;
+  background-image: url('../../images/tick.svg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  margin-bottom: 60px;
+}
+
+.button:hover {
+  opacity: 0.7;
+}
+
+.button:active {
+  opacity: 0.4;
+}
+
+.notification {
+  margin-bottom: 8px;
+}
+
+.note {
+  margin-bottom: 20px;
+}

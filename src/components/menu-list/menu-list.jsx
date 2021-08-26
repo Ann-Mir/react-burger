@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import {mapItemsByType} from '../../utils/common';
 import {TABS} from '../../utils/constants';
+import ingredientProp from '../../utils/ingredient.prop';
 import MenuSublist from '../menu-sublist/menu-sublist';
 import ScrolledArea from '../scrolled-container/scrolled-area';
 
@@ -21,5 +23,9 @@ function MenuList({ data }) {
   );
 }
 
+
+MenuList.propTypes = {
+  data: PropTypes.arrayOf(ingredientProp.isRequired).isRequired,
+};
 
 export default MenuList;
