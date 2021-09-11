@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {adaptIngredientToClient} from '../../adapter/adapter';
-import {BASE_URL} from '../../utils/constants';
+import { useSelector, useDispatch } from 'react-redux';
+import {fetchIngredients} from '../../store/slices/ingredients-slice';
 import ErrorAlert from '../error-alert/error-alert';
 import MainPage from '../pages/main-page/main-page';
 import Spinner from '../spinner/spinner';
@@ -10,31 +10,21 @@ import styles from './app.module.css';
 
 function App() {
 
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [isError, setIsError] = React.useState(false);
-  const [ingredients, setIngredients] = React.useState([]);
+  const dispatch = useDispatch();
+
+  const isLoading = useSelector(state => state.ingredients.isLoading);
+  const error = useSelector(state => state.ingredients.error);
+  const ingredients = useSelector(state => state.ingredients.ingredients);
 
   useEffect(() => {
-    fetch(BASE_URL)
-      .then((response) => {
-        if (response.ok) {
-          return response.json()
-        }
-        setIsError(true);
-      })
-      .then(({ data }) => {
-        const burgerIngredients = data.map((item) => adaptIngredientToClient(item));
-        setIngredients(burgerIngredients);
-      })
-      .catch(() => setIsError(true))
-      .finally(() => setIsLoading(false));
-  }, []);
+    dispatch(fetchIngredients());
+  }, [dispatch]);
 
   return (
     <>
       {isLoading && <Spinner className={styles.spinner}/>}
-      {isError && <ErrorAlert />}
-      {!isLoading && !isError && <MainPage data={ingredients} />}
+      {error && <ErrorAlert />}
+      {!isLoading && !error && <MainPage data={ingredients} />}
     </>
   )
 }
