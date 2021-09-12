@@ -16,7 +16,6 @@ function MenuList({ data }) {
     <ScrolledArea maxHeight={'756px'}>
       <section className={styles.menu}>
         <h2 className="visually-hidden">Список ингредиентов</h2>
-
         {Array.from(itemsByType.keys()).map((title) => <MenuSublist key={title} title={TABS[title]} items={itemsByType.get(title)} />)}
       </section>
     </ScrolledArea>
