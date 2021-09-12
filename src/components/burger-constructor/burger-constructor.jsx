@@ -6,6 +6,8 @@ import {
   DragIcon,
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
+import {useDispatch, useSelector} from 'react-redux';
+import {postOrder} from '../../store/slices/order-slice';
 import ingredientProp from '../../utils/ingredient.prop';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
@@ -15,11 +17,9 @@ import ScrolledArea from '../scrolled-container/scrolled-area';
 import styles from './burger-constructor.module.css';
 
 
-const getPrice = (ingredients, bun) => ingredients
-  .reduce((sum, ingredient) => Number(ingredient.price) + sum, 0) + 2 * Number(bun.price);
-
-
 function BurgerConstructor({ data }) {
+
+  const dispatch = useDispatch();
 
   const [isModalVisible, setModalIsVisible] = React.useState(false);
 
@@ -30,7 +30,21 @@ function BurgerConstructor({ data }) {
   const priceClasses = cn('text_type_digits-medium', styles.price)
   const bun = data[0];
   const ingredients = data.filter((ingredient) => ingredient.type !== 'bun');
+
+  const getPrice = (ingredients, bun) => {
+    if (!bun || !ingredients.length) {
+      return 0;
+    }
+    return ingredients.reduce((sum, ingredient) => Number(ingredient.price) + sum, 0) + 2 * Number(bun.price)
+  };
+
   const totalPrice = getPrice(ingredients, bun);
+
+  const onOrderPlacement = () => {
+    const orderIngredients = [...ingredients.map((item) => item._id), bun._id, bun._id];
+    dispatch(postOrder({ingredients: orderIngredients}));
+    handleModalOpen();
+  };
 
   return (
     <>
@@ -86,7 +100,7 @@ function BurgerConstructor({ data }) {
         </div>
         <div className={styles.price_wrapper}>
           <Price price={totalPrice} type="primary" className={priceClasses} />
-          <Button type="primary" size="large" onClick={handleModalOpen}>
+          <Button type="primary" size="large" onClick={onOrderPlacement}>
             Оформить заказ
           </Button>
         </div>
