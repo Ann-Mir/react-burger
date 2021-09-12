@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
+import {useDispatch} from 'react-redux';
+import {removeIngredient, setIngredient} from '../../store/slices/ingredient-slice';
 import ingredientProp from '../../utils/ingredient.prop';
 import Counter from '../counter/counter';
 import IngredientDetails from '../ingredient-details/ingredient-details';
@@ -12,30 +14,41 @@ import styles from './menu-item.module.css';
 
 function MenuItem({ className, item }) {
 
+  const dispatch = useDispatch();
+
   const classes = cn(styles.article, className);
+  const nameClasses = cn('text text_type_main-default', styles.name);
+
   const { image, name, price } = item;
 
   const [isModalVisible, setModalIsVisible] = React.useState(false);
 
   const count = React.useState(0);
 
-  const handleModalClose = React.useCallback(() => setModalIsVisible(false), []);
-  const handleModalOpen = React.useCallback(() => setModalIsVisible(true), []);
+  const onModalClose = () => {
+    setModalIsVisible(false);
+    dispatch(removeIngredient());
+  };
+
+  const onArticleClick = () => {
+    dispatch(setIngredient(item));
+    setModalIsVisible(true);
+  };
 
   return (
     <>
       {isModalVisible && (
-        <Modal title='Детали ингредиента' onClose={handleModalClose}>
+        <Modal title='Детали ингредиента' onClose={onModalClose}>
           <IngredientDetails ingredient={item} />
         </Modal>)
       }
-      <article className={classes} onClick={handleModalOpen}>
+      <article className={classes} onClick={onArticleClick }>
         {count > 0 && <Counter className={styles.counter} count={count} />}
         <div className={styles.image_wrapper}>
           <img src={image} alt={name} className={styles.image}/>
         </div>
         <Price className={styles.price} price={price} type="primary"/>
-        <p className="text text_type_main-default">{name}</p>
+        <p className={nameClasses}>{name}</p>
       </article>
     </>
   );
