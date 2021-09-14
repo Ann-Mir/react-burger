@@ -1,11 +1,14 @@
 .section {
   width: 600px;
+  min-height: calc(100vh - 368px);
+  max-height: calc(100vh - 128px);
   padding-left: 16px;
   padding-right: 16px;
 }
 
 .wrapper {
   max-width: 584px;
+  min-height: calc(100% - 64px);
   display: flex;
   flex-direction: column;
   margin-bottom: 40px;

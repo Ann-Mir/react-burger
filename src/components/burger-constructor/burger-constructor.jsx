@@ -12,7 +12,7 @@ import ingredientProp from '../../utils/ingredient.prop';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import Price from '../price/price';
-import ScrolledArea from '../scrolled-container/scrolled-area';
+import ScrolledArea from '../scrolled-area/scrolled-area';
 
 import styles from './burger-constructor.module.css';
 
@@ -28,8 +28,11 @@ function BurgerConstructor({ data }) {
 
   const bunClasses = cn(styles.list_item, styles.bun, styles.element);
   const priceClasses = cn('text_type_digits-medium', styles.price)
-  const bun = data[0];
-  const ingredients = data.filter((ingredient) => ingredient.type !== 'bun');
+  //const bun = data[0];
+  //const ingredients = data.filter((ingredient) => ingredient.type !== 'bun');
+
+  const ingredients = useSelector((state) => state.constructor.ingredients);
+  const bun = useSelector((state) => state.constructor.bun);
 
   const getPrice = (ingredients, bun) => {
     if (!bun || !ingredients.length) {
@@ -58,17 +61,21 @@ function BurgerConstructor({ data }) {
         <h2 className="visually-hidden">Ваш заказ:</h2>
         <div className={styles.wrapper}>
           <div className={bunClasses}>
-            <ConstructorElement
-              type="top"
-              isLocked={true}
-              text={`${bun.name} (верх)`}
-              price={bun.price}
-              thumbnail={bun.image}
-            />
+            {
+              bun && (
+                <ConstructorElement
+                  type="top"
+                  isLocked={true}
+                  text={`${bun.name} (верх)`}
+                  price={bun.price}
+                  thumbnail={bun.image}
+                />
+              )
+            }
           </div>
           <ScrolledArea maxHeight={'400 px'}>
             <ul className={styles.list}>
-              {
+              { ingredients &&
                 ingredients.map((ingredient, index) => {
                   return (
                     <li key={index} className={styles.list_item}>
@@ -89,13 +96,17 @@ function BurgerConstructor({ data }) {
             </ul>
           </ScrolledArea>
           <div className={bunClasses}>
-            <ConstructorElement
-              type="bottom"
-              isLocked={true}
-              text={`${bun.name} (низ)`}
-              price={bun.price}
-              thumbnail={bun.image}
-            />
+            {
+              bun && (
+                <ConstructorElement
+                  type="bottom"
+                  isLocked={true}
+                  text={`${bun.name} (низ)`}
+                  price={bun.price}
+                  thumbnail={bun.image}
+                />
+              )
+            }
           </div>
         </div>
         <div className={styles.price_wrapper}>

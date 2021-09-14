@@ -9,7 +9,10 @@ const tabSlice = createSlice({
   },
   reducers: {
     setActiveTab: (state, action) => {
-      state.activeTab = action.payload;
+      console.log(action.payload);
+      if (state.activeTab !== action.payload) {
+        state.activeTab = action.payload;
+      }
     },
     setDefault: (state) => {
       state.activeTab = TABS.bun;
