@@ -94,7 +94,7 @@ function BurgerConstructor({ data }) {
               )
             }
           </div>
-          <ScrolledArea maxHeight={'400 px'}>
+          {/*<ScrolledArea maxHeight={'400 px'}>*/}
             <ul className={styles.list}>
               { ingredients.length > 0 &&
                 ingredients.map((ingredient, index) => {
@@ -115,7 +115,7 @@ function BurgerConstructor({ data }) {
                 })
               }
             </ul>
-          </ScrolledArea>
+          {/*</ScrolledArea>*/}
           <div className={bunClasses}>
             {
               bun && (

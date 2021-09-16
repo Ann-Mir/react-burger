@@ -20,6 +20,21 @@
   margin-top: 0;
   margin-bottom: 16px;
   padding-left: 0;
+  overflow: auto;
+  max-height: calc(100vh - 360px);
+}
+
+.list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: #2F2F37;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+  border: 3px solid #8585AD;
 }
 
 .list_item {
