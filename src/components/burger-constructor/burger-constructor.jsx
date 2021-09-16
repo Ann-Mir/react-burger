@@ -9,6 +9,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import {useDispatch, useSelector} from 'react-redux';
 import {addBun, addIngredient} from '../../store/slices/burger-constructor-slice';
+import {addBunQuantity, increaseQuantity} from '../../store/slices/ingredients-slice';
 import {postOrder} from '../../store/slices/order-slice';
 import ingredientProp from '../../utils/ingredient.prop';
 import Modal from '../modal/modal';
@@ -47,12 +48,13 @@ function BurgerConstructor({ data }) {
   }, [ingredients, bun]);
 
   const onDrop = (item) => {
-    console.log(item.type);
     if (item.type !== 'bun') {
       dispatch(addIngredient(item));
+      dispatch(increaseQuantity(item));
       return;
     }
     dispatch(addBun(item));
+    dispatch(addBunQuantity(item));
   };
 
   const [, dropTarget] = useDrop({

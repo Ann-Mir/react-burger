@@ -16,8 +16,6 @@ const burgerConstructorSlice = createSlice({
       state.ingredients.splice(index, 1);
     },
     addBun: (state, action) => {
-      console.log(state.bun);
-      console.log(action.payload);
       if ((state.bun === null) || (state.bun && state.bun._id !== action.payload._id)) {
         state.bun = action.payload;
       }

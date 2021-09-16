@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {useEffect} from 'react';
 import cn from 'classnames';
 import {useDispatch} from 'react-redux';
 import {removeIngredient, setIngredient} from '../../store/slices/ingredient-slice';
+import {increaseQuantity} from '../../store/slices/ingredients-slice';
 import ingredientProp from '../../utils/ingredient.prop';
 import Counter from '../counter/counter';
 import IngredientDetails from '../ingredient-details/ingredient-details';
@@ -34,6 +35,7 @@ function MenuItem({ className, item }) {
       didDrop: monitor.didDrop(),
     })
   });
+
 
   const onModalClose = () => {
     setModalIsVisible(false);

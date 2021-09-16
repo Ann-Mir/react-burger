@@ -30,6 +30,25 @@ const ingredientsSlice = createSlice({
     error: null,
   },
   reducers: {
+    increaseQuantity: (state, action) => {
+      const item = state.ingredients.find((item) => item._id === action.payload._id);
+      if (item.count) {
+        item.count++;
+      } else {
+        item.count = 1;
+      }
+    },
+    addBunQuantity: (state, action) => {
+      state.ingredients.forEach((item) => {
+        if (item.type === 'bun') {
+          if (action.payload._id === item._id) {
+            item.count = 1;
+          } else {
+            delete item['count'];
+          }
+        }
+      })
+    }
   },
   extraReducers: {
     [fetchIngredients.pending]: (state) => {
@@ -47,4 +66,6 @@ const ingredientsSlice = createSlice({
   },
 });
 
+
+export const { increaseQuantity, addBunQuantity } = ingredientsSlice.actions;
 export default ingredientsSlice.reducer;
