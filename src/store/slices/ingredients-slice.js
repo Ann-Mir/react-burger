@@ -16,7 +16,7 @@ export const fetchIngredients = createAsyncThunk(
       const burgerIngredients = data.map(adaptIngredientToClient);
       return burgerIngredients;
     } catch (error) {
-      return rejectWithValue(error.message);
+        return rejectWithValue(error.message);
     }
   }
 );
@@ -28,6 +28,8 @@ const ingredientsSlice = createSlice({
     ingredients: [],
     isLoading: true,
     error: null,
+  },
+  reducers: {
   },
   extraReducers: {
     [fetchIngredients.pending]: (state) => {

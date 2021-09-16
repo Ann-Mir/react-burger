@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {useEffect} from 'react';
+import { useDrop } from 'react-dnd';
 import cn from 'classnames';
 import {
   ConstructorElement,
@@ -7,6 +8,7 @@ import {
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import {useDispatch, useSelector} from 'react-redux';
+import {addBun, addIngredient} from '../../store/slices/burger-constructor-slice';
 import {postOrder} from '../../store/slices/order-slice';
 import ingredientProp from '../../utils/ingredient.prop';
 import Modal from '../modal/modal';
@@ -27,12 +29,9 @@ function BurgerConstructor({ data }) {
   const handleModalOpen = React.useCallback(() => setModalIsVisible(true), []);
 
   const bunClasses = cn(styles.list_item, styles.bun, styles.element);
-  const priceClasses = cn('text_type_digits-medium', styles.price)
-  //const bun = data[0];
-  //const ingredients = data.filter((ingredient) => ingredient.type !== 'bun');
+  const priceClasses = cn('text_type_digits-medium', styles.price);
 
-  const ingredients = useSelector((state) => state.constructor.ingredients);
-  const bun = useSelector((state) => state.constructor.bun);
+  const { ingredients, bun } = useSelector((state) => state.burgerConstructor);
 
   const getPrice = (ingredients, bun) => {
     if (!bun || !ingredients.length) {
@@ -41,7 +40,27 @@ function BurgerConstructor({ data }) {
     return ingredients.reduce((sum, ingredient) => Number(ingredient.price) + sum, 0) + 2 * Number(bun.price)
   };
 
-  const totalPrice = getPrice(ingredients, bun);
+  let totalPrice = 0;
+
+  useEffect(() => {
+    totalPrice = getPrice(ingredients, bun);
+  }, [ingredients, bun]);
+
+  const onDrop = (item) => {
+    console.log(item.type);
+    if (item.type !== 'bun') {
+      dispatch(addIngredient(item));
+      return;
+    }
+    dispatch(addBun(item));
+  };
+
+  const [, dropTarget] = useDrop({
+    accept: 'ingredient',
+    drop(item) {
+      onDrop(item);
+    },
+  });
 
   const onOrderPlacement = () => {
     const orderIngredients = [...ingredients.map((item) => item._id), bun._id, bun._id];
@@ -57,7 +76,7 @@ function BurgerConstructor({ data }) {
           <OrderDetails onClose={handleModalClose} />
         </Modal>)
       }
-      <section className={styles.section}>
+      <section className={styles.section} ref={dropTarget}>
         <h2 className="visually-hidden">Ваш заказ:</h2>
         <div className={styles.wrapper}>
           <div className={bunClasses}>
@@ -75,7 +94,7 @@ function BurgerConstructor({ data }) {
           </div>
           <ScrolledArea maxHeight={'400 px'}>
             <ul className={styles.list}>
-              { ingredients &&
+              { ingredients.length > 0 &&
                 ingredients.map((ingredient, index) => {
                   return (
                     <li key={index} className={styles.list_item}>
