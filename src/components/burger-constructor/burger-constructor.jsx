@@ -3,12 +3,11 @@ import { useDrop } from 'react-dnd';
 import cn from 'classnames';
 import {
   ConstructorElement,
-  DragIcon,
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import {useDispatch, useSelector} from 'react-redux';
-import {addBun, addIngredient, removeConstructorIngredient} from '../../store/slices/burger-constructor-slice';
-import {addBunQuantity, decreaseQuantity, increaseQuantity} from '../../store/slices/ingredients-slice';
+import {addBun, addIngredient} from '../../store/slices/burger-constructor-slice';
+import {addBunQuantity, increaseQuantity} from '../../store/slices/ingredients-slice';
 import {postOrder} from '../../store/slices/order-slice';
 import ConstructorItem from '../constructor-item/constructor-item';
 import Modal from '../modal/modal';
@@ -101,24 +100,6 @@ function BurgerConstructor() {
                     className={styles.list_item}
                   />
               )}
-              {/*{*/}
-              {/*  return (*/}
-              {/*    <li key={ingredient.constructorId} className={styles.list_item} index={index}>*/}
-              {/*      <div className={styles.drag}>*/}
-              {/*        <DragIcon type="primary"/>*/}
-              {/*      </div>*/}
-              {/*      <div className={styles.element}>*/}
-              {/*        <ConstructorElement*/}
-              {/*          text={ingredient.name}*/}
-              {/*          price={ingredient.price}*/}
-              {/*          thumbnail={ingredient.image}*/}
-              {/*        />*/}
-              {/*      </div>*/}
-              {/*    </li>*/}
-              {/*  )*/}
-              {/*})*/}
-              {/*}*/}
-
             </ul>
           <div className={bunClasses}>
             {

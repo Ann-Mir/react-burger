@@ -8,7 +8,7 @@ import MenuItem from '../menu-item/menu-item';
 import styles from './menu-sublist.module.css';
 
 
-const MenuSublist = React.forwardRef(({ className, title, items, sublistRef, data }, ref) => {
+const MenuSublist = React.forwardRef(({ className, title, items, data }, ref) => {
 
   const classes = cn(className, styles.list);
   const titleClasses = cn('text text_type_main-medium', styles.title);
@@ -37,6 +37,7 @@ MenuSublist.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(ingredientProp.isRequired).isRequired,
+  data: PropTypes.string.isRequired,
 };
 
 
