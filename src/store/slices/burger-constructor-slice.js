@@ -32,9 +32,14 @@ const burgerConstructorSlice = createSlice({
         state.totalPrice = state.totalPrice - 2 * state.bun.price;
       }
       state.bun = null;
+    },
+    clearOrder: (state) => {
+      state.ingredients = [];
+      state.bun = null;
+      state.totalPrice = 0;
     }
   },
 })
 
-export const { addIngredient, removeConstructorIngredient, addBun, removeBun } = burgerConstructorSlice.actions;
+export const { addIngredient, removeConstructorIngredient, addBun, removeBun, clearOrder } = burgerConstructorSlice.actions;
 export default burgerConstructorSlice.reducer;

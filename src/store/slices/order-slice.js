@@ -39,6 +39,15 @@ const orderSlice = createSlice({
     number: null,
     name: null,
   },
+  reducers: {
+    clearOrderDetails: (state) => {
+      state.ingredients = [];
+      state.isLoading = false;
+      state.error = null;
+      state.number = null;
+      state.name = null;
+    }
+  },
   extraReducers: {
     [postOrder.pending]: (state) => {
       state.isLoading = true;
@@ -58,5 +67,5 @@ const orderSlice = createSlice({
   },
 });
 
-
+export const {clearOrderDetails} = orderSlice.actions;
 export default orderSlice.reducer;
