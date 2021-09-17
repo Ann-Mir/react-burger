@@ -12,7 +12,7 @@ function BurgerIngredients({ data }) {
   return(
     <section className={styles.menu}>
       <h2 className="visually-hidden">Выбор ингредиентов</h2>
-      <TabBar className={styles.tab}/>
+      <TabBar className={styles.tab}  />
       <MenuList data={data} />
     </section>
   )

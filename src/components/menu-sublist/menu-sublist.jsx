@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
-import React, {useEffect} from 'react';
+import React, {useRef} from 'react';
 import cn from 'classnames';
 import ingredientProp from '../../utils/ingredient.prop';
 import MenuItem from '../menu-item/menu-item';
@@ -13,23 +13,23 @@ const MenuSublist = React.forwardRef(({ className, title, items, sublistRef, dat
   const classes = cn(className, styles.list);
   const titleClasses = cn('text text_type_main-medium', styles.title);
 
-  const titleRef = React.useRef(sublistRef);
-
   const activeTab = useSelector((state) => state.tab.activeTab);
 
-  useEffect(() => {
-    if (ref && ref.current.innerText === activeTab) {
-      ref.current.scrollIntoView({behavior: 'smooth'});
-    }
-  }, [activeTab]);
+  const titleRef = useRef(null);
+
+  // useEffect(() => {
+  //   if (titleRef && titleRef.current.innerText === activeTab) {
+  //     titleRef.current.scrollIntoView({behavior: 'smooth'});
+  //   }
+  // }, [activeTab]);
 
   return (
-    <>
-      <h3 data-title={data} ref={ref} className={titleClasses} >{title}</h3>
+    <div ref={ref}>
+      <h3 ref={titleRef} data-title={data} className={titleClasses} >{title}</h3>
       <ul className={classes}>
         {items.map((item) => <MenuItem key={item._id} item={item} />)}
       </ul>
-    </>
+    </div>
   )
 });
 
