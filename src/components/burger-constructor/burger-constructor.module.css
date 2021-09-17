@@ -21,7 +21,7 @@
   margin-bottom: 16px;
   padding-left: 0;
   overflow: auto;
-  max-height: calc(100vh - 360px);
+  max-height: calc(100vh - 450px);
 }
 
 .list::-webkit-scrollbar {

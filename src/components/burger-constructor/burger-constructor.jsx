@@ -32,20 +32,20 @@ function BurgerConstructor({ data }) {
   const bunClasses = cn(styles.list_item, styles.bun, styles.element);
   const priceClasses = cn('text_type_digits-medium', styles.price);
 
-  const { ingredients, bun } = useSelector((state) => state.burgerConstructor);
+  const { ingredients, bun, totalPrice } = useSelector((state) => state.burgerConstructor);
 
-  const getPrice = (ingredients, bun) => {
-    if (!bun || !ingredients.length) {
-      return 0;
-    }
-    return ingredients.reduce((sum, ingredient) => Number(ingredient.price) + sum, 0) + 2 * Number(bun.price)
-  };
+  // const getPrice = (ingredients, bun) => {
+  //   if (!bun || !ingredients.length) {
+  //     return 0;
+  //   }
+  //   return ingredients.reduce((sum, ingredient) => Number(ingredient.price) + sum, 0) + 2 * Number(bun.price)
+  // };
 
-  let totalPrice = 0;
+  // let totalPrice = 0;
 
-  useEffect(() => {
-    totalPrice = getPrice(ingredients, bun);
-  }, [ingredients, bun]);
+  // useEffect(() => {
+  //   totalPrice = getPrice(ingredients, bun);
+  // }, [ingredients, bun]);
 
   const onDrop = (item) => {
     if (item.type !== 'bun') {
@@ -57,12 +57,17 @@ function BurgerConstructor({ data }) {
     dispatch(addBunQuantity(item));
   };
 
-  const [, dropTarget] = useDrop({
+  const [{isHover}, dropTarget] = useDrop({
     accept: 'ingredient',
     drop(item) {
       onDrop(item);
     },
+    collect: monitor => ({
+      isHover: monitor.isOver(),
+    })
   });
+
+  const hoverStyles = isHover ? {border: 'dashed #4C4CFF'} : null;
 
   const onOrderPlacement = () => {
     const orderIngredients = [...ingredients.map((item) => item._id), bun._id, bun._id];
@@ -78,9 +83,9 @@ function BurgerConstructor({ data }) {
           <OrderDetails onClose={handleModalClose} />
         </Modal>)
       }
-      <section className={styles.section} ref={dropTarget}>
+      <section className={styles.section}>
         <h2 className="visually-hidden">Ваш заказ:</h2>
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} ref={dropTarget} style={hoverStyles}>
           <div className={bunClasses}>
             {
               bun && (
