@@ -13,7 +13,7 @@ const burgerConstructorSlice = createSlice({
       state.ingredients.push(action.payload);
       state.totalPrice = state.totalPrice + action.payload.price;
     },
-    removeIngredient: (state, action) => {
+    removeConstructorIngredient: (state, action) => {
       state.totalPrice = state.totalPrice - action.payload.price;
       const index = state.ingredients.findIndex((ingredient) => ingredient._id = action.payload);
       state.ingredients.splice(index, 1);
@@ -36,5 +36,5 @@ const burgerConstructorSlice = createSlice({
   },
 })
 
-export const { addIngredient, removeIngredient, addBun, removeBun } = burgerConstructorSlice.actions;
+export const { addIngredient, removeConstructorIngredient, addBun, removeBun } = burgerConstructorSlice.actions;
 export default burgerConstructorSlice.reducer;

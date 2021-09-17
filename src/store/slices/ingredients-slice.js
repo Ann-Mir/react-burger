@@ -38,6 +38,14 @@ const ingredientsSlice = createSlice({
         item.count = 1;
       }
     },
+    decreaseQuantity: (state, action) => {
+      const item = state.ingredients.find((item) => item._id === action.payload._id);
+      if (item.count > 1) {
+        item.count--;
+      } else {
+        delete item['count'];
+      }
+    },
     addBunQuantity: (state, action) => {
       state.ingredients.forEach((item) => {
         if (item.type === 'bun') {
@@ -67,5 +75,5 @@ const ingredientsSlice = createSlice({
 });
 
 
-export const { increaseQuantity, addBunQuantity } = ingredientsSlice.actions;
+export const { increaseQuantity, addBunQuantity, decreaseQuantity } = ingredientsSlice.actions;
 export default ingredientsSlice.reducer;

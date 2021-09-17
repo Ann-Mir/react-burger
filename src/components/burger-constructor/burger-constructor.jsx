@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import React, {useEffect} from 'react';
+import React from 'react';
 import { useDrop } from 'react-dnd';
 import cn from 'classnames';
 import {
@@ -8,19 +7,17 @@ import {
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import {useDispatch, useSelector} from 'react-redux';
-import {addBun, addIngredient} from '../../store/slices/burger-constructor-slice';
-import {addBunQuantity, increaseQuantity} from '../../store/slices/ingredients-slice';
+import {addBun, addIngredient, removeConstructorIngredient} from '../../store/slices/burger-constructor-slice';
+import {addBunQuantity, decreaseQuantity, increaseQuantity} from '../../store/slices/ingredients-slice';
 import {postOrder} from '../../store/slices/order-slice';
-import ingredientProp from '../../utils/ingredient.prop';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import Price from '../price/price';
-import ScrolledArea from '../scrolled-area/scrolled-area';
 
 import styles from './burger-constructor.module.css';
 
 
-function BurgerConstructor({ data }) {
+function BurgerConstructor() {
 
   const dispatch = useDispatch();
 
@@ -31,21 +28,11 @@ function BurgerConstructor({ data }) {
 
   const bunClasses = cn(styles.list_item, styles.bun, styles.element);
   const priceClasses = cn('text_type_digits-medium', styles.price);
+  const instructionClasses = cn('text text_type_main-medium', styles.instruction);
 
   const { ingredients, bun, totalPrice } = useSelector((state) => state.burgerConstructor);
-
-  // const getPrice = (ingredients, bun) => {
-  //   if (!bun || !ingredients.length) {
-  //     return 0;
-  //   }
-  //   return ingredients.reduce((sum, ingredient) => Number(ingredient.price) + sum, 0) + 2 * Number(bun.price)
-  // };
-
-  // let totalPrice = 0;
-
-  // useEffect(() => {
-  //   totalPrice = getPrice(ingredients, bun);
-  // }, [ingredients, bun]);
+  const isDisabled = ingredients.length === 0 || !bun;
+  const buttonStyle = isDisabled ? {opacity: '0.5', pointerEvents: 'none'} : null;
 
   const onDrop = (item) => {
     if (item.type !== 'bun') {
@@ -61,13 +48,21 @@ function BurgerConstructor({ data }) {
     accept: 'ingredient',
     drop(item) {
       onDrop(item);
+      return item;
     },
     collect: monitor => ({
       isHover: monitor.isOver(),
     })
   });
 
-  const hoverStyles = isHover ? {border: 'dashed #4C4CFF'} : null;
+  const hoverStyles = isHover ? {border: 'dashed #4C4CFF'} : {border: 'dashed transparent'};
+
+  const onIngredientRemove = (ingredient) => {
+    return () => {
+      dispatch(removeConstructorIngredient(ingredient));
+      dispatch(decreaseQuantity(ingredient));
+    }
+  };
 
   const onOrderPlacement = () => {
     const orderIngredients = [...ingredients.map((item) => item._id), bun._id, bun._id];
@@ -85,6 +80,9 @@ function BurgerConstructor({ data }) {
       }
       <section className={styles.section}>
         <h2 className="visually-hidden">Ваш заказ:</h2>
+        {ingredients.length === 0 && !bun && (
+          <p className={instructionClasses}>Перетащи сюда ингредиенты</p>
+        )}
         <div className={styles.wrapper} ref={dropTarget} style={hoverStyles}>
           <div className={bunClasses}>
             {
@@ -99,7 +97,6 @@ function BurgerConstructor({ data }) {
               )
             }
           </div>
-          {/*<ScrolledArea maxHeight={'400 px'}>*/}
             <ul className={styles.list}>
               { ingredients.length > 0 &&
                 ingredients.map((ingredient, index) => {
@@ -113,6 +110,7 @@ function BurgerConstructor({ data }) {
                           text={ingredient.name}
                           price={ingredient.price}
                           thumbnail={ingredient.image}
+                          handleClose={onIngredientRemove(ingredient)}
                         />
                       </div>
                     </li>
@@ -120,7 +118,6 @@ function BurgerConstructor({ data }) {
                 })
               }
             </ul>
-          {/*</ScrolledArea>*/}
           <div className={bunClasses}>
             {
               bun && (
@@ -137,7 +134,7 @@ function BurgerConstructor({ data }) {
         </div>
         <div className={styles.price_wrapper}>
           <Price price={totalPrice} type="primary" className={priceClasses} />
-          <Button type="primary" size="large" onClick={onOrderPlacement}>
+          <Button type="primary" size="large" onClick={onOrderPlacement} disabled={isDisabled} style={buttonStyle}>
             Оформить заказ
           </Button>
         </div>
@@ -146,9 +143,5 @@ function BurgerConstructor({ data }) {
   )
 }
 
-BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientProp.isRequired).isRequired,
-};
 
-
-export default React.memo(BurgerConstructor);
+export default BurgerConstructor;

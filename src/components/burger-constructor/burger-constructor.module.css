@@ -21,6 +21,7 @@
   margin-bottom: 16px;
   padding-left: 0;
   overflow: auto;
+  min-height: 300px;
   max-height: calc(100vh - 450px);
 }
 
@@ -71,6 +72,10 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+}
+
+.instruction {
+  text-align: center;
 }
 
 .price {
