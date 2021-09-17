@@ -39,9 +39,14 @@ const burgerConstructorSlice = createSlice({
       state.ingredients = [];
       state.bun = null;
       state.totalPrice = 0;
+    },
+    swapIngredients: (state, action) => {
+      const from = action.payload.from;
+      const to = action.payload.to;
+      [state.ingredients[from], state.ingredients[to]] = [state.ingredients[to], state.ingredients[from]];
     }
   },
 })
 
-export const { addIngredient, removeConstructorIngredient, addBun, removeBun, clearOrder } = burgerConstructorSlice.actions;
+export const { addIngredient, removeConstructorIngredient, addBun, removeBun, clearOrder, swapIngredients } = burgerConstructorSlice.actions;
 export default burgerConstructorSlice.reducer;
