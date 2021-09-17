@@ -1,5 +1,5 @@
 .menu {
-  max-height: calc(100vh - 320px);
+  max-height: calc(100vh - 360px);
   overflow-y: scroll;
   scroll-behavior: smooth;
 }

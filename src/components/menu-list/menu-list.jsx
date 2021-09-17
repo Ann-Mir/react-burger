@@ -45,21 +45,21 @@ function MenuList({ data }) {
     sauce: saucesRef,
   };
 
-  const onScroll = () => {
-    console.log('on scroll');
-    const bunsToTop = bunsRef.current && containerToTop ? Math.abs(bunsRef.current.getBoundingClientRect().y - containerToTop) : 0;
-    const saucesToTop = saucesRef.current && containerToTop ? Math.abs(saucesRef.current.getBoundingClientRect().y - containerToTop) : 0;
-    const mainToTop = mainRef.current && containerToTop ? Math.abs(mainRef.current.getBoundingClientRect().y - containerToTop) : 0;
-
-    if (bunsToTop <= saucesToTop) {
-      dispatch(setActiveTab(TABS.bun));
-    } else if (saucesToTop <= mainToTop) {
-      dispatch(setActiveTab(TABS.sauce));
-    } else {
-      dispatch(setActiveTab(TABS.main));
-    }
-  };
-
+  // const onScroll = () => {
+  //   console.log('on scroll');
+  //   const bunsToTop = bunsRef.current && containerToTop ? Math.abs(bunsRef.current.getBoundingClientRect().y - containerToTop) : 0;
+  //   const saucesToTop = saucesRef.current && containerToTop ? Math.abs(saucesRef.current.getBoundingClientRect().y - containerToTop) : 0;
+  //   const mainToTop = mainRef.current && containerToTop ? Math.abs(mainRef.current.getBoundingClientRect().y - containerToTop) : 0;
+  //
+  //   if (bunsToTop <= saucesToTop) {
+  //     dispatch(setActiveTab(TABS.bun));
+  //   } else if (saucesToTop <= mainToTop) {
+  //     dispatch(setActiveTab(TABS.sauce));
+  //   } else {
+  //     dispatch(setActiveTab(TABS.main));
+  //   }
+  // };
+  //
   // useEffect(() => {
   //   containerRef.current.addEventListener('scroll', onScroll);
   //   return(() => containerRef.current.removeEventListener('scroll', onScroll));
@@ -94,10 +94,18 @@ function MenuList({ data }) {
 
   return (
     // <ScrolledArea maxHeight={'756px'}>
-      <section className={styles.menu} ref={containerRef}>
+      <section className={styles.menu} ref={containerRef} >
 
         <h2 className="visually-hidden">Список ингредиентов</h2>
-        {Array.from(itemsByType.keys()).map((title) => <MenuSublist ref={sublistRefs[title]} data={title} key={title} title={TABS[title]} items={itemsByType.get(title)} />)}
+        {Array
+          .from(itemsByType.keys())
+          .map((title) => <MenuSublist
+            ref={sublistRefs[title]}
+            data={title}
+            key={title}
+            title={TABS[title]}
+            items={itemsByType.get(title)}
+          />)}
       </section>
     // </ScrolledArea>
 
