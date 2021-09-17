@@ -9,7 +9,6 @@ const tabSlice = createSlice({
   },
   reducers: {
     setActiveTab: (state, action) => {
-      console.log(action.payload);
       if (state.activeTab !== action.payload) {
         state.activeTab = action.payload;
       }
