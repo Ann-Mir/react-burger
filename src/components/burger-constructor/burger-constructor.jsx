@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {addBun, addIngredient, removeConstructorIngredient} from '../../store/slices/burger-constructor-slice';
 import {addBunQuantity, decreaseQuantity, increaseQuantity} from '../../store/slices/ingredients-slice';
 import {postOrder} from '../../store/slices/order-slice';
+import ConstructorItem from '../constructor-item/constructor-item';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
 import Price from '../price/price';
@@ -57,13 +58,6 @@ function BurgerConstructor() {
 
   const hoverStyles = isHover ? {border: 'dashed #4C4CFF'} : {border: 'dashed transparent'};
 
-  const onIngredientRemove = (ingredient) => {
-    return () => {
-      dispatch(removeConstructorIngredient(ingredient));
-      dispatch(decreaseQuantity(ingredient));
-    }
-  };
-
   const onOrderPlacement = () => {
     const orderIngredients = [...ingredients.map((item) => item._id), bun._id, bun._id];
     dispatch(postOrder({ingredients: orderIngredients}));
@@ -98,25 +92,33 @@ function BurgerConstructor() {
             }
           </div>
             <ul className={styles.list}>
-              { ingredients.length > 0 &&
-                ingredients.map((ingredient, index) => {
-                  return (
-                    <li key={index} className={styles.list_item}>
-                      <div className={styles.drag}>
-                        <DragIcon type="primary" />
-                      </div>
-                      <div className={styles.element}>
-                        <ConstructorElement
-                          text={ingredient.name}
-                          price={ingredient.price}
-                          thumbnail={ingredient.image}
-                          handleClose={onIngredientRemove(ingredient)}
-                        />
-                      </div>
-                    </li>
-                  )
-                })
-              }
+              {ingredients.length > 0 &&
+                ingredients.map((ingredient, index) =>
+                  <ConstructorItem
+                    ingredient={ingredient}
+                    index={index}
+                    key={ingredient.constructorId}
+                    className={styles.list_item}
+                  />
+              )}
+              {/*{*/}
+              {/*  return (*/}
+              {/*    <li key={ingredient.constructorId} className={styles.list_item} index={index}>*/}
+              {/*      <div className={styles.drag}>*/}
+              {/*        <DragIcon type="primary"/>*/}
+              {/*      </div>*/}
+              {/*      <div className={styles.element}>*/}
+              {/*        <ConstructorElement*/}
+              {/*          text={ingredient.name}*/}
+              {/*          price={ingredient.price}*/}
+              {/*          thumbnail={ingredient.image}*/}
+              {/*        />*/}
+              {/*      </div>*/}
+              {/*    </li>*/}
+              {/*  )*/}
+              {/*})*/}
+              {/*}*/}
+
             </ul>
           <div className={bunClasses}>
             {

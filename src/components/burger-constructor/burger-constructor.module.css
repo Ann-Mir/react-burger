@@ -45,10 +45,6 @@
   justify-content: flex-start;
 }
 
-.element div {
-  min-width: 538px;
-}
-
 .list_item:not(:last-child) {
   margin-bottom: 16px;
 }
@@ -57,14 +53,6 @@
   align-self: flex-end;
   padding-left: 32px;
   margin-right: 16px;
-}
-
-.drag {
-  display: flex;
-  align-self: center;
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
 }
 
 .price_wrapper {
@@ -88,4 +76,7 @@
   height: 36px;
 }
 
+.element div {
+  min-width: 538px;
+}
 

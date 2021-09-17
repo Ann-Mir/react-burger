@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid';
 
 
 const burgerConstructorSlice = createSlice({
@@ -10,7 +11,8 @@ const burgerConstructorSlice = createSlice({
   },
   reducers: {
     addIngredient: (state, action) => {
-      state.ingredients.push(action.payload);
+      const ingredient = {...action.payload, constructorId: nanoid()};
+      state.ingredients.push(ingredient);
       state.totalPrice = state.totalPrice + action.payload.price;
     },
     removeConstructorIngredient: (state, action) => {
