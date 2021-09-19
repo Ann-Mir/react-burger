@@ -12,8 +12,7 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(state => state.ingredients.isLoading);
-  const error = useSelector(state => state.ingredients.error);
+  const { isLoading, error } = useSelector(state => state.ingredients);
 
   useEffect(() => {
     dispatch(fetchIngredients());
