@@ -50,7 +50,7 @@ const ingredientsSlice = createSlice({
       state.ingredients.forEach((item) => {
         if (item.type === 'bun') {
           if (action.payload._id === item._id) {
-            item.count = 1;
+            item.count = 2;
           } else {
             delete item['count'];
           }
