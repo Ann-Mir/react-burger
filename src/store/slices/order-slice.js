@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {ApiRoutes, BASE_URL} from '../../utils/constants';
 
 
 export const postOrder = createAsyncThunk(
@@ -9,7 +10,7 @@ export const postOrder = createAsyncThunk(
         ingredients: ingredients,
       };
 
-      const response = await fetch('https://norma.nomoreparties.space/api/orders', {
+      const response = await fetch(`${BASE_URL}${ApiRoutes.ORDERS}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

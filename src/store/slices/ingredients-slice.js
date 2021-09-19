@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {adaptIngredientToClient} from '../../adapter/adapter';
+import {ApiRoutes, BASE_URL} from '../../utils/constants';
 
 
 export const fetchIngredients = createAsyncThunk(
   'ingredients/fetchIngredients',
   async (_, {rejectWithValue}) => {
     try {
-      const response = await fetch('https://norma.nomoreparties.space/api/ingredients/');
+      const response = await fetch(`${BASE_URL}${ApiRoutes.INGREDIENTS}`);
 
       if (!response.ok) {
         throw new Error('Server Error!');

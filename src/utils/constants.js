@@ -4,4 +4,9 @@ export const TABS = {
   sauce: 'Соусы',
 };
 
-export const BASE_URL = 'https://norma.nomoreparties.space/api/ingredients';
+export const BASE_URL = 'https://norma.nomoreparties.space/api';
+
+export const ApiRoutes = {
+  INGREDIENTS : '/ingredients',
+  ORDERS: '/orders',
+};
