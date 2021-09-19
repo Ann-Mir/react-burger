@@ -1,17 +1,16 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setActiveTab} from '../../store/slices/tab-slice';
 import {mapItemsByType} from '../../utils/common';
 import {TABS} from '../../utils/constants';
-import ingredientProp from '../../utils/ingredient.prop';
 import MenuSublist from '../menu-sublist/menu-sublist';
 
 import styles from './menu-list.module.css';
 
-function MenuList({ data }) {
+function MenuList() {
 
-  const itemsByType = mapItemsByType(data);
+  const ingredients = useSelector((state) => state.ingredients.ingredients);
+  const itemsByType = mapItemsByType(ingredients);
   const dispatch = useDispatch();
 
   const containerRef = React.useRef(null);
@@ -68,9 +67,5 @@ function MenuList({ data }) {
   );
 }
 
-
-MenuList.propTypes = {
-  data: PropTypes.arrayOf(ingredientProp.isRequired).isRequired,
-};
 
 export default MenuList;

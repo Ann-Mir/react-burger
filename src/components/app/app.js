@@ -14,7 +14,6 @@ function App() {
 
   const isLoading = useSelector(state => state.ingredients.isLoading);
   const error = useSelector(state => state.ingredients.error);
-  const ingredients = useSelector(state => state.ingredients.ingredients);
 
   useEffect(() => {
     dispatch(fetchIngredients());
@@ -24,7 +23,7 @@ function App() {
     <>
       {isLoading && <Spinner className={styles.spinner}/>}
       {error && <ErrorAlert />}
-      {!isLoading && !error && <MainPage data={ingredients} />}
+      {!isLoading && !error && <MainPage />}
     </>
   )
 }
