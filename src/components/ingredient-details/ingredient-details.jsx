@@ -1,13 +1,20 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import cn from 'classnames';
-import ingredientProp from '../../utils/ingredient.prop';
 
 import styles from './ingredients-details.module.css';
 
 
-function IngredientDetails({ ingredient }) {
+function IngredientDetails() {
 
-  const { imageLarge, name, calories, proteins, fat, carbohydrates } = ingredient;
+  const {
+    imageLarge,
+    name,
+    calories,
+    proteins,
+    fat,
+    carbohydrates
+  } = useSelector((state) => state.ingredient);
 
   const titleClasses = cn('text text_type_main-medium', styles.title);
 
@@ -39,11 +46,6 @@ function IngredientDetails({ ingredient }) {
     </div>
   )
 }
-
-IngredientDetails.propTypes = {
-  ingredient: ingredientProp.isRequired,
-};
-
 
 
 export default IngredientDetails;

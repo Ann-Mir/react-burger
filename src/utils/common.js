@@ -13,3 +13,4 @@ export const mapItemsByType = (items) => {
   });
   return results;
 };
+

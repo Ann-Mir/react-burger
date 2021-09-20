@@ -1,31 +1,71 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {setActiveTab} from '../../store/slices/tab-slice';
 import {mapItemsByType} from '../../utils/common';
 import {TABS} from '../../utils/constants';
-import ingredientProp from '../../utils/ingredient.prop';
 import MenuSublist from '../menu-sublist/menu-sublist';
-import ScrolledArea from '../scrolled-container/scrolled-area';
 
 import styles from './menu-list.module.css';
 
-function MenuList({ data }) {
+function MenuList() {
 
-  const itemsByType = mapItemsByType(data);
+  const ingredients = useSelector((state) => state.ingredients.ingredients);
+  const itemsByType = mapItemsByType(ingredients);
+  const dispatch = useDispatch();
+
+  const containerRef = React.useRef(null);
+
+  const bunsRef = React.useRef(null);
+  const saucesRef = React.useRef(null);
+  const mainRef = React.useRef(null);
+
+  const sublistRefs = {
+    bun: bunsRef,
+    main: mainRef,
+    sauce: saucesRef,
+  };
+
+  const handleScroll = () => {
+    if (bunsRef.current && mainRef.current && saucesRef.current && containerRef.current) {
+      const containerToTop = containerRef.current.getBoundingClientRect().top;
+
+      if (
+        bunsRef.current.getBoundingClientRect().top <= containerToTop &&
+        bunsRef.current.getBoundingClientRect().top > 0
+      ) {
+        dispatch(setActiveTab(TABS.bun));
+      }
+      else if (
+        mainRef.current.getBoundingClientRect().top <= containerToTop &&
+        mainRef.current.getBoundingClientRect().top > 0
+      ) {
+        dispatch(setActiveTab(TABS.main));
+      }
+      else if (
+        saucesRef.current.getBoundingClientRect().top <= containerToTop &&
+        saucesRef.current.getBoundingClientRect().top > 0
+      ) {
+        dispatch(setActiveTab(TABS.sauce));
+      }
+    }
+  };
 
   return (
-    <ScrolledArea maxHeight={'756px'}>
-      <section className={styles.menu}>
-        <h2 className="visually-hidden">Список ингредиентов</h2>
+    <section className={styles.menu} ref={containerRef} onScroll={handleScroll}>
 
-        {Array.from(itemsByType.keys()).map((title) => <MenuSublist key={title} title={TABS[title]} items={itemsByType.get(title)} />)}
-      </section>
-    </ScrolledArea>
+      <h2 className="visually-hidden">Список ингредиентов</h2>
+      {Array
+        .from(itemsByType.keys())
+        .map((title) => <MenuSublist
+          ref={sublistRefs[title]}
+          data={title}
+          key={title}
+          title={TABS[title]}
+          items={itemsByType.get(title)}
+        />)}
+    </section>
   );
 }
 
-
-MenuList.propTypes = {
-  data: PropTypes.arrayOf(ingredientProp.isRequired).isRequired,
-};
 
 export default MenuList;
