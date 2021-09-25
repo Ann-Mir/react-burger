@@ -7,6 +7,16 @@ export const TABS = {
 export const BASE_URL = 'https://norma.nomoreparties.space/api';
 
 export const ApiRoutes = {
-  INGREDIENTS : '/ingredients',
+  INGREDIENTS: '/ingredients',
   ORDERS: '/orders',
+};
+
+export const AppRoutes = {
+  ROOT: '/',
+  LOGIN: '/login',
+  REGISTER: '/register',
+  FORGOT_PASSWORD: '/forgot-password',
+  RESET_PASSWORD: '/reset-password',
+  PROFILE: '/profile',
+  INGREDIENTS: '/ingredients/',
 };
