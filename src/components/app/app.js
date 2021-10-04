@@ -23,8 +23,8 @@ function App() {
     <>
       {isLoading && <Spinner className={styles.spinner}/>}
       {error && <ErrorAlert />}
-      {/*{!isLoading && !error && <MainPage />}*/}
-      {!isLoading && !error && <SignInPage />}
+      {!isLoading && !error && <MainPage />}
+      {/*{!isLoading && !error && <SignInPage />}*/}
     </>
   )
 }
