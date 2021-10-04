@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {fetchIngredients} from '../../store/slices/ingredients-slice';
 import ErrorAlert from '../error-alert/error-alert';
 import MainPage from '../pages/main-page/main-page';
+import RegistrationPage from '../pages/registration-page/registration-page';
 import SignInPage from '../pages/sign-in-page/sign-in-page';
 import Spinner from '../spinner/spinner';
 
@@ -23,7 +24,8 @@ function App() {
     <>
       {isLoading && <Spinner className={styles.spinner}/>}
       {error && <ErrorAlert />}
-      {!isLoading && !error && <MainPage />}
+      {/*{!isLoading && !error && <MainPage />}*/}
+      {!isLoading && !error && <RegistrationPage />}
       {/*{!isLoading && !error && <SignInPage />}*/}
     </>
   )
