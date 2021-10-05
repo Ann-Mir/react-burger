@@ -1,6 +1,5 @@
 import {Input} from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
-import cn from 'classnames';
 import Form from '../form/form';
 
 

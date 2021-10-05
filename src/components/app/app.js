@@ -6,6 +6,7 @@ import ForgotPasswordPage from '../pages/forgot-password-page.jsx/forgot-passwor
 import MainPage from '../pages/main-page/main-page';
 import ProfilePage from '../pages/profile-page/profile-page';
 import RegistrationPage from '../pages/registration-page/registration-page';
+import ResetPasswordPage from '../pages/reset-password-page/reset-password-page';
 import SignInPage from '../pages/sign-in-page/sign-in-page';
 import Spinner from '../spinner/spinner';
 
@@ -27,7 +28,7 @@ function App() {
       {isLoading && <Spinner className={styles.spinner}/>}
       {error && <ErrorAlert />}
       {/*{!isLoading && !error && <MainPage />}*/}
-      {!isLoading && !error && <ForgotPasswordPage />}
+      {!isLoading && !error && <ResetPasswordPage />}
       {/*{!isLoading && !error && <SignInPage />}*/}
     </>
   )
