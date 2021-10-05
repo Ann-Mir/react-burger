@@ -1,9 +1,9 @@
 import React from 'react';
 import AppHeader from '../../app-header/app-header';
-import ProfileForm from '../../profile-form/profile-form';
+import ProfileForm from './profile-form';
 import cn from 'classnames';
 
-import styles from './profile-page.module.css';
+import styles from './index.module.css';
 
 
 function ProfilePage() {
@@ -26,7 +26,6 @@ function ProfilePage() {
           В этом разделе вы можете<br/>изменить свои персональные данные
         </p>
       </div>
-
     )
   };
 

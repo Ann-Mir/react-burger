@@ -1,15 +1,15 @@
 import React from 'react';
+import ForgotPasswordForm from './forgot-password-form';
 import PasswordPageWrapper from '../../password-page-wrapper/password-page-wrapper';
-import ResetPasswordForm from '../../reset-password-form/reset-password-form';
 
 
-function ResetPasswordPage() {
+function ForgotPasswordPage() {
   return (
     <PasswordPageWrapper >
-      <ResetPasswordForm />
+      <ForgotPasswordForm />
     </PasswordPageWrapper>
   )
 }
 
 
-export default ResetPasswordPage;
+export default ForgotPasswordPage;

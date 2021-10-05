@@ -1,8 +1,7 @@
 import React from 'react';
 import AppHeader from '../../app-header/app-header';
-import RegistrationForm from '../../registration-form/registration-form';
-import cn from 'classnames';
-import styles from './registration-page.module.css';
+import RegistrationForm from './registration-form';
+import styles from './index.module.css';
 
 
 function RegistrationPage() {
@@ -25,7 +24,7 @@ function RegistrationPage() {
       </main>
     </div>
   )
-
 }
+
 
 export default RegistrationPage;

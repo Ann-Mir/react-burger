@@ -1,6 +1,6 @@
 import {Input, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
-import Form from '../form/form';
+import Form from '../../form/form';
 
 
 function ResetPasswordForm() {

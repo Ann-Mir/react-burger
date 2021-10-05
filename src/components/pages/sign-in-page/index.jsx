@@ -1,8 +1,8 @@
 import React from 'react';
 import AppHeader from '../../app-header/app-header';
-import SignInForm from '../../sign-in-form/sign-in-form';
+import SignInForm from './sign-in-form';
 import cn from 'classnames';
-import styles from './sign-in-page.module.css';
+import styles from './index.module.css';
 
 
 function SignInPage() {

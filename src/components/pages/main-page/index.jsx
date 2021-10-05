@@ -1,7 +1,8 @@
 import React from 'react';
 import AppHeader from '../../app-header/app-header';
-import MainWrapper from '../../main-wrapper/main-wrapper';
-import styles from './main-page.module.css';
+import MainWrapper from './main-wrapper';
+
+import styles from './index.module.css';
 
 
 function MainPage() {
