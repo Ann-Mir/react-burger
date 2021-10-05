@@ -1,0 +1,21 @@
+.form {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.cancel {
+  color: #4C4CFF;
+  padding: 5px;
+  margin-right: 20px;
+  background-color: transparent;
+  border: none;
+}
+
+.cancel:hover {
+  color: white;
+}
+
+
