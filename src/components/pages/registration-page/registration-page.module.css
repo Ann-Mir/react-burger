@@ -24,3 +24,11 @@
 .link {
   color: #4C4CFF;
 }
+
+.login:hover {
+  color: #FFFFFF;
+}
+
+.login:active {
+  opacity: 0.5;
+}
