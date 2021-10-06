@@ -3,7 +3,8 @@ import burgerConstructorReducer from './burger-constructor-slice';
 import ingredientsReducer from './ingredients-slice';
 import orderReducer from './order-slice';
 import ingredientReducer from './ingredient-slice';
-import tabReducer from './tab-slice'
+import tabReducer from './tab-slice';
+import forgotPasswordReducer from './forgot-password';
 
 export const rootReducer = combineReducers({
   ingredients: ingredientsReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
   order: orderReducer,
   ingredient: ingredientReducer,
   tab: tabReducer,
+  forgotPassword: forgotPasswordReducer,
 });

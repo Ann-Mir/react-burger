@@ -5,7 +5,7 @@ import cn from 'classnames';
 import styles from './form.module.css';
 
 
-function Form({ legend, children, buttonText, onFormSubmit, className }) {
+function Form({ legend, children, buttonText, onFormSubmit, className, isLoading, error }) {
 
   const formClasses = cn(styles.form, className);
   const legendClasses = cn('text text_type_main-medium', styles.legend);

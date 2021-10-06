@@ -9,6 +9,7 @@ export const BASE_URL = 'https://norma.nomoreparties.space/api';
 export const ApiRoutes = {
   INGREDIENTS: '/ingredients',
   ORDERS: '/orders',
+  PASSWORD_RESET: '/password-reset',
 };
 
 export const AppRoutes = {
