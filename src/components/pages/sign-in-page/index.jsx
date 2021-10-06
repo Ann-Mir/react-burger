@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import {AppRoutes} from '../../../utils/constants';
 import AppHeader from '../../app-header/app-header';
 import SignInForm from './sign-in-form';
 import cn from 'classnames';
@@ -10,16 +12,18 @@ function SignInPage() {
   const RegisterLink = () => (
     <p className={cn('text text_type_main-default text_color_inactive', styles.register)}>
       Вы&ensp;— новый пользователь?&ensp;
-      {/*<Link to="/register" className={styles.link}>Зарегистрироваться</Link>*/}
-      <a href="#" className={styles.link}>Зарегистрироваться</a>
+      <Link to={AppRoutes.REGISTER} className={styles.link}>
+        Зарегистрироваться
+      </Link>
     </p>
   );
 
   const ResetPasswordLink = () => (
     <p className="text text_type_main-default text_color_inactive">
       Забыли пароль?&ensp;
-      {/*<Link to="/forgot-password">Восстановить пароль</Link>*/}
-      <a href="#"  className={styles.link}>Восстановить пароль</a>
+      <Link to={AppRoutes.FORGOT_PASSWORD} className={styles.link}>
+        Восстановить пароль
+      </Link>
     </p>
   );
 

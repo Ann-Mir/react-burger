@@ -10,6 +10,10 @@ function ForgotPasswordForm() {
     setEmailValue(evt.target.value);
   };
 
+  const onSubmit = () => {
+
+  };
+
   return (
     <Form legend={'Восстановление пароля'} buttonText={'Восстановить'}>
       <Input

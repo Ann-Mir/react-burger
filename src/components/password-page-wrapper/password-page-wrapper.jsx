@@ -1,5 +1,7 @@
 import cn from 'classnames';
 import React from 'react';
+import {Link} from 'react-router-dom';
+import {AppRoutes} from '../../utils/constants';
 import AppHeader from '../app-header/app-header';
 
 import styles from './password-page-wrapper.module.css';
@@ -14,7 +16,9 @@ function PasswordPageWrapper({children}) {
         {children}
         <p className={cn('text text_type_main-default text_color_inactive', styles.password)}>
           Вспомнили пароль?&ensp;
-          <a href="#" className={styles.login}>Войти</a>
+          <Link to={AppRoutes.LOGIN} className={styles.login}>
+            Войти
+          </Link>
         </p>
       </main>
     </div>

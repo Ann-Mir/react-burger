@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import {AppRoutes} from '../../../utils/constants';
 import AppHeader from '../../app-header/app-header';
 import RegistrationForm from './registration-form';
 import styles from './index.module.css';
@@ -10,8 +12,9 @@ function RegistrationPage() {
   const SignInLink = () => (
     <p className="text text_type_main-default text_color_inactive">
       Уже зарегистрированы?&ensp;
-      {/*<Link to="/sign-in">Восстановить пароль</Link>*/}
-      <a href="#"  className={styles.link}>Войти</a>
+      <Link to={AppRoutes.FORGOT_PASSWORD} className={styles.link}>
+        Восстановить пароль
+      </Link>
     </p>
   );
 
