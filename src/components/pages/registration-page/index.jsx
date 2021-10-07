@@ -1,5 +1,6 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {useSelector} from 'react-redux';
+import {Link, useHistory} from 'react-router-dom';
 import {AppRoutes} from '../../../utils/constants';
 import AppHeader from '../../app-header/app-header';
 import RegistrationForm from './registration-form';
@@ -8,6 +9,15 @@ import styles from './index.module.css';
 
 function RegistrationPage() {
 
+  const history = useHistory();
+
+  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.replace({pathname: AppRoutes.ROOT});
+    }
+  }, [history, isAuthenticated]);
 
   const SignInLink = () => (
     <p className="text text_type_main-default text_color_inactive">

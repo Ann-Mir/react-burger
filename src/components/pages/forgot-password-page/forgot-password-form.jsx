@@ -1,7 +1,9 @@
 import {EmailInput, Input} from '@ya.praktikum/react-developer-burger-ui-components';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {resetPassword} from '../../../store/slices/forgot-password';
+import { useHistory } from 'react-router-dom';
+import {resetPassword} from '../../../store/slices/forgot-password-slice';
+import {AppRoutes} from '../../../utils/constants';
 import ErrorAlert from '../../error-alert/error-alert';
 import Form from '../../form/form';
 
@@ -9,6 +11,8 @@ import Form from '../../form/form';
 function ForgotPasswordForm() {
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const { isLoading, error, success } = useSelector(state => state.forgotPassword);
 
   const [emailValue, setEmailValue] = React.useState('');
@@ -20,6 +24,12 @@ function ForgotPasswordForm() {
     evt.preventDefault();
     dispatch(resetPassword(emailValue));
   };
+
+  useEffect(() => {
+    if (success) {
+      history.replace({ pathname: AppRoutes.RESET_PASSWORD });
+    }
+  }, [history, success]);
 
   return (
     <Form

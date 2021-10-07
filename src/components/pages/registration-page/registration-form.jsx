@@ -1,5 +1,7 @@
 import {EmailInput, Input, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
+import {useDispatch} from 'react-redux';
+import {registerUser} from '../../../store/slices/user-slice';
 import Form from '../../form/form';
 import cn from 'classnames';
 
@@ -10,7 +12,10 @@ function RegistrationForm({ className }) {
 
   const formClasses = cn(styles.form, className);
 
+  const dispatch = useDispatch();
+
   const [emailValue, setEmailValue] = React.useState('');
+  const [isDisabled, setIsDisabled] = React.useState(false);
 
   const onEmailChange = (evt) => {
     setEmailValue(evt.target.value)
@@ -26,8 +31,18 @@ function RegistrationForm({ className }) {
     setNameValue(evt.target.value);
   };
 
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(registerUser({name: nameValue, password: passwordValue, email: emailValue}));
+  };
+
   return (
-    <Form legend="Регистрация" buttonText="Зарегистрироваться" className={formClasses}>
+    <Form
+      legend="Регистрация"
+      buttonText="Зарегистрироваться"
+      className={formClasses}
+      onFormSubmit={onSubmit}
+    >
       <Input
         type="text"
         placeholder="Имя"

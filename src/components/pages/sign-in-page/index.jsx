@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoutes} from '../../../utils/constants';
 import AppHeader from '../../app-header/app-header';
@@ -8,6 +8,7 @@ import styles from './index.module.css';
 
 
 function SignInPage() {
+
 
   const RegisterLink = () => (
     <p className={cn('text text_type_main-default text_color_inactive', styles.register)}>

@@ -10,6 +10,8 @@ export const ApiRoutes = {
   INGREDIENTS: '/ingredients',
   ORDERS: '/orders',
   PASSWORD_RESET: '/password-reset',
+  REGISTER: '/register',
+  AUTH: '/auth',
 };
 
 export const AppRoutes = {

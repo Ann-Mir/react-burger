@@ -42,6 +42,9 @@ function App() {
         <Route path={AppRoutes.FORGOT_PASSWORD} exact>
           <ForgotPasswordPage />
         </Route>
+        <Route path={AppRoutes.RESET_PASSWORD} exact>
+          <ResetPasswordPage />
+        </Route>
       </Switch>
     </Router>
     // <>
