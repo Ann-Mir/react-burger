@@ -12,6 +12,7 @@ export const ApiRoutes = {
   PASSWORD_RESET: '/password-reset',
   REGISTER: '/register',
   AUTH: '/auth',
+  RESET: '/reset',
 };
 
 export const AppRoutes = {

@@ -31,7 +31,6 @@ export const registerUser = createAsyncThunk(
         }
       });
       if (authToken) {
-        console.log('auth token: ' + authToken);
         setCookie('token', authToken);
       }
       return data;

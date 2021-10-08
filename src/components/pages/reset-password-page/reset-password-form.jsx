@@ -1,26 +1,35 @@
 import {Input, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
+import {useDispatch} from 'react-redux';
+import {updatePassword} from '../../../store/slices/password-slice';
 import Form from '../../form/form';
 
 
 function ResetPasswordForm() {
 
-  const [passwordValue, setPasswordValue] = React.useState('');
+  const dispatch = useDispatch();
+
+  const [password, setPassword] = React.useState('');
   const onPasswordChange = (evt) => {
-    setPasswordValue(evt.target.value)
+    setPassword(evt.target.value)
   };
 
-  const [tokenValue, setTokenValue] = React.useState('');
+  const [token, setToken] = React.useState('');
   const onTokenChange = (evt) => {
-    setTokenValue(evt.target.value)
+    setToken(evt.target.value)
+  };
+
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(updatePassword({password, token}));
   };
 
   return (
-    <Form legend={'Восстановление пароля'} buttonText={'Сохранить'}>
+    <Form legend={'Восстановление пароля'} buttonText={'Сохранить'} onFormSubmit={onSubmit}>
       <PasswordInput
         placeholder="Пароль"
         onChange={onPasswordChange}
-        value={passwordValue}
+        value={password}
         name="password"
         size="default"
       />
@@ -28,7 +37,7 @@ function ResetPasswordForm() {
         type="text"
         placeholder="Введите код из письма"
         onChange={onTokenChange}
-        value={tokenValue}
+        value={token}
         name="name"
         icon="EditIcon"
         error={false}

@@ -4,7 +4,7 @@ import ingredientsReducer from './ingredients-slice';
 import orderReducer from './order-slice';
 import ingredientReducer from './ingredient-slice';
 import tabReducer from './tab-slice';
-import forgotPasswordReducer from './forgot-password-slice';
+import passwordReducer from './password-slice';
 import userReducer from './user-slice';
 
 export const rootReducer = combineReducers({
@@ -13,6 +13,6 @@ export const rootReducer = combineReducers({
   order: orderReducer,
   ingredient: ingredientReducer,
   tab: tabReducer,
-  forgotPassword: forgotPasswordReducer,
+  password: passwordReducer,
   user: userReducer,
 });

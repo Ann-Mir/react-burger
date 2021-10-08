@@ -2,7 +2,7 @@ import {EmailInput, Input} from '@ya.praktikum/react-developer-burger-ui-compone
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import {resetPassword} from '../../../store/slices/forgot-password-slice';
+import {resetPassword} from '../../../store/slices/password-slice';
 import {AppRoutes} from '../../../utils/constants';
 import ErrorAlert from '../../error-alert/error-alert';
 import Form from '../../form/form';
@@ -11,9 +11,9 @@ import Form from '../../form/form';
 function ForgotPasswordForm() {
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
 
-  const { isLoading, error, success } = useSelector(state => state.forgotPassword);
+  const { isLoading, error, success } = useSelector(state => state.password);
 
   const [emailValue, setEmailValue] = React.useState('');
   const onEmailChange = (evt) => {
@@ -25,11 +25,11 @@ function ForgotPasswordForm() {
     dispatch(resetPassword(emailValue));
   };
 
-  useEffect(() => {
-    if (success) {
-      history.replace({ pathname: AppRoutes.RESET_PASSWORD });
-    }
-  }, [history, success]);
+  // useEffect(() => {
+  //   if (success) {
+  //     history.push({ pathname: AppRoutes.RESET_PASSWORD });
+  //   }
+  // }, [history, success]);
 
   return (
     <Form
