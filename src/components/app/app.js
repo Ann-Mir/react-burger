@@ -10,6 +10,7 @@ import ProfilePage from '../pages/profile-page';
 import RegistrationPage from '../pages/registration-page';
 import ResetPasswordPage from '../pages/reset-password-page';
 import SignInPage from '../pages/sign-in-page';
+import ProtectedRoute from '../protected-route/protected-route';
 import Spinner from '../spinner/spinner';
 
 import styles from './app.module.css';
@@ -33,6 +34,9 @@ function App() {
           {error && <ErrorAlert />}
           {!isLoading && !error && <MainPage />}
         </Route>
+        {/*<ProtectedRoute path={AppRoutes.LOGIN} exact>*/}
+        {/*  <SignInPage />*/}
+        {/*</ProtectedRoute>*/}
         <Route path={AppRoutes.LOGIN} exact>
           <SignInPage />
         </Route>
@@ -44,6 +48,9 @@ function App() {
         </Route>
         <Route path={AppRoutes.RESET_PASSWORD} exact>
           <ResetPasswordPage />
+        </Route>
+        <Route path={AppRoutes.PROFILE} exact>
+          <ProfilePage />
         </Route>
       </Switch>
     </Router>

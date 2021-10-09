@@ -13,6 +13,9 @@ export const ApiRoutes = {
   REGISTER: '/register',
   AUTH: '/auth',
   RESET: '/reset',
+  LOGIN: '/login',
+  LOGOUT: '/logout',
+  TOKEN: '/token',
 };
 
 export const AppRoutes = {
@@ -23,4 +26,6 @@ export const AppRoutes = {
   RESET_PASSWORD: '/reset-password',
   PROFILE: '/profile',
   INGREDIENTS: '/ingredients/',
+  ORDERS: '/orders',
+  LOGOUT: '/logout',
 };

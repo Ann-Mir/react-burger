@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import {Redirect, useLocation, Link} from 'react-router-dom';
 import {AppRoutes} from '../../../utils/constants';
 import AppHeader from '../../app-header/app-header';
 import SignInForm from './sign-in-form';
@@ -9,6 +10,8 @@ import styles from './index.module.css';
 
 function SignInPage() {
 
+  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+  const state = useLocation();
 
   const RegisterLink = () => (
     <p className={cn('text text_type_main-default text_color_inactive', styles.register)}>
@@ -28,15 +31,30 @@ function SignInPage() {
     </p>
   );
 
+  // if (isAuthenticated) {
+  //   return (
+  //     <Redirect
+  //       to={ state?.from || AppRoutes.ROOT }
+  //     />
+  //   );
+  // }
+  console.log(state);
+
   return (
-    <div className={styles.wrapper}>
-      <AppHeader className={styles.header}/>
-      <main className={styles.main}>
-        <SignInForm className={styles.form}/>
-        <RegisterLink />
-        <ResetPasswordLink />
-      </main>
-    </div>
+    <>
+      {
+        isAuthenticated
+        && <Redirect to={state?.from || AppRoutes.ROOT } />
+      }
+      <div className={styles.wrapper}>
+        <AppHeader className={styles.header}/>
+        <main className={styles.main}>
+          <SignInForm className={styles.form}/>
+          <RegisterLink />
+          <ResetPasswordLink />
+        </main>
+      </div>
+    </>
   )
 
 }

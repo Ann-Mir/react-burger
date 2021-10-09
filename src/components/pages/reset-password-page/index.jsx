@@ -11,15 +11,13 @@ function ResetPasswordPage() {
   const history = useHistory();
   const {state} = useLocation();
 
-  const {passwordIsChanged, isEmailConfirmed }= useSelector(state => state.password);
-
+  const {passwordIsChanged, isEmailConfirmed } = useSelector(state => state.password);
 
   useEffect(() => {
     if (passwordIsChanged) {
-      history.replace({pathname: AppRoutes.ROOT});
+      history.replace({pathname: AppRoutes.LOGIN});
     }
   }, [passwordIsChanged]);
-
 
   return (
     <>
