@@ -1,5 +1,7 @@
 import {EmailInput, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
+import {useDispatch} from 'react-redux';
+import {login} from '../../../store/slices/user-slice';
 import Form from '../../form/form';
 import cn from 'classnames';
 
@@ -7,32 +9,39 @@ import styles from './sign-in-form.module.css';
 
 function SignInForm({ className }) {
 
+  const dispatch = useDispatch();
+
   const formClasses = cn(styles.form, className);
 
-  const [emailValue, setEmailValue] = React.useState('');
+  const [email, setEmail] = React.useState('');
 
   const onEmailChange = evt => {
-    setEmailValue(evt.target.value)
+    setEmail(evt.target.value)
   };
 
-  const [passwordValue, setPasswordValue] = React.useState('')
+  const [password, setPassword] = React.useState('')
   const onPasswordChange = evt => {
-    setPasswordValue(evt.target.value)
+    setPassword(evt.target.value)
+  };
+
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(login({email, password}));
   };
 
   return (
-    <Form legend="Вход" buttonText="Войти" className={formClasses}>
+    <Form legend="Вход" buttonText="Войти" className={formClasses} onFormSubmit={onSubmit}>
       <EmailInput
         type="text"
         placeholder="E-mail"
         onChange={onEmailChange}
-        value={emailValue}
+        value={email}
         name="email"
       />
       <PasswordInput
         placeholder="Пароль"
         onChange={onPasswordChange}
-        value={passwordValue}
+        value={password}
         name="password"
         size="default"
       />

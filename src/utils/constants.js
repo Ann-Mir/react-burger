@@ -16,6 +16,7 @@ export const ApiRoutes = {
   LOGIN: '/login',
   LOGOUT: '/logout',
   TOKEN: '/token',
+  USER: '/user',
 };
 
 export const AppRoutes = {
