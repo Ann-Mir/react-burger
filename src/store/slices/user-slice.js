@@ -75,35 +75,53 @@ export const login = createAsyncThunk(
   }
 );
 
-export const refreshToken = createAsyncThunk(
-  'user/refreshToken',
-  async function(_,
-                 {rejectWithValue}) {
-    const refreshToken = getCookie('refreshToken');
-    const value = {token: {refreshToken}};
-
-    try {
-      const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.TOKEN}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(value)
-      })
-
-      if (!response.ok) {
-        throw new Error('Server error, try again');
+const refreshToken = async (cb) => {
+  fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.TOKEN}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({token: getCookie('refreshToken')})
+  })
+    .then((response) => {
+      if (response.ok) {
+        const data = response.json();
+        const accessToken = data.accessToken.split('Bearer ')[1];
+        setCookie('accessToken', accessToken, {expires: 1200});
       }
-      const data = await response.json();
+    })
+    .finally(cb());
+};
 
-      const accessToken = data.accessToken.split('Bearer ')[1];
-      setCookie('accessToken', accessToken, {expires: 1200});
-
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+// export const refreshToken = createAsyncThunk(
+//   'user/refreshToken',
+//   async function(_,
+//                  {rejectWithValue}) {
+//     const refreshToken = getCookie('refreshToken');
+//     const value = {token: {refreshToken}};
+//
+//     try {
+//       const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.TOKEN}`, {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(value)
+//       })
+//
+//       if (!response.ok) {
+//         throw new Error('Server error, try again');
+//       }
+//       const data = await response.json();
+//
+//       const accessToken = data.accessToken.split('Bearer ')[1];
+//       setCookie('accessToken', accessToken, {expires: 1200});
+//
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const logout = createAsyncThunk(
   'user/logout',
@@ -130,14 +148,56 @@ export const logout = createAsyncThunk(
   }
 )
 
+export const updateProfile = createAsyncThunk(
+  'user/updateProfile',
+  async function(
+    {email, name, password},
+    {rejectWithValue}) {
+
+    const value = {
+      email: email,
+      name: name,
+      password: password,
+    };
+
+    const updateData = async () => {
+      const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.USER}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + getCookie('accessToken'),
+        },
+        body: JSON.stringify(value)
+      })
+
+      if (!response.ok) {
+        throw new Error('Server error, try again');
+      }
+
+      const data = await response.json();
+      return data;
+    };
+
+    try {
+      return await updateData();
+    } catch (error) {
+      try {
+        await refreshToken(updateData);
+      } catch (error) {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+)
+
 const userSlice = createSlice({
   name: 'user',
   initialState: {
     isLoading: false,
     error: null,
     success: false,
-    email: null,
-    name: null,
+    email: '',
+    name: '',
     isAuthenticated: false,
   },
   reducers: {},
@@ -147,8 +207,8 @@ const userSlice = createSlice({
       state.error = null;
       state.success = false;
       state.isAuthenticated = false;
-      state.name = null;
-      state.email = null;
+      state.name = '';
+      state.email = '';
     },
     [registerUser.fulfilled]: (state, action) => {
       state.isLoading = false;
@@ -166,14 +226,14 @@ const userSlice = createSlice({
       state.error = null;
       state.success = false;
       state.isAuthenticated = false;
-      state.name = null;
-      state.email = null;
+      state.name = '';
+      state.email = '';
     },
     [login.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.success = true;
-      state.name = action.payload.name;
-      state.email = action.payload.email;
+      state.name = action.payload.user.name;
+      state.email = action.payload.user.email;
       state.isAuthenticated = true;
     },
     [login.rejected]: (state, action) => {
@@ -188,11 +248,26 @@ const userSlice = createSlice({
     [logout.fulfilled]: (state) => {
       state.isLoading = false;
       state.success = true;
-      state.name = null;
-      state.email = null;
+      state.name = '';
+      state.email = '';
       state.isAuthenticated = false;
     },
     [logout.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [updateProfile.pending]: (state) => {
+      state.isLoading = true;
+      state.error = null;
+      state.success = false;
+    },
+    [updateProfile.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.success = true;
+      state.name = action.payload.user.name;
+      state.email = action.payload.user.email;
+    },
+    [updateProfile.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },

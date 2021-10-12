@@ -11,7 +11,7 @@ import styles from './index.module.css';
 function SignInPage() {
 
   const isAuthenticated = useSelector(state => state.user.isAuthenticated);
-  const state = useLocation();
+  const { state } = useLocation();
 
   const RegisterLink = () => (
     <p className={cn('text text_type_main-default text_color_inactive', styles.register)}>
@@ -38,7 +38,6 @@ function SignInPage() {
   //     />
   //   );
   // }
-  console.log(state);
 
   return (
     <>

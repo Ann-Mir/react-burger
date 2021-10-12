@@ -49,9 +49,9 @@ function App() {
         <Route path={AppRoutes.RESET_PASSWORD} exact>
           <ResetPasswordPage />
         </Route>
-        <Route path={AppRoutes.PROFILE} exact>
+        <ProtectedRoute path={AppRoutes.PROFILE} exact>
           <ProfilePage />
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </Router>
     // <>
