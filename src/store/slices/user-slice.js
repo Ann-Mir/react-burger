@@ -75,53 +75,38 @@ export const login = createAsyncThunk(
   }
 );
 
-const refreshToken = async (cb) => {
-  fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.TOKEN}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({token: getCookie('refreshToken')})
-  })
-    .then((response) => {
-      if (response.ok) {
-        const data = response.json();
-        const accessToken = data.accessToken.split('Bearer ')[1];
-        setCookie('accessToken', accessToken, {expires: 1200});
-      }
-    })
-    .finally(cb());
-};
 
-// export const refreshToken = createAsyncThunk(
-//   'user/refreshToken',
-//   async function(_,
-//                  {rejectWithValue}) {
-//     const refreshToken = getCookie('refreshToken');
-//     const value = {token: {refreshToken}};
-//
-//     try {
-//       const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.TOKEN}`, {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(value)
-//       })
-//
-//       if (!response.ok) {
-//         throw new Error('Server error, try again');
-//       }
-//       const data = await response.json();
-//
-//       const accessToken = data.accessToken.split('Bearer ')[1];
-//       setCookie('accessToken', accessToken, {expires: 1200});
-//
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const refreshToken = createAsyncThunk(
+  'user/refreshToken',
+  async function(cb,
+                 {rejectWithValue,
+                   dispatch}) {
+    const refreshToken = getCookie('refreshToken');
+    const value = {token: {refreshToken}};
+
+    try {
+      const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.TOKEN}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(value)
+      })
+
+      if (!response.ok) {
+        throw new Error('Server error, try again');
+      }
+      const data = await response.json();
+
+      const accessToken = data.accessToken.split('Bearer ')[1];
+      setCookie('accessToken', accessToken, {expires: 1200});
+      dispatch(cb());
+
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const logout = createAsyncThunk(
   'user/logout',
@@ -152,7 +137,7 @@ export const updateProfile = createAsyncThunk(
   'user/updateProfile',
   async function(
     {email, name, password},
-    {rejectWithValue}) {
+    {dispatch, rejectWithValue}) {
 
     const value = {
       email: email,
@@ -160,7 +145,7 @@ export const updateProfile = createAsyncThunk(
       password: password,
     };
 
-    const updateData = async () => {
+    try {
       const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.USER}`, {
         method: 'PATCH',
         headers: {
@@ -170,22 +155,18 @@ export const updateProfile = createAsyncThunk(
         body: JSON.stringify(value)
       })
 
-      if (!response.ok) {
-        throw new Error('Server error, try again');
+      if (response.status === 403 || response.status === 401) {
+        dispatch(refreshToken(updateProfile));
+      } else {
+        if (!response.ok) {
+          throw new Error('Server error, try again');
+        }
+
+        const data = await response.json();
+        return data;
       }
-
-      const data = await response.json();
-      return data;
-    };
-
-    try {
-      return await updateData();
     } catch (error) {
-      try {
-        await refreshToken(updateData);
-      } catch (error) {
-        return rejectWithValue(error.message);
-      }
+      return rejectWithValue(error.message);
     }
   }
 )
