@@ -5,7 +5,8 @@ import { Route, Redirect, useLocation } from 'react-router-dom';
 
 export function ProtectedRoute({ children, ...rest }) {
 
-  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+  const {isAuthenticated} = useSelector(state => state.user);
+  console.log(isAuthenticated);
   const {location} = useLocation();
 
   // let { getUser, ...auth } = useAuth();

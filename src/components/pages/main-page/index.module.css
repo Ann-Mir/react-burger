@@ -7,3 +7,11 @@
 .header {
   margin-bottom: 40px;
 }
+
+.spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -40px;
+  margin-left: -40px;
+}

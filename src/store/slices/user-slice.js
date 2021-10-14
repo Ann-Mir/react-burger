@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {getCookie, setCookie} from '../../utils/common';
+import {deleteCookie, getCookie, setCookie} from '../../utils/common';
 import {ApiRoutes, BASE_URL} from '../../utils/constants';
 
 
@@ -111,8 +111,6 @@ export const refreshToken = createAsyncThunk(
 export const logout = createAsyncThunk(
   'user/logout',
   async function(_, {rejectWithValue}) {
-    const refreshToken = getCookie('refreshToken');
-    const value = {token: {refreshToken}};
 
     try {
       const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.LOGOUT}`, {
@@ -120,12 +118,17 @@ export const logout = createAsyncThunk(
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(value)
-      })
+        body: JSON.stringify({
+          token: getCookie('refreshToken'),
+        }),
+      });
 
       if (!response.ok) {
         throw new Error('Server error, try again');
       }
+
+      deleteCookie('accessToken');
+      deleteCookie('refreshToken');
 
     } catch (error) {
       return rejectWithValue(error.message);

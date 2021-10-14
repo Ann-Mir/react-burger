@@ -1,8 +1,13 @@
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {NavLink} from 'react-router-dom';
+import {logout} from '../../../store/slices/user-slice';
 import {AppRoutes} from '../../../utils/constants';
 import AppHeader from '../../app-header/app-header';
+import ErrorAlert from '../../error-alert/error-alert';
+import Spinner from '../../spinner/spinner';
 import ProfileForm from './profile-form';
+import { useHistory } from 'react-router-dom'
 import cn from 'classnames';
 
 import styles from './index.module.css';
@@ -12,9 +17,21 @@ function ProfilePage() {
 
   const linkClasses = cn('text text_type_main-medium text_color_inactive', styles.link);
 
+  const { isLoading, error } = useSelector(state => state.user);
+
   const ProfileNav = () => {
 
     const noteClasses = cn('text text_type_main-small text_color_inactive', styles.note);
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const onLogout = () => {
+      dispatch(logout())
+        .then(() => {
+          history.replace({ pathname: AppRoutes.LOGIN });
+        });
+    };
 
     return (
       <div className={styles.nav}>
@@ -38,13 +55,17 @@ function ProfilePage() {
             </NavLink>
           </li>
           <li className={styles.item}>
-            <NavLink
-              to={AppRoutes.LOGOUT}
-              className={linkClasses}
-              activeClassName={styles.active}
-            >
+            {/*<NavLink*/}
+            {/*  to={AppRoutes.LOGIN}*/}
+            {/*  className={linkClasses}*/}
+            {/*  activeClassName={styles.active}*/}
+            {/*  onClick={onLogout}*/}
+            {/*>*/}
+            {/*  Выход*/}
+            {/*</NavLink>*/}
+            <button onClick={onLogout} className={linkClasses}>
               Выход
-            </NavLink>
+            </button>
           </li>
         </ul>
         <p className={noteClasses}>
@@ -56,8 +77,10 @@ function ProfilePage() {
 
   return (
     <div className={styles.wrapper}>
+      {error && <ErrorAlert />}
       <AppHeader className={styles.header}/>
       <main className={styles.main}>
+        {isLoading && <Spinner className={styles.spinner}/>}
         <ProfileNav />
         <ProfileForm />
       </main>
