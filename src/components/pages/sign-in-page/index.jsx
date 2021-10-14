@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useSelector} from 'react-redux';
 import {Redirect, useLocation, Link} from 'react-router-dom';
 import {AppRoutes} from '../../../utils/constants';
@@ -31,14 +31,6 @@ function SignInPage() {
     </p>
   );
 
-  // if (isAuthenticated) {
-  //   return (
-  //     <Redirect
-  //       to={ state?.from || AppRoutes.ROOT }
-  //     />
-  //   );
-  // }
-
   return (
     <>
       {
@@ -55,7 +47,6 @@ function SignInPage() {
       </div>
     </>
   )
-
 }
 
 export default SignInPage;

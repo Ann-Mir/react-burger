@@ -55,14 +55,6 @@ function ProfilePage() {
             </NavLink>
           </li>
           <li className={styles.item}>
-            {/*<NavLink*/}
-            {/*  to={AppRoutes.LOGIN}*/}
-            {/*  className={linkClasses}*/}
-            {/*  activeClassName={styles.active}*/}
-            {/*  onClick={onLogout}*/}
-            {/*>*/}
-            {/*  Выход*/}
-            {/*</NavLink>*/}
             <button onClick={onLogout} className={linkClasses}>
               Выход
             </button>

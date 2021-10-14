@@ -84,6 +84,10 @@ export const refreshToken = createAsyncThunk(
     const refreshToken = getCookie('refreshToken');
     const value = {token: {refreshToken}};
 
+    if (!refreshToken) {
+      throw new Error('Unauthorized user');
+    }
+
     try {
       const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.TOKEN}`, {
         method: 'POST',
@@ -156,6 +160,42 @@ export const updateProfile = createAsyncThunk(
           Authorization: 'Bearer ' + getCookie('accessToken'),
         },
         body: JSON.stringify(value)
+      })
+
+      if (response.status === 403 || response.status === 401) {
+        dispatch(refreshToken(updateProfile));
+      } else {
+        if (!response.ok) {
+          throw new Error('Server error, try again');
+        }
+
+        const data = await response.json();
+        return data;
+      }
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+)
+
+export const getUserData = createAsyncThunk(
+  'user/getData',
+  async function(_,
+    {dispatch, rejectWithValue}) {
+
+    const accessToken = getCookie('accessToken');
+
+    if (!accessToken) {
+      throw new Error('Unauthorized user');
+    }
+
+    try {
+      const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.USER}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + accessToken,
+        },
       })
 
       if (response.status === 403 || response.status === 401) {
@@ -254,6 +294,23 @@ const userSlice = createSlice({
     [updateProfile.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
+    },
+    [getUserData.pending]: (state) => {
+      state.isLoading = true;
+      state.error = null;
+      state.success = false;
+    },
+    [getUserData.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.success = true;
+      state.name = action.payload.user.name;
+      state.email = action.payload.user.email;
+      state.isAuthenticated = true;
+    },
+    [getUserData.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+      state.isAuthenticated = false;
     },
   },
 });
