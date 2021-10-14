@@ -2,6 +2,7 @@
   display: block;
   width: 290px;
   height: 50px;
+  cursor: pointer;
 }
 
 .active {
