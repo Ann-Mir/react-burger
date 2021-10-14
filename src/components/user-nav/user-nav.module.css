@@ -2,11 +2,25 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   flex-wrap: nowrap;
   border-radius: 40px;
-  padding: 16px 20px;
+  padding: 15px 20px;
 }
 
 .profile_icon {
+  display: flex;
   margin-right: 11px;
+}
+
+.active {
+  color: #FFFFFF;
+}
+
+.active .profile_icon svg {
+  fill: #FFFFFF;
+}
+
+.text {
+  margin: 0;
 }

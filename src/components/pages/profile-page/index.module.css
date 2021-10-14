@@ -59,6 +59,11 @@
 
 .active {
   color: #FFFFFF;
+  pointer-events: none;
+}
+
+.link.active svg {
+  fill: #FFFFFF;
 }
 
 .spinner {
