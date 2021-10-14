@@ -20,12 +20,14 @@ function MainPage() {
   }, [dispatch]);
 
   return (
-    <div className={styles.wrapper}>
+    <>
       <AppHeader className={styles.header}/>
-      {isLoading && <Spinner className={styles.spinner}/>}
-      {error && <ErrorAlert />}
-      {!isLoading && !error && <MainWrapper />}
-    </div>
+      <div className={styles.wrapper}>
+        {isLoading && <Spinner className={styles.spinner}/>}
+        {error && <ErrorAlert />}
+        {!isLoading && !error && <MainWrapper />}
+      </div>
+    </>
   )
 }
 

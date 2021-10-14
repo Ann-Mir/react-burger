@@ -11,6 +11,7 @@ function ResetPasswordPage() {
   const history = useHistory();
   const {state} = useLocation();
 
+  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
   const {passwordIsChanged, isEmailConfirmed } = useSelector(state => state.password);
 
   useEffect(() => {
@@ -21,6 +22,10 @@ function ResetPasswordPage() {
 
   return (
     <>
+      {
+        isAuthenticated
+        && <Redirect to={AppRoutes.ROOT} />
+      }
       {
         (!isEmailConfirmed || state?.from !== AppRoutes.FORGOT_PASSWORD)
         && <Redirect to={{pathname: AppRoutes.FORGOT_PASSWORD}} />

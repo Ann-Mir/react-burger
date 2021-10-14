@@ -8,11 +8,17 @@ import PasswordPageWrapper from '../../password-page-wrapper/password-page-wrapp
 
 function ForgotPasswordPage() {
 
+  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+
   const isEmailConfirmed = useSelector(state => state.password.isEmailConfirmed);
   const location = useLocation();
 
   return (
     <>
+      {
+        isAuthenticated
+        && <Redirect to={AppRoutes.ROOT} />
+      }
       {isEmailConfirmed
         && <Redirect to={{
           pathname: AppRoutes.RESET_PASSWORD,
