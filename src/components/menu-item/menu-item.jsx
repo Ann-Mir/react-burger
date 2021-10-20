@@ -2,10 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
 import {useDispatch} from 'react-redux';
+import {generatePath, useLocation} from 'react-router';
+import {Link} from 'react-router-dom';
 import {removeIngredient, setIngredient} from '../../store/slices/ingredient-slice';
+import {AppRoutes} from '../../utils/constants';
 import ingredientProp from '../../utils/ingredient.prop';
 import Counter from '../counter/counter';
 import IngredientDetails from '../ingredient-details/ingredient-details';
+import IngredientModal from '../ingredient-modal/ingredient-modal';
 import Modal from '../modal/modal';
 import Price from '../price/price';
 import { useDrag } from "react-dnd";
@@ -41,12 +45,7 @@ function MenuItem({ className, item }) {
 
   return (
     <>
-      {isModalVisible && (
-        <Modal title='Детали ингредиента' onClose={onModalClose}>
-          <IngredientDetails ingredient={item} />
-        </Modal>)
-      }
-      <article className={classes} onClick={onArticleClick } ref={dragRef}>
+      <article className={classes} ref={dragRef}>
         { (count && count > 0) && <Counter className={styles.counter} count={count} />}
         <div className={styles.image_wrapper}>
           <img src={image} alt={name} className={styles.image}/>

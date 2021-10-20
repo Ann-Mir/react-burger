@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  max-width: 720px;
 }
 
 .modal_img_wrapper{
@@ -38,3 +39,4 @@
   width: 120px;
   text-align: center;
 }
+
