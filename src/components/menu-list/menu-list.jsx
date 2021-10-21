@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {setActiveTab} from '../../store/slices/tab-slice';
 import {mapItemsByType} from '../../utils/common';
@@ -10,7 +10,7 @@ import styles from './menu-list.module.css';
 function MenuList() {
 
   const ingredients = useSelector((state) => state.ingredients.ingredients);
-  const itemsByType = mapItemsByType(ingredients);
+  const itemsByType = useMemo(() => mapItemsByType(ingredients), [ingredients]);
   const dispatch = useDispatch();
 
   const containerRef = React.useRef(null);

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import {useSelector} from 'react-redux';
 import cn from 'classnames';
@@ -60,6 +61,10 @@ function IngredientDetails({ className }) {
     </>
   )
 }
+
+IngredientDetails.propTypes = {
+  className: PropTypes.string,
+};
 
 
 export default IngredientDetails;

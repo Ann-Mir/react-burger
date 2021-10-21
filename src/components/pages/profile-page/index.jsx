@@ -78,7 +78,6 @@ function ProfilePage() {
       </main>
     </div>
   )
-
 }
 
 export default ProfilePage;

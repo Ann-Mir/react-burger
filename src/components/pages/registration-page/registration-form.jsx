@@ -15,7 +15,6 @@ function RegistrationForm({ className }) {
   const dispatch = useDispatch();
 
   const [emailValue, setEmailValue] = React.useState('');
-  const [isDisabled, setIsDisabled] = React.useState(false);
 
   const onEmailChange = (evt) => {
     setEmailValue(evt.target.value)

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 import Modal from '../modal/modal';
 
@@ -11,5 +12,10 @@ function IngredientModal({ onClose }) {
     </Modal>
   )
 }
+
+IngredientModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
+
 
 export default IngredientModal;

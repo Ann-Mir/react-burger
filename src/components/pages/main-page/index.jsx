@@ -14,8 +14,13 @@ function MainPage() {
   const dispatch = useDispatch();
 
   const { isLoading, error } = useSelector(state => state.ingredients);
+  const totalPrice = useSelector(state => state.burgerConstructor.totalPrice);
 
   useEffect(() => {
+    if (totalPrice) {
+      return;
+    }
+    console.log(totalPrice);
     dispatch(fetchIngredients());
   }, [dispatch]);
 
