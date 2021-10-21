@@ -1,7 +1,8 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useLocation} from 'react-router';
 import { Switch, Route } from 'react-router-dom';
+import {fetchIngredients} from '../../store/slices/ingredients-slice';
 import {AppRoutes} from '../../utils/constants';
 import AppHeader from '../app-header/app-header';
 import ErrorAlert from '../error-alert/error-alert';
@@ -22,6 +23,7 @@ import styles from './app.module.css';
 function App() {
 
   const { isLoading, error } = useSelector(state => state.user);
+  const dispatch = useDispatch();
 
   const location = useLocation();
   const history = useHistory();
@@ -30,6 +32,15 @@ function App() {
   const onModalClose = () => {
     history.goBack();
   };
+
+  const totalPrice = useSelector(state => state.burgerConstructor.totalPrice);
+
+  useEffect(() => {
+    if (totalPrice) {
+      return;
+    }
+    dispatch(fetchIngredients());
+  }, [dispatch]);
 
   return (
     <>
