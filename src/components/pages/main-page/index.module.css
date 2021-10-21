@@ -4,10 +4,6 @@
   grid-template-rows: min-content 1fr;
 }
 
-.header {
-  margin-bottom: 40px;
-}
-
 .spinner {
   position: fixed;
   top: 50%;

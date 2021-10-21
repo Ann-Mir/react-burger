@@ -2,7 +2,6 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {Redirect, useLocation, Link} from 'react-router-dom';
 import {AppRoutes} from '../../../utils/constants';
-import AppHeader from '../../app-header/app-header';
 import SignInForm from './sign-in-form';
 import cn from 'classnames';
 import styles from './index.module.css';
@@ -38,7 +37,6 @@ function SignInPage() {
         && <Redirect to={state?.from || AppRoutes.ROOT } />
       }
       <div className={styles.wrapper}>
-        <AppHeader className={styles.header}/>
         <main className={styles.main}>
           <SignInForm className={styles.form}/>
           <RegisterLink />

@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchIngredients} from '../../../store/slices/ingredients-slice';
-import AppHeader from '../../app-header/app-header';
 import ErrorAlert from '../../error-alert/error-alert';
 import Spinner from '../../spinner/spinner';
 import MainWrapper from './main-wrapper';
@@ -26,7 +25,6 @@ function MainPage() {
 
   return (
     <>
-      <AppHeader className={styles.header}/>
       <div className={styles.wrapper}>
         {isLoading && <Spinner className={styles.spinner}/>}
         {error && <ErrorAlert />}

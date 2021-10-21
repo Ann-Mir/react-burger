@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import {logout} from '../../../store/slices/user-slice';
 import {AppRoutes} from '../../../utils/constants';
-import AppHeader from '../../app-header/app-header';
 import ErrorAlert from '../../error-alert/error-alert';
 import Spinner from '../../spinner/spinner';
 import ProfileForm from './profile-form';
@@ -70,7 +69,6 @@ function ProfilePage() {
   return (
     <div className={styles.wrapper}>
       {error && <ErrorAlert />}
-      <AppHeader className={styles.header}/>
       <main className={styles.main}>
         {isLoading && <Spinner className={styles.spinner}/>}
         <ProfileNav />

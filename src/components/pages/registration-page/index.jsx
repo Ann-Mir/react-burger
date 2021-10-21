@@ -2,7 +2,6 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {Link, Redirect, useLocation} from 'react-router-dom';
 import {AppRoutes} from '../../../utils/constants';
-import AppHeader from '../../app-header/app-header';
 import RegistrationForm from './registration-form';
 import styles from './index.module.css';
 
@@ -28,7 +27,6 @@ function RegistrationPage() {
         && <Redirect to={state?.from || AppRoutes.ROOT } />
       }
       <div className={styles.wrapper}>
-        <AppHeader className={styles.header}/>
         <main className={styles.main}>
           <RegistrationForm className={styles.form}/>
           <SignInLink />

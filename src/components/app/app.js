@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import {useHistory, useLocation} from 'react-router';
 import { Switch, Route } from 'react-router-dom';
 import {AppRoutes} from '../../utils/constants';
+import AppHeader from '../app-header/app-header';
 import ErrorAlert from '../error-alert/error-alert';
 import IngredientModal from '../ingredient-modal/ingredient-modal';
 import ForgotPasswordPage from '../pages/forgot-password-page';
@@ -36,6 +37,7 @@ function App() {
       {error && <ErrorAlert />}
       {!isLoading && !error && (
         <>
+          <AppHeader className={styles.header}/>
           <Switch location={background || location}>
             <Route path={AppRoutes.ROOT} exact>
               <MainPage />
