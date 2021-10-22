@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {rootReducer} from './slices/root-reducer';
-import thunk from 'redux-thunk';
+import {getUserData} from './slices/user-slice';
 
-export default configureStore({
+
+const store = configureStore({
   reducer: rootReducer,
 });
 
+store.dispatch(getUserData());
+
+export default store;

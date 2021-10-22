@@ -4,6 +4,7 @@
   grid-template-rows: min-content 1fr;
 }
 
-.header {
-  margin-bottom: 40px;
+.details {
+  margin: 120px auto 0 auto;
 }
+

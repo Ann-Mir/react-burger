@@ -8,19 +8,40 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
   flex-wrap: nowrap;
   border-radius: 40px;
-  padding: 16px 20px;
+  padding: 15px 20px;
+  box-sizing: border-box;
+}
+
+.active {
+  color: #FFFFFF;
 }
 
 .nav_link:first-child {
   margin-right: 8px;
 }
 
+.active .burger svg {
+  fill: #FFFFFF;
+}
+
 .burger {
+  display: flex;
   margin-right: 9px;
 }
 
 .list_icon {
+  display: flex;
   margin-right: 9px;
+}
+
+.active .list_icon svg {
+  fill: #FFFFFF;
+}
+
+.text {
+  margin: 0;
+  align-self: center;
 }

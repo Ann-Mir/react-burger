@@ -1,0 +1,14 @@
+.form {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input__container {
+  width: 100%;
+}
+
+.legend {
+  text-align: center;
+}

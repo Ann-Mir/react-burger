@@ -6,9 +6,11 @@ import {
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import {useDispatch, useSelector} from 'react-redux';
-import {addBun, addIngredient} from '../../store/slices/burger-constructor-slice';
-import {addBunQuantity, increaseQuantity} from '../../store/slices/ingredients-slice';
+import {Route, Redirect, useLocation, useHistory} from 'react-router-dom';
+import {addBun, addIngredient, clearOrder} from '../../store/slices/burger-constructor-slice';
+import {addBunQuantity, clearQuantities, increaseQuantity} from '../../store/slices/ingredients-slice';
 import {postOrder} from '../../store/slices/order-slice';
+import {AppRoutes} from '../../utils/constants';
 import ConstructorItem from '../constructor-item/constructor-item';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
@@ -20,6 +22,9 @@ import styles from './burger-constructor.module.css';
 function BurgerConstructor() {
 
   const dispatch = useDispatch();
+  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+  const location = useLocation();
+  const history = useHistory();
 
   const [isModalVisible, setModalIsVisible] = React.useState(false);
 
@@ -58,9 +63,17 @@ function BurgerConstructor() {
   const hoverStyles = isHover ? {border: 'dashed #4C4CFF'} : {border: 'dashed transparent'};
 
   const onOrderPlacement = () => {
-    const orderIngredients = [...ingredients.map((item) => item._id), bun._id, bun._id];
-    dispatch(postOrder({ingredients: orderIngredients}));
-    handleModalOpen();
+    if (!isAuthenticated) {
+      history.push({pathname: AppRoutes.LOGIN, state: {from: location}});
+    } else {
+      const orderIngredients = [...ingredients.map((item) => item._id), bun._id, bun._id];
+      dispatch(postOrder({ingredients: orderIngredients}))
+        .then(() => {
+          dispatch(clearQuantities());
+          dispatch(clearOrder());
+        })
+      handleModalOpen();
+    }
   };
 
   return (

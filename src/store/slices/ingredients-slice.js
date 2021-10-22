@@ -10,7 +10,7 @@ export const fetchIngredients = createAsyncThunk(
       const response = await fetch(`${BASE_URL}${ApiRoutes.INGREDIENTS}`);
 
       if (!response.ok) {
-        throw new Error('Server Error!');
+        throw new Error(response.message);
       }
 
       const { data } = await response.json();
@@ -31,6 +31,9 @@ const ingredientsSlice = createSlice({
     error: null,
   },
   reducers: {
+    clearQuantities: (state) => {
+      state.ingredients.forEach((item) => delete item.count);
+    },
     increaseQuantity: (state, action) => {
       const item = state.ingredients.find((item) => item._id === action.payload._id);
       if (item.count) {
@@ -76,5 +79,5 @@ const ingredientsSlice = createSlice({
 });
 
 
-export const { increaseQuantity, addBunQuantity, decreaseQuantity } = ingredientsSlice.actions;
+export const { increaseQuantity, addBunQuantity, decreaseQuantity, clearQuantities } = ingredientsSlice.actions;
 export default ingredientsSlice.reducer;

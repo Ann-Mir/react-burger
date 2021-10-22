@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {getCookie} from '../../utils/common';
 import {ApiRoutes, BASE_URL} from '../../utils/constants';
 
 
@@ -10,16 +11,19 @@ export const postOrder = createAsyncThunk(
         ingredients: ingredients,
       };
 
+      const accessToken = getCookie('accessToken');
+
       const response = await fetch(`${BASE_URL}${ApiRoutes.ORDERS}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + accessToken,
         },
         body: JSON.stringify(order)
       });
 
       if (!response.ok) {
-        throw new Error('Can\'t place order. Server error, try again');
+        throw new Error(response.message);
       }
 
       const data = await response.json();
