@@ -10,7 +10,7 @@ function ForgotPasswordForm() {
 
   const dispatch = useDispatch();
 
-  const { isLoading, error, success } = useSelector(state => state.password);
+  const { isLoading, error } = useSelector(state => state.password);
 
   const [emailValue, setEmailValue] = React.useState('');
   const onEmailChange = (evt) => {

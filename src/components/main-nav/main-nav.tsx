@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import cn from'classnames';
 import {BurgerIcon, ListIcon} from '@ya.praktikum/react-developer-burger-ui-components';
@@ -8,7 +7,12 @@ import {AppRoutes} from '../../utils/constants';
 import styles from '../main-nav/main-nav.module.css';
 
 
-function MainNav({ className }) {
+interface IMainNavProps {
+  className?: string;
+};
+
+
+function MainNav({ className }: IMainNavProps): JSX.Element {
 
   const classes = cn(styles.nav, className);
   const linkClasses = cn(styles.nav_link, 'text text_type_main-default text_color_inactive');
@@ -34,10 +38,6 @@ function MainNav({ className }) {
     </nav>
   );
 }
-
-MainNav.propTypes = {
-  className: PropTypes.string,
-};
 
 
 export default MainNav;

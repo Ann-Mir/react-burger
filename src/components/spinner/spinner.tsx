@@ -1,11 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
 
 import styles from './spinner.module.css';
 
 
-function Spinner({ className }) {
+type TSpinnerProps = {
+  className?: string;
+};
+
+
+function Spinner({ className }: TSpinnerProps): JSX.Element {
 
   const classes = cn(className, styles.spinner);
 
@@ -26,10 +30,6 @@ function Spinner({ className }) {
     </div>
   )
 }
-
-Spinner.propTypes = {
-  className: PropTypes.string,
-};
 
 
 export default Spinner;

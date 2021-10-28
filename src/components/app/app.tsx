@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useLocation} from 'react-router';
 import { Switch, Route } from 'react-router-dom';
 import {fetchIngredients} from '../../store/slices/ingredients-slice';
+import {TLocationState} from '../../types';
 import {AppRoutes} from '../../utils/constants';
 import AppHeader from '../app-header/app-header';
 import ErrorAlert from '../error-alert/error-alert';
@@ -20,20 +21,24 @@ import Spinner from '../spinner/spinner';
 import styles from './app.module.css';
 
 
-function App() {
+function App(): JSX.Element {
 
-  const { isLoading, error } = useSelector(state => state.user);
+  const { isLoading, error } = useSelector((state: any) => state.user);
   const dispatch = useDispatch();
 
-  const location = useLocation();
+  const location = useLocation<TLocationState>();
   const history = useHistory();
-  const background = history.action === 'PUSH' && location.state && location.state.background;
+  const background = (
+    history.action === 'PUSH'
+    || history.action === 'REPLACE'
+  ) && location.state
+    && location.state.background;
 
   const onModalClose = () => {
     history.goBack();
   };
 
-  const totalPrice = useSelector(state => state.burgerConstructor.totalPrice);
+  const totalPrice = useSelector((state: any) => state.burgerConstructor.totalPrice);
 
   useEffect(() => {
     if (totalPrice) {

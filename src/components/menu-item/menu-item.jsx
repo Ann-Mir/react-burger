@@ -30,7 +30,7 @@ function MenuItem({ className, item }) {
         <div className={styles.image_wrapper}>
           <img src={image} alt={name} className={styles.image}/>
         </div>
-        <Price className={styles.price} price={price} type="primary"/>
+        <Price className={styles.price} price={price} />
         <p className={nameClasses}>{name}</p>
       </article>
     </>

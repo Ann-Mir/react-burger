@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
 import {Logo as LogoIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {NavLink} from 'react-router-dom';
@@ -8,7 +7,12 @@ import {AppRoutes} from '../../utils/constants';
 import styles from './logo.module.css';
 
 
-function Logo({ className }) {
+type TLogoProps = {
+  className?: string;
+};
+
+
+function Logo({ className }: TLogoProps): JSX.Element {
 
   const classes = cn(styles.logo, className);
 
@@ -18,10 +22,6 @@ function Logo({ className }) {
     </NavLink>
   )
 }
-
-Logo.propTypes = {
-  className: PropTypes.string,
-};
 
 
 export default Logo;

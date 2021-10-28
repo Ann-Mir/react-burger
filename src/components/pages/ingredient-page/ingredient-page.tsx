@@ -4,7 +4,7 @@ import IngredientDetails from '../../ingredient-details/ingredient-details';
 import styles from './ingredient-page.module.css';
 
 
-function IngredientPage() {
+function IngredientPage(): JSX.Element {
 
   return (
     <div className={styles.wrapper}>

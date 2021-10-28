@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 
 import styles from './error-alert.module.css';
+
+
+type TErrorAlertProps = {
+  message?: string;
+};
+
 
 const DEFAULT_ALERT_MESSAGE = 'Something went wrong:(';
 const ALERT_TIMEOUT = 7000;
 
-function ErrorAlert({message = DEFAULT_ALERT_MESSAGE}) {
+function ErrorAlert({message = DEFAULT_ALERT_MESSAGE}: TErrorAlertProps): JSX.Element {
 
   const [isVisible, setVisible] = useState(true);
 
@@ -30,10 +35,6 @@ function ErrorAlert({message = DEFAULT_ALERT_MESSAGE}) {
     </div>
   );
 }
-
-ErrorAlert.propTypes = {
-  message: PropTypes.string,
-};
 
 
 export default ErrorAlert;

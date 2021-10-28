@@ -8,7 +8,7 @@ import BurgerIngredients from '../../burger-ingredients/burger-ingredients';
 import styles from './main-wrapper.module.css';
 
 
-function MainWrapper() {
+function MainWrapper(): JSX.Element {
 
   const titleClasses = cn('text text_type_main-large', styles.title);
   return (

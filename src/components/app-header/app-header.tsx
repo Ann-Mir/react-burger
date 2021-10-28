@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import cn from 'classnames';
 import Logo from '../logo/logo';
 import MainNav from '../main-nav/main-nav';
@@ -8,7 +7,12 @@ import UserNav from '../user-nav/user-nav';
 import styles from './app-header.module.css';
 
 
-function AppHeader({ className }) {
+type TAppHeaderProps = {
+  className?: string;
+};
+
+
+function AppHeader({ className }: TAppHeaderProps): JSX.Element {
 
   const headerClasses = cn(styles.header, className);
 
@@ -23,9 +27,5 @@ function AppHeader({ className }) {
   )
 }
 
-
-AppHeader.propTypes = {
-  className: PropTypes.string,
-};
 
 export default AppHeader;

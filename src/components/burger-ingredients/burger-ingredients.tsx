@@ -5,7 +5,7 @@ import TabBar from '../tab-bar/tab-bar';
 import styles from './burger-ingredients.module.css';
 
 
-function BurgerIngredients() {
+function BurgerIngredients(): JSX.Element {
 
   return(
     <section className={styles.menu}>

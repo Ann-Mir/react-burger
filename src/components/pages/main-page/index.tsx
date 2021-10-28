@@ -4,7 +4,7 @@ import MainWrapper from './main-wrapper';
 import styles from './index.module.css';
 
 
-function MainPage() {
+function MainPage(): JSX.Element {
 
   return (
     <>
