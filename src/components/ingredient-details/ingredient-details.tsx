@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import {useSelector} from 'react-redux';
 import cn from 'classnames';
@@ -7,12 +6,21 @@ import {useParams} from 'react-router';
 import styles from './ingredients-details.module.css';
 
 
-function IngredientDetails({ className }) {
+type TIngredientDetailsProps = {
+  className?: string;
+};
+
+type TParams = {
+  id: string | undefined;
+};
+
+
+function IngredientDetails({ className }: TIngredientDetailsProps): JSX.Element {
 
   const wrapperClasses = cn(styles.modal_wrapper, className);
 
-  const { id } = useParams();
-  const item = useSelector(state => state.ingredients.ingredients).find(({ _id }) => id === _id);
+  const { id } = useParams<TParams>();
+  const item = useSelector((state: any) => state.ingredients.ingredients).find(({ _id } : {_id: string}) => id === _id);
 
   const titleClasses = cn('text text_type_main-medium', styles.title);
 
@@ -61,10 +69,6 @@ function IngredientDetails({ className }) {
     </>
   )
 }
-
-IngredientDetails.propTypes = {
-  className: PropTypes.string,
-};
 
 
 export default IngredientDetails;

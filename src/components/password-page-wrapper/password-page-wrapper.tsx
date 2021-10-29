@@ -1,13 +1,16 @@
 import cn from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoutes} from '../../utils/constants';
 
 import styles from './password-page-wrapper.module.css';
 
 
-function PasswordPageWrapper({ children }) {
+type TPasswordPageWrapperProps = {
+  children: ReactNode;
+};
+
+function PasswordPageWrapper({ children }: TPasswordPageWrapperProps): JSX.Element {
 
   return (
     <div className={styles.wrapper}>
@@ -23,10 +26,6 @@ function PasswordPageWrapper({ children }) {
     </div>
   )
 }
-
-PasswordPageWrapper.propTypes = {
-  children: PropTypes.any,
-};
 
 
 export default PasswordPageWrapper;

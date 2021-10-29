@@ -1,15 +1,20 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, {ReactNode} from 'react';
 import cn from 'classnames';
 
 import styles from './modal-overlay.module.css';
 
 
-function ModalOverlay({ children, className, onClose }) {
+type TModalOverlayProps = {
+  children: ReactNode;
+  className?: string;
+  onClose: () => void;
+};
+
+function ModalOverlay({ children, className, onClose }: TModalOverlayProps): JSX.Element {
 
   const classNames = cn(styles.overlay, className);
 
-  const handleClick = (evt) => {
+  const handleClick = (evt: React.SyntheticEvent) => {
     if (evt.target === evt.currentTarget) {
       onClose();
     }
@@ -21,12 +26,6 @@ function ModalOverlay({ children, className, onClose }) {
     </div>
   )
 }
-
-ModalOverlay.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.any,
-  onClose: PropTypes.func.isRequired,
-};
 
 
 export default ModalOverlay;

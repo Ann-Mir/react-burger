@@ -1,5 +1,4 @@
 import {ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
 import {useSelector} from 'react-redux';
@@ -9,11 +8,16 @@ import {AppRoutes} from '../../utils/constants';
 import styles from './user-nav.module.css';
 
 
-function UserNav({ className }) {
+type TUserNavProps = {
+  className?: string;
+};
+
+
+function UserNav({ className }: TUserNavProps): JSX.Element {
 
   const classes = cn(styles.profile, className, 'text text_type_main-default text_color_inactive');
 
-  const {isAuthenticated} = useSelector(state => state.user);
+  const {isAuthenticated} = useSelector((state: any) => state.user);
 
   return (
     <NavLink
@@ -31,10 +35,6 @@ function UserNav({ className }) {
     </NavLink>
   );
 }
-
-UserNav.propTypes = {
-  className: PropTypes.string,
-};
 
 
 export default UserNav;

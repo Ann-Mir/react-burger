@@ -13,7 +13,7 @@ const ALERT_TIMEOUT = 7000;
 
 function ErrorAlert({message = DEFAULT_ALERT_MESSAGE}: TErrorAlertProps): JSX.Element {
 
-  const [isVisible, setVisible] = useState(true);
+  const [isVisible, setVisible] = useState<boolean>(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {

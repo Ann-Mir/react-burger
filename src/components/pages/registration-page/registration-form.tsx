@@ -8,30 +8,36 @@ import cn from 'classnames';
 import styles from './registration-form.module.css';
 
 
-function RegistrationForm({ className }) {
+type TRegistrationFormProps = {
+  className?: string;
+};
+
+
+function RegistrationForm({ className }: TRegistrationFormProps): JSX.Element {
 
   const formClasses = cn(styles.form, className);
 
   const dispatch = useDispatch();
 
-  const [emailValue, setEmailValue] = React.useState('');
+  const [emailValue, setEmailValue] = React.useState<string>('');
 
-  const onEmailChange = (evt) => {
+  const onEmailChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setEmailValue(evt.target.value)
   };
 
-  const [passwordValue, setPasswordValue] = React.useState('');
-  const onPasswordChange = (evt) => {
+  const [passwordValue, setPasswordValue] = React.useState<string>('');
+  const onPasswordChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(evt.target.value)
   };
 
-  const [nameValue, setNameValue] = React.useState('');
-  const onNameChange = (evt) => {
+  const [nameValue, setNameValue] = React.useState<string>('');
+  const onNameChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setNameValue(evt.target.value);
   };
 
-  const onSubmit = (evt) => {
+  const onSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
+    // @ts-ignore
     dispatch(registerUser({name: nameValue, password: passwordValue, email: emailValue}));
   };
 
@@ -53,14 +59,11 @@ function RegistrationForm({ className }) {
         errorText=""
       />
       <EmailInput
-        type="text"
-        placeholder="E-mail"
         onChange={onEmailChange}
         value={emailValue}
         name="email"
       />
       <PasswordInput
-        placeholder="Пароль"
         onChange={onPasswordChange}
         value={passwordValue}
         name="password"

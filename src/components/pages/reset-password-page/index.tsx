@@ -1,18 +1,19 @@
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import { Redirect, useHistory, useLocation } from 'react-router-dom';
+import {TLocationState} from '../../../types';
 import {AppRoutes} from '../../../utils/constants';
 import PasswordPageWrapper from '../../password-page-wrapper/password-page-wrapper';
 import ResetPasswordForm from './reset-password-form';
 
 
-function ResetPasswordPage() {
+function ResetPasswordPage(): JSX.Element {
 
   const history = useHistory();
-  const {state} = useLocation();
+  const {state} = useLocation<TLocationState>();
 
-  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
-  const {passwordIsChanged, isEmailConfirmed } = useSelector(state => state.password);
+  const isAuthenticated = useSelector((state: any) => state.user.isAuthenticated);
+  const {passwordIsChanged, isEmailConfirmed } = useSelector((state: any) => state.password);
 
   useEffect(() => {
     if (passwordIsChanged) {

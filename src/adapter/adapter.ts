@@ -1,4 +1,7 @@
-export const adaptIngredientToClient = (ingredient) => {
+import {TMenuItem, TServerMenuItem} from '../types';
+
+
+export const adaptIngredientToClient = (ingredient: TServerMenuItem): TMenuItem => {
   const adaptedIngredient = {
     ...ingredient,
     imageLarge: ingredient['image_large'],

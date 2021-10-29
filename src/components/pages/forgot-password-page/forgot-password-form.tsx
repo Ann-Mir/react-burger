@@ -6,19 +6,20 @@ import ErrorAlert from '../../error-alert/error-alert';
 import Form from '../../form/form';
 
 
-function ForgotPasswordForm() {
+function ForgotPasswordForm(): JSX.Element {
 
   const dispatch = useDispatch();
 
-  const { isLoading, error } = useSelector(state => state.password);
+  const { error } = useSelector((state: any) => state.password);
 
-  const [emailValue, setEmailValue] = React.useState('');
-  const onEmailChange = (evt) => {
+  const [emailValue, setEmailValue] = React.useState<string>('');
+  const onEmailChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setEmailValue(evt.target.value);
   };
 
-  const onSubmit = (evt) => {
+  const onSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
+    // @ts-ignore
     dispatch(resetPassword(emailValue));
   };
 
@@ -27,12 +28,9 @@ function ForgotPasswordForm() {
       legend={'Восстановление пароля'}
       buttonText={'Восстановить'}
       onFormSubmit={onSubmit}
-      isLoading={isLoading}
-      error={error}
     >
       {error && <ErrorAlert />}
       <EmailInput
-        placeholder="Укажите e-mail"
         onChange={onEmailChange}
         value={emailValue}
         name="email"

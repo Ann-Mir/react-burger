@@ -1,18 +1,19 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {Redirect, useLocation, Link} from 'react-router-dom';
+import {TLocationState} from '../../../types';
 import {AppRoutes} from '../../../utils/constants';
 import SignInForm from './sign-in-form';
 import cn from 'classnames';
 import styles from './index.module.css';
 
 
-function SignInPage() {
+function SignInPage(): JSX.Element {
 
-  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
-  const { state } = useLocation();
+  const isAuthenticated = useSelector((state: any) => state.user.isAuthenticated);
+  const { state } = useLocation<TLocationState>();
 
-  const RegisterLink = () => (
+  const RegisterLink = (): JSX.Element => (
     <p className={cn('text text_type_main-default text_color_inactive', styles.register)}>
       Вы&ensp;— новый пользователь?&ensp;
       <Link to={AppRoutes.REGISTER} className={styles.link}>
@@ -21,7 +22,7 @@ function SignInPage() {
     </p>
   );
 
-  const ResetPasswordLink = () => (
+  const ResetPasswordLink = (): JSX.Element => (
     <p className="text text_type_main-default text_color_inactive">
       Забыли пароль?&ensp;
       <Link to={AppRoutes.FORGOT_PASSWORD} className={styles.link}>

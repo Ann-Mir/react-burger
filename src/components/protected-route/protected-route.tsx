@@ -1,11 +1,12 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {AppRoutes} from '../../utils/constants';
-import { Route, Redirect } from 'react-router-dom';
+import {Route, Redirect, RouteProps} from 'react-router-dom';
 
-export function ProtectedRoute({ children, ...rest }) {
 
-  const {isAuthenticated} = useSelector(state => state.user);
+export function ProtectedRoute({ children, ...rest }: RouteProps) {
+
+  const {isAuthenticated} = useSelector((state: any) => state.user);
 
   return (
     <Route

@@ -1,7 +1,6 @@
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import React, {useRef} from 'react';
-import PropTypes from 'prop-types';
-import ingredientProp from '../../utils/ingredient.prop';
+import {TMenuItem} from '../../types';
 import {useDrag, useDrop} from 'react-dnd';
 import {useDispatch} from 'react-redux';
 import {removeConstructorIngredient, swapIngredients} from '../../store/slices/burger-constructor-slice';
@@ -10,7 +9,13 @@ import {decreaseQuantity} from '../../store/slices/ingredients-slice';
 import styles from './constructor-item.module.css';
 
 
-function ConstructorItem({ ingredient, index, className }) {
+type TConstructorItemProps = {
+  ingredient: TMenuItem;
+  index: number;
+  className?: string;
+};
+
+function ConstructorItem({ ingredient, index, className }: TConstructorItemProps): JSX.Element {
 
   const dispatch = useDispatch();
   const ref = useRef( null );
@@ -22,7 +27,7 @@ function ConstructorItem({ ingredient, index, className }) {
 
   const [, drop] = useDrop( {
     accept: 'constructorIngredient',
-    hover: (item) => {
+    hover: (item: {index: number}) => {
       if ( !ref.current ) {
         return;
       }
@@ -41,7 +46,7 @@ function ConstructorItem({ ingredient, index, className }) {
 
   drag(drop(ref));
 
-  const onIngredientRemove = (ingredient) => {
+  const onIngredientRemove = (ingredient: TMenuItem) => {
     return () => {
       dispatch(removeConstructorIngredient(ingredient));
       dispatch(decreaseQuantity(ingredient));
@@ -49,7 +54,7 @@ function ConstructorItem({ ingredient, index, className }) {
   };
 
   return (
-    <li key={ingredient.constructorId} className={className} index={index} ref={ref}>
+    <li key={ingredient.constructorId} className={className} ref={ref}>
       <div className={styles.drag}>
         <DragIcon type="primary" />
       </div>
@@ -65,11 +70,5 @@ function ConstructorItem({ ingredient, index, className }) {
   )
 }
 
-
-ConstructorItem.propTypes = {
-  ingredient: ingredientProp.isRequired,
-  className: PropTypes.string,
-  index: PropTypes.number.isRequired,
-}
 
 export default ConstructorItem;

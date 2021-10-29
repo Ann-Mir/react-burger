@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import cn from 'classnames';
-import ingredientProp from '../../utils/ingredient.prop';
+import {TMenuItem} from '../../types';
 import Counter from '../counter/counter';
 import Price from '../price/price';
 import { useDrag } from "react-dnd";
@@ -9,7 +8,12 @@ import { useDrag } from "react-dnd";
 import styles from './menu-item.module.css';
 
 
-function MenuItem({ className, item }) {
+type TMenuItemProps = {
+  className?: string;
+  item: TMenuItem;
+};
+
+function MenuItem({ className, item }: TMenuItemProps): JSX.Element {
 
   const classes = cn(styles.article, className);
   const nameClasses = cn('text text_type_main-default', styles.name);
@@ -21,7 +25,6 @@ function MenuItem({ className, item }) {
     type: 'ingredient',
     item: item,
   });
-
 
   return (
     <>
@@ -36,11 +39,6 @@ function MenuItem({ className, item }) {
     </>
   );
 }
-
-MenuItem.propTypes = {
-  className: PropTypes.string,
-  item: ingredientProp.isRequired,
-};
 
 
 export default React.memo(MenuItem);

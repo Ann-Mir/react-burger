@@ -9,37 +9,38 @@ import Spinner from '../../spinner/spinner';
 import styles from './profile-form.module.css';
 
 
-function ProfileForm() {
+function ProfileForm(): JSX.Element {
 
   const cancelClasses = cn('text text_type_main-small', styles.cancel);
 
   const dispatch = useDispatch();
 
-  const { email, name, isLoading, error } = useSelector(state => state.user);
-  const [emailValue, setEmailValue] = React.useState(email);
+  const { email, name, isLoading, error } = useSelector((state: any) => state.user);
+  const [emailValue, setEmailValue] = React.useState<string>(email);
 
-  const onEmailChange = (evt) => {
+  const onEmailChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setEmailValue(evt.target.value)
   };
 
-  const [passwordValue, setPasswordValue] = React.useState('');
-  const onPasswordChange = (evt) => {
+  const [passwordValue, setPasswordValue] = React.useState<string>('');
+  const onPasswordChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(evt.target.value)
   };
 
   const [nameValue, setNameValue] = React.useState(name);
-  const onNameChange = (evt) => {
+  const onNameChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setNameValue(evt.target.value);
   };
 
-  const onCancel = (evt) => {
+  const onCancel = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
     setEmailValue(email);
     setNameValue(name);
   };
 
-  const onFormSubmit = (evt) => {
+  const onFormSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
+    // @ts-ignore
     dispatch(updateProfile({email: emailValue, name: nameValue, password: passwordValue}));
   };
 
@@ -61,15 +62,12 @@ function ProfileForm() {
             size="default"
           />
           <EmailInput
-            type="text"
-            placeholder="E-mail"
             onChange={onEmailChange}
             value={emailValue}
             name="email"
             size="default"
           />
           <PasswordInput
-            placeholder="Пароль"
             onChange={onPasswordChange}
             value={passwordValue}
             name="password"

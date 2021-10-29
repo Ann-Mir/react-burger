@@ -7,17 +7,17 @@ import MenuSublist from '../menu-sublist/menu-sublist';
 
 import styles from './menu-list.module.css';
 
-function MenuList() {
+function MenuList(): JSX.Element {
 
-  const ingredients = useSelector((state) => state.ingredients.ingredients);
+  const ingredients = useSelector((state: any) => state.ingredients.ingredients);
   const itemsByType = useMemo(() => mapItemsByType(ingredients), [ingredients]);
   const dispatch = useDispatch();
 
-  const containerRef = React.useRef(null);
+  const containerRef = React.useRef<HTMLElement>(null);
 
-  const bunsRef = React.useRef(null);
-  const saucesRef = React.useRef(null);
-  const mainRef = React.useRef(null);
+  const bunsRef = React.useRef<HTMLDivElement>(null);
+  const saucesRef = React.useRef<HTMLDivElement>(null);
+  const mainRef = React.useRef<HTMLDivElement>(null);
 
   const sublistRefs = {
     bun: bunsRef,
@@ -56,7 +56,7 @@ function MenuList() {
       <h2 className="visually-hidden">Список ингредиентов</h2>
       {Array
         .from(itemsByType.keys())
-        .map((title) => <MenuSublist
+        .map((title: keyof typeof TABS) => <MenuSublist
           ref={sublistRefs[title]}
           data={title}
           key={title}

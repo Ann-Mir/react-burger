@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, {useEffect} from 'react';
 import cn from 'classnames';
 import {useDispatch, useSelector} from 'react-redux';
@@ -10,12 +9,16 @@ import Spinner from '../spinner/spinner';
 import styles from './order-details.module.css';
 
 
-function OrderDetails({ onClose }) {
+type TOrderDetails = {
+  onClose: () => void;
+};
+
+function OrderDetails({ onClose }: TOrderDetails): JSX.Element {
 
   const dispatch = useDispatch();
-  const number = useSelector((state) => state.order.number);
-  const isLoading = useSelector((state) => state.order.isLoading);
-  const error = useSelector((state) => state.order.error);
+  const number = useSelector((state: any) => state.order.number);
+  const isLoading = useSelector((state: any) => state.order.isLoading);
+  const error = useSelector((state: any) => state.order.error);
 
   const numberClasses = cn('text text_type_digits-large', styles.number);
   const idClasses = cn('text text_type_main-medium', styles.id);
@@ -49,10 +52,6 @@ function OrderDetails({ onClose }) {
     </>
   )
 }
-
-OrderDetails.propTypes = {
-  onClose: PropTypes.func.isRequired,
-};
 
 
 export default OrderDetails;

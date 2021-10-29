@@ -5,29 +5,29 @@ import {updatePassword} from '../../../store/slices/password-slice';
 import Form from '../../form/form';
 
 
-function ResetPasswordForm() {
+function ResetPasswordForm(): JSX.Element {
 
   const dispatch = useDispatch();
 
-  const [password, setPassword] = React.useState('');
-  const onPasswordChange = (evt) => {
+  const [password, setPassword] = React.useState<string>('');
+  const onPasswordChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(evt.target.value)
   };
 
-  const [token, setToken] = React.useState('');
-  const onTokenChange = (evt) => {
+  const [token, setToken] = React.useState<string>('');
+  const onTokenChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setToken(evt.target.value)
   };
 
-  const onSubmit = (evt) => {
+  const onSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
+    // @ts-ignore
     dispatch(updatePassword({password, token}));
   };
 
   return (
     <Form legend={'Восстановление пароля'} buttonText={'Сохранить'} onFormSubmit={onSubmit}>
       <PasswordInput
-        placeholder="Пароль"
         onChange={onPasswordChange}
         value={password}
         name="password"

@@ -1,15 +1,17 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 import { useDrop } from 'react-dnd';
 import cn from 'classnames';
 import {
   ConstructorElement,
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import {useDispatch, useSelector} from 'react-redux';
-import {Route, Redirect, useLocation, useHistory} from 'react-router-dom';
+import {useSelector} from 'react-redux';
+import {useLocation, useHistory} from 'react-router-dom';
+import {useAppDispatch} from '../../store';
 import {addBun, addIngredient, clearOrder} from '../../store/slices/burger-constructor-slice';
 import {addBunQuantity, clearQuantities, increaseQuantity} from '../../store/slices/ingredients-slice';
 import {postOrder} from '../../store/slices/order-slice';
+import {TMenuItem} from '../../types';
 import {AppRoutes} from '../../utils/constants';
 import ConstructorItem from '../constructor-item/constructor-item';
 import Modal from '../modal/modal';
@@ -19,14 +21,14 @@ import Price from '../price/price';
 import styles from './burger-constructor.module.css';
 
 
-function BurgerConstructor() {
+function BurgerConstructor(): JSX.Element {
 
-  const dispatch = useDispatch();
-  const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+  const dispatch = useAppDispatch();
+  const isAuthenticated = useSelector((state: any) => state.user.isAuthenticated);
   const location = useLocation();
   const history = useHistory();
 
-  const [isModalVisible, setModalIsVisible] = React.useState(false);
+  const [isModalVisible, setModalIsVisible] = React.useState<boolean>(false);
 
   const handleModalClose = React.useCallback(() => setModalIsVisible(false), []);
   const handleModalOpen = React.useCallback(() => setModalIsVisible(true), []);
@@ -35,11 +37,11 @@ function BurgerConstructor() {
   const priceClasses = cn('text_type_digits-medium', styles.price);
   const instructionClasses = cn('text text_type_main-medium', styles.instruction);
 
-  const { ingredients, bun, totalPrice } = useSelector((state) => state.burgerConstructor);
+  const { ingredients, bun, totalPrice } = useSelector((state: any) => state.burgerConstructor);
   const isDisabled = ingredients.length === 0 || !bun;
-  const buttonStyle = isDisabled ? {opacity: '0.5', pointerEvents: 'none'} : null;
+  const buttonStyle = isDisabled ? {opacity: '0.5', pointerEvents: 'none'} as CSSProperties : undefined;
 
-  const onDrop = (item) => {
+  const onDrop = (item: TMenuItem) => {
     if (item.type !== 'bun') {
       dispatch(addIngredient(item));
       dispatch(increaseQuantity(item));
@@ -51,7 +53,7 @@ function BurgerConstructor() {
 
   const [{isHover}, dropTarget] = useDrop({
     accept: 'ingredient',
-    drop(item) {
+    drop(item: TMenuItem) {
       onDrop(item);
       return item;
     },
@@ -66,7 +68,8 @@ function BurgerConstructor() {
     if (!isAuthenticated) {
       history.push({pathname: AppRoutes.LOGIN, state: {from: location}});
     } else {
-      const orderIngredients = [...ingredients.map((item) => item._id), bun._id, bun._id];
+      const orderIngredients = [...ingredients.map((item: TMenuItem) => item._id), bun._id, bun._id];
+      // @ts-ignore
       dispatch(postOrder({ingredients: orderIngredients}))
         .then(() => {
           dispatch(clearQuantities());
@@ -105,7 +108,7 @@ function BurgerConstructor() {
           </div>
             <ul className={styles.list}>
               {ingredients.length > 0 &&
-                ingredients.map((ingredient, index) =>
+                ingredients.map((ingredient: TMenuItem, index: number) =>
                   <ConstructorItem
                     ingredient={ingredient}
                     index={index}
@@ -129,10 +132,12 @@ function BurgerConstructor() {
           </div>
         </div>
         <div className={styles.price_wrapper}>
-          <Price price={totalPrice} type="primary" className={priceClasses} />
-          <Button type="primary" size="large" onClick={onOrderPlacement} disabled={isDisabled} style={buttonStyle}>
-            Оформить заказ
-          </Button>
+          <Price price={totalPrice} className={priceClasses} />
+          <div style={buttonStyle}>
+            <Button type="primary" size="large" onClick={onOrderPlacement}>
+              Оформить заказ
+            </Button>
+          </div>
         </div>
       </section>
     </>

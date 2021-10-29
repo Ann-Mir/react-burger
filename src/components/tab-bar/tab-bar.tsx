@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import cn from 'classnames';
@@ -9,22 +8,26 @@ import {TABS} from '../../utils/constants';
 import styles from './tab-bar.module.css';
 
 
-function TabBar({ className }) {
+type TTabBarProps = {
+  className?: string;
+};
+
+function TabBar({ className }: TTabBarProps): JSX.Element {
 
   const dispatch = useDispatch();
 
   const tabClasses = cn(className, styles.wrapper);
 
-  const activeTab = useSelector((state) => state.tab.activeTab);
+  const activeTab = useSelector((state: any) => state.tab.activeTab);
 
-  const onTabClick = (item) => {
+  const onTabClick = (item: string) => {
     dispatch(setActiveTab(item));
   };
 
   return (
     <div className={tabClasses}>
       {
-        Object.values(TABS).map((item) =>
+        Object.values(TABS).map((item: string) =>
           <Tab key={item} value={item} active={activeTab === item} onClick={onTabClick}>
             {item}
           </Tab>)
@@ -32,10 +35,6 @@ function TabBar({ className }) {
     </div>
   )
 }
-
-TabBar.propTypes = {
-  className: PropTypes.string,
-};
 
 
 export default TabBar;
