@@ -45,8 +45,8 @@ export const registerUser = createAsyncThunk(
 
 export const login = createAsyncThunk(
   'user/login',
-  async function ({email, password},
-  {rejectWithValue}) {
+  async ({email, password},
+  {rejectWithValue}) => {
 
     const value = {email: email, password: password};
     try {
@@ -62,7 +62,6 @@ export const login = createAsyncThunk(
         throw new Error('Server error, try again');
       }
       const data = await response.json();
-
       const accessToken = data.accessToken.split('Bearer ')[1];
       const refreshToken = data.refreshToken;
       setCookie('accessToken', accessToken, {expires: 1200});
@@ -81,8 +80,9 @@ export const refreshToken = createAsyncThunk(
   async function(cb,
                  {rejectWithValue,
                    dispatch}) {
+
     const refreshToken = getCookie('refreshToken');
-    const value = {token: {refreshToken}};
+    const value = {token: refreshToken};
 
     if (!refreshToken) {
       throw new Error('Unauthorized user');
@@ -96,7 +96,6 @@ export const refreshToken = createAsyncThunk(
         },
         body: JSON.stringify(value)
       })
-
       if (!response.ok) {
         throw new Error('Server error, try again');
       }
@@ -163,16 +162,20 @@ export const updateProfile = createAsyncThunk(
       })
 
       if (response.status === 403 || response.status === 401) {
-        dispatch(refreshToken(updateProfile));
-      } else {
-        if (!response.ok) {
-          throw new Error('Server error, try again');
-        }
-
-        const data = await response.json();
-        return data;
+        throw new Error('token expired');
       }
+
+      if (!response.ok) {
+        throw new Error('Server error, try again');
+      }
+
+      const data = await response.json();
+      return data;
+
     } catch (error) {
+      if (error.message === 'token expired') {
+        dispatch(refreshToken(updateProfile));
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -186,7 +189,7 @@ export const getUserData = createAsyncThunk(
     const accessToken = getCookie('accessToken');
 
     if (!accessToken) {
-      throw new Error('Unauthorized user');
+      throw new Error('token expired');
     }
 
     try {
@@ -199,16 +202,20 @@ export const getUserData = createAsyncThunk(
       })
 
       if (response.status === 403 || response.status === 401) {
-        dispatch(refreshToken(updateProfile));
-      } else {
-        if (!response.ok) {
-          throw new Error('Server error, try again');
-        }
-
-        const data = await response.json();
-        return data;
+        throw new Error('token expired');
       }
+
+      if (!response.ok) {
+        throw new Error('Server error, try again');
+      }
+
+      const data = await response.json();
+      return data;
+
     } catch (error) {
+      if (error.message === 'token expired' ) {
+        dispatch(refreshToken(getUserData));
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -223,6 +230,7 @@ const userSlice = createSlice({
     email: '',
     name: '',
     isAuthenticated: false,
+    message: null,
   },
   reducers: {},
   extraReducers: {

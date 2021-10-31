@@ -5,7 +5,6 @@ type TSetCookieProps = {
   path?: string;
 } & { [extraParams: string]: string | number | boolean;}
 
-
 export const mapItemsByType = (items: Array<TMenuItem>) => {
   const results = new Map();
   items.forEach((item) => {

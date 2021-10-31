@@ -1,6 +1,7 @@
 import {EmailInput, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
 import {useDispatch} from 'react-redux';
+import {useAppDispatch} from '../../../store';
 import {login} from '../../../store/slices/user-slice';
 import Form from '../../form/form';
 import cn from 'classnames';
@@ -14,7 +15,7 @@ type TSIgnInFormProps = {
 
 function SignInForm({ className }: TSIgnInFormProps): JSX.Element {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const formClasses = cn(styles.form, className);
 
@@ -31,6 +32,8 @@ function SignInForm({ className }: TSIgnInFormProps): JSX.Element {
 
   const onSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
+
+
     // @ts-ignore
     dispatch(login({email, password}));
   };
