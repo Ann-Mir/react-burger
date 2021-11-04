@@ -59,3 +59,15 @@ export const setCookie = (name: string, value: string | number | boolean, props?
 export const deleteCookie = (name: string) => {
   setCookie(name, false, { expires: -1 });
 };
+
+export const setSession = (data: any) => {
+  const accessToken = data.accessToken.split('Bearer ')[1];
+  const refreshToken = data.refreshToken;
+  if (accessToken) {
+    setCookie('accessToken', accessToken, {expires: 1200});
+  }
+  if (refreshToken) {
+    console.log('refreshToken: ' + refreshToken);
+    setCookie('refreshToken', refreshToken);
+  }
+};
