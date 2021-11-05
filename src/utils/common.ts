@@ -67,7 +67,6 @@ export const setSession = (data: any) => {
     setCookie('accessToken', accessToken, {expires: 1200});
   }
   if (refreshToken) {
-    console.log('refreshToken: ' + refreshToken);
     setCookie('refreshToken', refreshToken);
   }
 };

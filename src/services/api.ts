@@ -86,7 +86,7 @@ class Api {
   }
 
   updateUserInfo(name:string, email:string, password:string) {
-    return fetch(`${this.baseUrl}/auth/user`, {
+    return fetch(`${this.baseUrl}${ApiRoutes.AUTH}${ApiRoutes.USER}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -98,11 +98,11 @@ class Api {
     });
   }
 
-  requestResetPassword(email: string) {
-    return fetch(`${this.baseUrl}/password-reset`, {
-      method: "POST",
+  resetPassword(email: string) {
+    return fetch(`${this.baseUrl}${ApiRoutes.PASSWORD_RESET}`, {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email,
@@ -110,11 +110,11 @@ class Api {
     });
   }
 
-  resetPassword(password: string, token: string) {
-    return fetch(`${this.baseUrl}/password-reset/reset`, {
-      method: "POST",
+  updatePassword(password: string, token: string) {
+    return fetch(`${this.baseUrl}${ApiRoutes.PASSWORD_RESET}${ApiRoutes.RESET}`, {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         password,
