@@ -237,7 +237,6 @@ const userSlice = createSlice({
       state.success = false;
     },
     [getUserData.fulfilled]: (state, action) => {
-      console.log(action);
       state.isLoading = false;
       state.success = true;
       state.name = action.payload.user.name;

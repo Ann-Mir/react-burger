@@ -17,13 +17,8 @@ class Api {
     return Promise.reject(new Error(`${(response.status).toString()}`));
   }
 
-  getIngredients() {
-    return fetch(`${this.baseUrl}/ingredients`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: 'Bearer ' + getCookie('token')
-      },
-    }).then((response) => this._getResponseData(response));
+  fetchIngredients() {
+    return fetch(`${this.baseUrl}${ApiRoutes.INGREDIENTS}`);
   }
 
   makeOrder(ingredients: Array<string>) {
