@@ -40,31 +40,26 @@ class Api {
   }
 
   login(email: string, password: string) {
-    return fetch(`${this.baseUrl}/auth/login`, {
-      method: "POST",
+    return fetch(`${this.baseUrl}${ApiRoutes.AUTH}${ApiRoutes.LOGIN}`, {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email,
         password,
       }),
-    }).then((response) => this._getResponseData(response));
+    });
   }
 
-  register(name: string, email: string, password: string) {
-    console.log(name, email, password);
-    return fetch(`${this.baseUrl}/auth/register`, {
-      method: "POST",
+  registerUser(user: any) {
+    return fetch(`${this.baseUrl}${ApiRoutes.AUTH}${ApiRoutes.REGISTER}`, {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-      }),
-    }).then((response) => this._getResponseData(response));
+      body: JSON.stringify(user),
+    });
   }
 
   refreshToken() {
@@ -82,15 +77,15 @@ class Api {
   }
 
   logout() {
-    return fetch(`${this.baseUrl}/auth/logout`, {
-      method: "POST",
+    return fetch(`${this.baseUrl}${ApiRoutes.AUTH}${ApiRoutes.LOGOUT}`, {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         token: getCookie('refreshToken'),
       }),
-    }).then((response) => this._getResponseData(response));
+    });
   }
 
   getUserInfo() {
@@ -106,15 +101,15 @@ class Api {
 
   updateUserInfo(name:string, email:string, password:string) {
     return fetch(`${this.baseUrl}/auth/user`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: 'Bearer ' + getCookie('token')
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + getCookie('accessToken')
       },
       body: JSON.stringify({
         name, email, password,
       }),
-    }).then((response) => this._getResponseData(response));
+    });
   }
 
   requestResetPassword(email: string) {
