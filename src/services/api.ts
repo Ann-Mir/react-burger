@@ -9,29 +9,22 @@ class Api {
     this.baseUrl = options.baseUrl;
   }
 
-  _getResponseData(response: Response) {
-    console.log(response);
-    if (response.ok) {
-      return response.json();
-    }
-    return Promise.reject(new Error(`${(response.status).toString()}`));
-  }
 
   fetchIngredients() {
     return fetch(`${this.baseUrl}${ApiRoutes.INGREDIENTS}`);
   }
 
-  makeOrder(ingredients: Array<string>) {
-    return fetch(`${this.baseUrl}/orders`, {
-      method: "POST",
+  postOrder(ingredients: any) {
+    return fetch(`${this.baseUrl}${ApiRoutes.ORDERS}`, {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: 'Bearer ' + getCookie('token')
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + getCookie('accessToken')
       },
       body: JSON.stringify({
         ingredients: ingredients,
       }),
-    }).then((response) => this._getResponseData(response));
+    });
   }
 
   login(email: string, password: string) {
@@ -59,9 +52,7 @@ class Api {
 
   refreshToken() {
     const refresh = getCookie('refreshToken');
-    console.log(refresh);
     const value = {token: refresh};
-    console.log(JSON.stringify(value));
     return fetch(`${this.baseUrl}${ApiRoutes.AUTH}${ApiRoutes.TOKEN}`, {
       method: 'POST',
       headers: {
@@ -116,7 +107,7 @@ class Api {
       body: JSON.stringify({
         email,
       }),
-    }).then((response) => this._getResponseData(response));
+    });
   }
 
   resetPassword(password: string, token: string) {
@@ -129,7 +120,7 @@ class Api {
         password,
         token,
       }),
-    }).then((response) => this._getResponseData(response));
+    });
   }
 }
 
