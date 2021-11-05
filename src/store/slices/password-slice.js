@@ -1,22 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {ApiRoutes, BASE_URL} from '../../utils/constants';
+import api from '../../services/api';
 
 
 export const resetPassword = createAsyncThunk(
   'password/resetPassword',
   async function ({email}, {rejectWithValue, dispatch}) {
     try {
-      const value = {
-        email: email,
-      };
-
-      const response = await fetch(`${BASE_URL}${ApiRoutes.PASSWORD_RESET}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(value)
-      });
+      const response = await api.resetPassword(email);
 
       if (!response.ok) {
         throw new Error('Server error, try again');
@@ -37,18 +27,7 @@ export const updatePassword = createAsyncThunk(
   async function ({password, token}, {rejectWithValue, dispatch}) {
     try {
 
-      const value = {
-        password: password,
-        token: token,
-      };
-
-      const response = await fetch(`${BASE_URL}${ApiRoutes.PASSWORD_RESET}${ApiRoutes.RESET}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(value)
-      });
+      const response = await api.updatePassword(password, token);
 
       if (!response.ok) {
         throw new Error('Server error, try again');

@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {deleteCookie, getCookie, setCookie} from '../../utils/common';
-import {ApiRoutes, BASE_URL} from '../../utils/constants';
-
+import {deleteCookie, setCookie, setSession} from '../../utils/common';
+import api from '../../services/api';
 
 export const registerUser = createAsyncThunk(
   'user/registerUser',
@@ -12,29 +11,24 @@ export const registerUser = createAsyncThunk(
     const user = {email, password, name};
 
     try {
-      const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.REGISTER}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-      })
+      const response = await api.registerUser(user);
 
       if (!response.ok) {
         throw new Error('Server error, try again');
       }
 
       const data = await response.json();
-
       let authToken = data.accessToken.split('Bearer ')[1];
       response.headers.forEach(header => {
         if (header.indexOf('Bearer') === 0) {
           authToken = header.split('Bearer ')[1];
         }
       });
+
       if (authToken) {
         setCookie('accessToken', authToken, {expires: 1200});
       }
+
       return data;
 
     } catch (error) {
@@ -48,24 +42,15 @@ export const login = createAsyncThunk(
   async ({email, password},
   {rejectWithValue}) => {
 
-    const value = {email: email, password: password};
     try {
-      const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.LOGIN}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(value)
-      })
+      const response = await api.login(email, password);
 
       if (!response.ok) {
         throw new Error('Server error, try again');
       }
+
       const data = await response.json();
-      const accessToken = data.accessToken.split('Bearer ')[1];
-      const refreshToken = data.refreshToken;
-      setCookie('accessToken', accessToken, {expires: 1200});
-      setCookie('refreshToken', refreshToken);
+      setSession(data);
 
       return data;
     } catch (error) {
@@ -75,56 +60,12 @@ export const login = createAsyncThunk(
 );
 
 
-export const refreshToken = createAsyncThunk(
-  'user/refreshToken',
-  async function(cb,
-                 {rejectWithValue,
-                   dispatch}) {
-
-    const refreshToken = getCookie('refreshToken');
-    const value = {token: refreshToken};
-
-    if (!refreshToken) {
-      throw new Error('Unauthorized user');
-    }
-
-    try {
-      const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.TOKEN}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(value)
-      })
-      if (!response.ok) {
-        throw new Error('Server error, try again');
-      }
-      const data = await response.json();
-
-      const accessToken = data.accessToken.split('Bearer ')[1];
-      setCookie('accessToken', accessToken, {expires: 1200});
-      dispatch(cb());
-
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
 export const logout = createAsyncThunk(
   'user/logout',
   async function(_, {rejectWithValue}) {
 
     try {
-      const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.LOGOUT}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          token: getCookie('refreshToken'),
-        }),
-      });
+      const response = await api.logout()
 
       if (!response.ok) {
         throw new Error('Server error, try again');
@@ -134,6 +75,7 @@ export const logout = createAsyncThunk(
       deleteCookie('refreshToken');
 
     } catch (error) {
+      // throw new Error(error);
       return rejectWithValue(error.message);
     }
   }
@@ -143,39 +85,32 @@ export const updateProfile = createAsyncThunk(
   'user/updateProfile',
   async function(
     {email, name, password},
-    {dispatch, rejectWithValue}) {
-
-    const value = {
-      email: email,
-      name: name,
-      password: password,
-    };
+    {rejectWithValue}) {
 
     try {
-      const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.USER}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + getCookie('accessToken'),
-        },
-        body: JSON.stringify(value)
-      })
+      let response = await api.updateUserInfo(name, email, password);
+      if (response.status === 403) {
+        const tokenResponse = await api.refreshToken();
 
-      if (response.status === 403 || response.status === 401) {
-        throw new Error('token expired');
+        if (!tokenResponse.ok) {
+          throw new Error(tokenResponse.status);
+        }
+
+        const tokenData = await tokenResponse.json();
+        setSession(tokenData);
+
+        response = await api.updateUserInfo(name, email, password);
       }
 
       if (!response.ok) {
-        throw new Error('Server error, try again');
+        throw new Error(response.status);
       }
 
       const data = await response.json();
-      return data;
+      return data;;
+    }
 
-    } catch (error) {
-      if (error.message === 'token expired') {
-        dispatch(refreshToken(updateProfile));
-      }
+    catch (error) {
       return rejectWithValue(error.message);
     }
   }
@@ -184,38 +119,31 @@ export const updateProfile = createAsyncThunk(
 export const getUserData = createAsyncThunk(
   'user/getData',
   async function(_,
-    {dispatch, rejectWithValue}) {
-
-    const accessToken = getCookie('accessToken');
-
-    if (!accessToken) {
-      throw new Error('token expired');
-    }
-
+    {rejectWithValue}) {
     try {
-      const response = await fetch(`${BASE_URL}${ApiRoutes.AUTH}${ApiRoutes.USER}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + accessToken,
-        },
-      })
+      let response = await api.getUserInfo();
 
-      if (response.status === 403 || response.status === 401) {
-        throw new Error('token expired');
+      if (response.status === 403) {
+        const tokenResponse = await api.refreshToken();
+
+        if (!tokenResponse.ok) {
+          throw new Error(tokenResponse.status);
+        }
+
+        const tokenData = await tokenResponse.json();
+        setSession(tokenData);
+
+        response = await api.getUserInfo();
       }
 
       if (!response.ok) {
-        throw new Error('Server error, try again');
+        throw new Error(response.status);
       }
 
       const data = await response.json();
-      return data;
 
+      return data;
     } catch (error) {
-      if (error.message === 'token expired' ) {
-        dispatch(refreshToken(getUserData));
-      }
       return rejectWithValue(error.message);
     }
   }
@@ -317,7 +245,6 @@ const userSlice = createSlice({
     },
     [getUserData.rejected]: (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
       state.isAuthenticated = false;
     },
   },

@@ -1,26 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {getCookie} from '../../utils/common';
-import {ApiRoutes, BASE_URL} from '../../utils/constants';
+import api from '../../services/api';
 
 
 export const postOrder = createAsyncThunk(
   'orders/postOrder',
   async function ({ingredients}, {rejectWithValue, dispatch}) {
     try {
-      const order = {
-        ingredients: ingredients,
-      };
-
-      const accessToken = getCookie('accessToken');
-
-      const response = await fetch(`${BASE_URL}${ApiRoutes.ORDERS}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + accessToken,
-        },
-        body: JSON.stringify(order)
-      });
+      const response = await api.postOrder(ingredients);
 
       if (!response.ok) {
         throw new Error(response.message);

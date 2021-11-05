@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {adaptIngredientToClient} from '../../adapter/adapter';
-import {ApiRoutes, BASE_URL} from '../../utils/constants';
+import api from '../../services/api';
 
 
 export const fetchIngredients = createAsyncThunk(
   'ingredients/fetchIngredients',
   async (_, {rejectWithValue}) => {
     try {
-      const response = await fetch(`${BASE_URL}${ApiRoutes.INGREDIENTS}`);
+      const response = await api.fetchIngredients();
 
       if (!response.ok) {
         throw new Error(response.message);
@@ -79,5 +79,10 @@ const ingredientsSlice = createSlice({
 });
 
 
-export const { increaseQuantity, addBunQuantity, decreaseQuantity, clearQuantities } = ingredientsSlice.actions;
+export const {
+  increaseQuantity,
+  addBunQuantity,
+  decreaseQuantity,
+  clearQuantities
+} = ingredientsSlice.actions;
 export default ingredientsSlice.reducer;
