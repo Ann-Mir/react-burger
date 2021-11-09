@@ -1,26 +1,38 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {TMenuItem} from '../../types';
 import { nanoid } from 'nanoid';
 
 
+interface IBurgerConstructorState {
+  ingredients: Array<TMenuItem>;
+  bun: TMenuItem | null;
+  totalPrice: number;
+}
+
+const initialState: IBurgerConstructorState = {
+  ingredients: [],
+  bun: null,
+  totalPrice: 0,
+};
+
 const burgerConstructorSlice = createSlice({
   name: 'burgerConstructor',
-  initialState: {
-    ingredients: [],
-    bun: null,
-    totalPrice: 0,
-  },
+  initialState,
   reducers: {
-    addIngredient: (state, action) => {
+    addIngredient: (state, action: PayloadAction<TMenuItem>) => {
       const ingredient = {...action.payload, constructorId: nanoid()};
       state.ingredients.push(ingredient);
       state.totalPrice = state.totalPrice + action.payload.price;
     },
-    removeConstructorIngredient: (state, action) => {
+    removeConstructorIngredient: (
+      state, action: PayloadAction<TMenuItem>) => {
       state.totalPrice = state.totalPrice - action.payload.price;
-      const index = state.ingredients.findIndex((ingredient) => ingredient._id = action.payload);
+      const index = state.ingredients.findIndex(
+        (ingredient) => ingredient._id = action.payload._id
+      );
       state.ingredients.splice(index, 1);
     },
-    addBun: (state, action) => {
+    addBun: (state, action: PayloadAction<TMenuItem>) => {
       if ((state.bun === null) || (state.bun && state.bun._id !== action.payload._id)) {
         if (state.bun) {
           state.totalPrice = state.totalPrice - 2 * state.bun.price;
@@ -40,7 +52,8 @@ const burgerConstructorSlice = createSlice({
       state.bun = null;
       state.totalPrice = 0;
     },
-    swapIngredients: (state, action) => {
+    swapIngredients: (
+      state, action: PayloadAction<{from: number, to: number}>) => {
       const from = action.payload.from;
       const to = action.payload.to;
       [state.ingredients[from], state.ingredients[to]] = [state.ingredients[to], state.ingredients[from]];
@@ -48,5 +61,12 @@ const burgerConstructorSlice = createSlice({
   },
 })
 
-export const { addIngredient, removeConstructorIngredient, addBun, removeBun, clearOrder, swapIngredients } = burgerConstructorSlice.actions;
+export const {
+  addIngredient,
+  removeConstructorIngredient,
+  addBun,
+  removeBun,
+  clearOrder,
+  swapIngredients
+} = burgerConstructorSlice.actions;
 export default burgerConstructorSlice.reducer;

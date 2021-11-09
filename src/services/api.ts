@@ -75,7 +75,6 @@ class Api {
   }
 
   getUserInfo() {
-    console.log('getUserInfo');
     return fetch(`${this.baseUrl}${ApiRoutes.AUTH}${ApiRoutes.USER}`, {
       method: 'GET',
       headers: {

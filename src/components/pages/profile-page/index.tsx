@@ -1,7 +1,7 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {NavLink} from 'react-router-dom';
-import {useAppDispatch} from '../../../store';
+import {useAppDispatch} from '../../../hooks';
 import {logout} from '../../../store/slices/user-slice';
 import {AppRoutes} from '../../../utils/constants';
 import ErrorAlert from '../../error-alert/error-alert';

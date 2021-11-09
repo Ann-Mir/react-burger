@@ -1,5 +1,4 @@
-import {configureStore, ThunkAction} from '@reduxjs/toolkit';
-import {useDispatch} from 'react-redux';
+import {configureStore} from '@reduxjs/toolkit';
 import {rootReducer} from './slices/root-reducer';
 import {getUserData} from './slices/user-slice';
 
@@ -10,9 +9,7 @@ const store = configureStore({
 
 store.dispatch(getUserData());
 
+
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-
-
-
 export default store;
