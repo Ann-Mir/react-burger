@@ -1,18 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+
+interface IIngredientState {
+  imageLarge: string;
+  name: string;
+  calories: number | string;
+  proteins: number | string;
+  fat: number | string;
+  carbohydrates: number | string;
+}
+
+const initialState: IIngredientState = {
+  imageLarge: '',
+  name: '',
+  calories: '',
+  proteins: '',
+  fat: '',
+  carbohydrates: '',
+};
 
 const ingredientSlice = createSlice({
   name: 'ingredient',
-  initialState: {
-    imageLarge: '',
-    name: '',
-    calories: '',
-    proteins: '',
-    fat: '',
-    carbohydrates: '',
-  },
+  initialState,
   reducers: {
-    setIngredient: (state, action) => {
+    setIngredient: (state, action: PayloadAction<IIngredientState>) => {
       state.imageLarge = action.payload.imageLarge;
       state.name = action.payload.name;
       state.calories = action.payload.calories;
