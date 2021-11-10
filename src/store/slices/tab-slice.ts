@@ -1,14 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {TABS} from '../../utils/constants';
 
+interface ITabsState {
+  activeTab: string;
+}
+
+const initialState: ITabsState = {
+  activeTab: TABS.bun,
+};
 
 const tabSlice = createSlice({
   name: 'tab',
-  initialState: {
-    activeTab: TABS.bun,
-  },
+  initialState,
   reducers: {
-    setActiveTab: (state, action) => {
+    setActiveTab: (state, action: PayloadAction<string>) => {
       if (state.activeTab !== action.payload) {
         state.activeTab = action.payload;
       }
