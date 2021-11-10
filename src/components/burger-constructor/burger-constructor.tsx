@@ -70,7 +70,7 @@ function BurgerConstructor(): JSX.Element {
     } else {
       const orderIngredients = [...ingredients.map((item: TMenuItem) => item._id), bun._id, bun._id];
       // @ts-ignore
-      dispatch(postOrder({ingredients: orderIngredients}))
+      dispatch(postOrder(orderIngredients))
         .then(() => {
           dispatch(clearQuantities());
           dispatch(clearOrder());

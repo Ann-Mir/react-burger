@@ -1,7 +1,20 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk, SerializedError, PayloadAction} from '@reduxjs/toolkit';
 import {adaptIngredientToClient} from '../../adapter/adapter';
 import api from '../../services/api';
+import {TMenuItem} from '../../types';
 
+
+interface IIngredientsState {
+  ingredients: TMenuItem[];
+  isLoading: boolean;
+  error: SerializedError | null;
+}
+
+const initialState: IIngredientsState = {
+  ingredients: [],
+  isLoading: true,
+  error: null
+};
 
 export const fetchIngredients = createAsyncThunk(
   'ingredients/fetchIngredients',
@@ -10,13 +23,13 @@ export const fetchIngredients = createAsyncThunk(
       const response = await api.fetchIngredients();
 
       if (!response.ok) {
-        throw new Error(response.message);
+        throw new Error(response.statusText);
       }
 
       const { data } = await response.json();
       const burgerIngredients = data.map(adaptIngredientToClient);
       return burgerIngredients;
-    } catch (error) {
+    } catch (error: any) {
         return rejectWithValue(error.message);
     }
   }
@@ -25,29 +38,27 @@ export const fetchIngredients = createAsyncThunk(
 
 const ingredientsSlice = createSlice({
   name: 'ingredients',
-  initialState: {
-    ingredients: [],
-    isLoading: true,
-    error: null,
-  },
+  initialState,
   reducers: {
     clearQuantities: (state) => {
       state.ingredients.forEach((item) => delete item.count);
     },
-    increaseQuantity: (state, action) => {
+    increaseQuantity: (state, action: PayloadAction<TMenuItem>) => {
       const item = state.ingredients.find((item) => item._id === action.payload._id);
-      if (item.count) {
+      if (item && item.count) {
         item.count++;
-      } else {
+      } else if (item) {
         item.count = 1;
       }
     },
-    decreaseQuantity: (state, action) => {
+    decreaseQuantity: (state, action: PayloadAction<TMenuItem>) => {
       const item = state.ingredients.find((item) => item._id === action.payload._id);
-      if (item.count > 1) {
-        item.count--;
-      } else {
-        delete item['count'];
+      if (item && item.count) {
+        if (item.count > 1) {
+          item.count--;
+        } else {
+          delete item['count'];
+        }
       }
     },
     addBunQuantity: (state, action) => {
@@ -62,19 +73,20 @@ const ingredientsSlice = createSlice({
       })
     }
   },
-  extraReducers: {
-    [fetchIngredients.pending]: (state) => {
-      state.isLoading = true;
-      state.error = null;
-    },
-    [fetchIngredients.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.ingredients = action.payload;
-    },
-    [fetchIngredients.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    }
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchIngredients.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchIngredients.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.ingredients = action.payload;
+      })
+      .addCase(fetchIngredients.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as SerializedError;
+      })
   },
 });
 
@@ -85,4 +97,5 @@ export const {
   decreaseQuantity,
   clearQuantities
 } = ingredientsSlice.actions;
+
 export default ingredientsSlice.reducer;
