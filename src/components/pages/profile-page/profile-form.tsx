@@ -1,7 +1,12 @@
-import {Button, EmailInput, Input, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
+import {
+  Button,
+  EmailInput,
+  Input,
+  PasswordInput
+} from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
 import cn from 'classnames';
-import {useDispatch, useSelector} from 'react-redux';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {updateProfile} from '../../../store/slices/user-slice';
 import ErrorAlert from '../../error-alert/error-alert';
 import Spinner from '../../spinner/spinner';
@@ -13,9 +18,9 @@ function ProfileForm(): JSX.Element {
 
   const cancelClasses = cn('text text_type_main-small', styles.cancel);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { email, name, isLoading, error } = useSelector((state: any) => state.user);
+  const { email, name, isLoading, error } = useAppSelector((state: any) => state.user);
   const [emailValue, setEmailValue] = React.useState<string>(email);
 
   const onEmailChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +32,7 @@ function ProfileForm(): JSX.Element {
     setPasswordValue(evt.target.value)
   };
 
-  const [nameValue, setNameValue] = React.useState(name);
+  const [nameValue, setNameValue] = React.useState<string>(name);
   const onNameChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     setNameValue(evt.target.value);
   };
@@ -40,7 +45,6 @@ function ProfileForm(): JSX.Element {
 
   const onFormSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
-    // @ts-ignore
     dispatch(updateProfile({email: emailValue, name: nameValue, password: passwordValue}));
   };
 

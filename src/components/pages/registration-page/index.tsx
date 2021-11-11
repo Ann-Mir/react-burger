@@ -1,6 +1,6 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
 import {Link, Redirect, useLocation} from 'react-router-dom';
+import {useAppSelector} from '../../../hooks';
 import {TLocationState} from '../../../types';
 import {AppRoutes} from '../../../utils/constants';
 import RegistrationForm from './registration-form';
@@ -9,7 +9,7 @@ import styles from './index.module.css';
 
 function RegistrationPage(): JSX.Element {
 
-  const isAuthenticated = useSelector((state: any) => state.user.isAuthenticated);
+  const isAuthenticated = useAppSelector((state: any) => state.user.isAuthenticated);
   const { state } = useLocation<TLocationState>();
 
   const SignInLink = () => (

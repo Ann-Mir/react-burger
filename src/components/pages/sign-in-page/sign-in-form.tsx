@@ -31,9 +31,6 @@ function SignInForm({ className }: TSIgnInFormProps): JSX.Element {
 
   const onSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
-
-
-    // @ts-ignore
     dispatch(login({email, password}));
   };
 

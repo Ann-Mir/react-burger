@@ -1,6 +1,6 @@
 import {EmailInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {resetPassword} from '../../../store/slices/password-slice';
 import ErrorAlert from '../../error-alert/error-alert';
 import Form from '../../form/form';
@@ -8,9 +8,9 @@ import Form from '../../form/form';
 
 function ForgotPasswordForm(): JSX.Element {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { error } = useSelector((state: any) => state.password);
+  const { error } = useAppSelector((state: any) => state.password);
 
   const [emailValue, setEmailValue] = React.useState<string>('');
   const onEmailChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +19,6 @@ function ForgotPasswordForm(): JSX.Element {
 
   const onSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
-    // @ts-ignore
     dispatch(resetPassword(emailValue));
   };
 

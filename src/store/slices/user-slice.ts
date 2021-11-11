@@ -256,13 +256,6 @@ const userSlice = createSlice({
         state.email = action.payload.user.email;
         state.isAuthenticated = true;
       })
-      .addCase(getUserData.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.success = true;
-        state.name = action.payload.user.name;
-        state.email = action.payload.user.email;
-        state.isAuthenticated = true;
-      })
       .addCase(getUserData.rejected, (state) => {
         state.isLoading = false;
         state.isAuthenticated = false;

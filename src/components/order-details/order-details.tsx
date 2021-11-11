@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import cn from 'classnames';
-import {useDispatch, useSelector} from 'react-redux';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {clearOrder} from '../../store/slices/burger-constructor-slice';
 import {clearOrderDetails} from '../../store/slices/order-slice';
 import ErrorAlert from '../error-alert/error-alert';
@@ -15,10 +15,10 @@ type TOrderDetails = {
 
 function OrderDetails({ onClose }: TOrderDetails): JSX.Element {
 
-  const dispatch = useDispatch();
-  const number = useSelector((state: any) => state.order.number);
-  const isLoading = useSelector((state: any) => state.order.isLoading);
-  const error = useSelector((state: any) => state.order.error);
+  const dispatch = useAppDispatch();
+  const number = useAppSelector((state: any) => state.order.number);
+  const isLoading = useAppSelector((state: any) => state.order.isLoading);
+  const error = useAppSelector((state: any) => state.order.error);
 
   const numberClasses = cn('text text_type_digits-large', styles.number);
   const idClasses = cn('text text_type_main-medium', styles.id);

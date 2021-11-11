@@ -1,7 +1,7 @@
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
 import cn from 'classnames';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {setActiveTab} from '../../store/slices/tab-slice';
 import {TABS} from '../../utils/constants';
 
@@ -14,11 +14,11 @@ type TTabBarProps = {
 
 function TabBar({ className }: TTabBarProps): JSX.Element {
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const tabClasses = cn(className, styles.wrapper);
 
-  const activeTab = useSelector((state: any) => state.tab.activeTab);
+  const activeTab = useAppSelector((state: any) => state.tab.activeTab);
 
   const onTabClick = (item: string) => {
     dispatch(setActiveTab(item));

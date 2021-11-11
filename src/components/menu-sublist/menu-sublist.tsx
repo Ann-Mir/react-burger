@@ -30,7 +30,7 @@ const MenuSublist = React.forwardRef<Ref, TMenuSublistProps>(
   const classes = cn(className, styles.list);
   const titleClasses = cn('text text_type_main-medium', styles.title);
 
-  const titleRef = useRef(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
   let location = useLocation();
 

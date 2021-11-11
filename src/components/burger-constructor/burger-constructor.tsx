@@ -5,9 +5,8 @@ import {
   ConstructorElement,
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import {useSelector} from 'react-redux';
 import {useLocation, useHistory} from 'react-router-dom';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {addBun, addIngredient, clearOrder} from '../../store/slices/burger-constructor-slice';
 import {addBunQuantity, clearQuantities, increaseQuantity} from '../../store/slices/ingredients-slice';
 import {postOrder} from '../../store/slices/order-slice';
@@ -24,7 +23,7 @@ import styles from './burger-constructor.module.css';
 function BurgerConstructor(): JSX.Element {
 
   const dispatch = useAppDispatch();
-  const isAuthenticated = useSelector((state: any) => state.user.isAuthenticated);
+  const isAuthenticated = useAppSelector((state: any) => state.user.isAuthenticated);
   const location = useLocation();
   const history = useHistory();
 
@@ -37,7 +36,7 @@ function BurgerConstructor(): JSX.Element {
   const priceClasses = cn('text_type_digits-medium', styles.price);
   const instructionClasses = cn('text text_type_main-medium', styles.instruction);
 
-  const { ingredients, bun, totalPrice } = useSelector((state: any) => state.burgerConstructor);
+  const { ingredients, bun, totalPrice } = useAppSelector((state: any) => state.burgerConstructor);
   const isDisabled = ingredients.length === 0 || !bun;
   const buttonStyle = isDisabled ? {opacity: '0.5', pointerEvents: 'none'} as CSSProperties : undefined;
 

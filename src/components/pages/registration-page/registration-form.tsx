@@ -1,6 +1,6 @@
 import {EmailInput, Input, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useAppDispatch} from '../../../hooks';
 import {registerUser} from '../../../store/slices/user-slice';
 import Form from '../../form/form';
 import cn from 'classnames';
@@ -17,7 +17,7 @@ function RegistrationForm({ className }: TRegistrationFormProps): JSX.Element {
 
   const formClasses = cn(styles.form, className);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [emailValue, setEmailValue] = React.useState<string>('');
 
@@ -37,7 +37,6 @@ function RegistrationForm({ className }: TRegistrationFormProps): JSX.Element {
 
   const onSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
-    // @ts-ignore
     dispatch(registerUser({name: nameValue, password: passwordValue, email: emailValue}));
   };
 

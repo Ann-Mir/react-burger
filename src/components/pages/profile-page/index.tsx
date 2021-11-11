@@ -1,7 +1,6 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
 import {NavLink} from 'react-router-dom';
-import {useAppDispatch} from '../../../hooks';
+import {useAppDispatch, useAppSelector} from '../../../hooks';
 import {logout} from '../../../store/slices/user-slice';
 import {AppRoutes} from '../../../utils/constants';
 import ErrorAlert from '../../error-alert/error-alert';
@@ -17,7 +16,7 @@ function ProfilePage(): JSX.Element {
 
   const linkClasses = cn('text text_type_main-medium text_color_inactive', styles.link);
 
-  const { isLoading, error } = useSelector((state: any) => state.user);
+  const { isLoading, error } = useAppSelector((state: any) => state.user);
 
   const ProfileNav = () => {
 

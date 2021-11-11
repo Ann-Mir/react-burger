@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useLocation} from 'react-router';
 import { Switch, Route } from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {fetchIngredients} from '../../store/slices/ingredients-slice';
 import {TLocationState} from '../../types';
 import {AppRoutes} from '../../utils/constants';
@@ -23,8 +23,8 @@ import styles from './app.module.css';
 
 function App(): JSX.Element {
 
-  const { isLoading, error } = useSelector((state: any) => state.user);
-  const dispatch = useDispatch();
+  const { isLoading, error } = useAppSelector((state: any) => state.user);
+  const dispatch = useAppDispatch();
 
   const location = useLocation<TLocationState>();
   const history = useHistory();
@@ -38,7 +38,7 @@ function App(): JSX.Element {
     history.goBack();
   };
 
-  const totalPrice = useSelector((state: any) => state.burgerConstructor.totalPrice);
+  const totalPrice = useAppSelector((state: any) => state.burgerConstructor.totalPrice);
 
   useEffect(() => {
     if (totalPrice) {
