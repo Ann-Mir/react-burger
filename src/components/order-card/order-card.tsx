@@ -9,8 +9,9 @@ import styles from './order-card.module.css';
 
 const MAX_INGREDIENTS = 6;
 
-function OrderCard(): JSX.Element {
+function OrderCard({className}: {className: string}): JSX.Element {
 
+  const cardClasses = cn(styles.wrapper, className);
   const numberClasses = cn('text text_type_digits-default');
   const timeClasses = cn('text text_type_main-default text_color_inactive');
   const titleClasses = cn(styles.title, 'text text_type_main-medium');
@@ -22,7 +23,7 @@ function OrderCard(): JSX.Element {
   }, 0);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={cardClasses}>
       <div className={styles.info}>
         <span className={numberClasses}>#034434</span>
         <span className={timeClasses}>Вчера, 13:50 i-GMT+3</span>

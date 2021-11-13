@@ -1,18 +1,23 @@
 import React from 'react';
+import OrderCard from '../order-card/order-card';
 
 import styles from './index.module.css';
 
 
-function Index(): JSX.Element {
+function OrdersFeed(): JSX.Element {
 
   return (
-    <section>
-      <h2>Лента заказов</h2>
+    <section className={styles.orders}>
       <div className={styles.feed}>
-
+        <OrderCard className={styles.card}/>
+        <OrderCard className={styles.card}/>
+        <OrderCard className={styles.card}/>
+        <OrderCard className={styles.card}/>
+        <OrderCard className={styles.card}/>
       </div>
     </section>
   )
 }
 
-export default Index;
+
+export default OrdersFeed;

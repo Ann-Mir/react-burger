@@ -1,5 +1,9 @@
+.orders {
+  max-width: 600px;
+}
+
 .feed {
-  max-height: calc(100vh - 360px);
+  max-height: calc(100vh - 200px);
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
@@ -15,4 +19,8 @@
 .feed::-webkit-scrollbar-thumb {
   background-color: #8585AD;
   border: 3px solid #8585AD;
+}
+
+.card {
+  margin-bottom: 16px;
 }
