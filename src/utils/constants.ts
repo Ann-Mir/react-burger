@@ -27,7 +27,7 @@ export const AppRoutes = {
   RESET_PASSWORD: '/reset-password',
   PROFILE: '/profile',
   INGREDIENTS: '/ingredients/:id',
-  ORDERS: '/orders',
   LOGOUT: '/logout',
   NOT_FOUND: '/not-found',
+  FEED: '/feed',
 };

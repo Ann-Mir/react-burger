@@ -38,3 +38,12 @@ export type TServerMenuItem = {
   count?: number;
   __v: number;
 };
+
+export type TOrder = {
+  ingredients: string[];
+  _id: string | number;
+  status: string;
+  number: number;
+  createdAt: string;
+  updatedAt: string;
+};

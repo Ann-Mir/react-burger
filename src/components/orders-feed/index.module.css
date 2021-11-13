@@ -1,0 +1,18 @@
+.feed {
+  max-height: calc(100vh - 360px);
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.feed::-webkit-scrollbar {
+  width: 8px;
+}
+
+.feed::-webkit-scrollbar-track {
+  background: #2F2F37;
+}
+
+.feed::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+  border: 3px solid #8585AD;
+}

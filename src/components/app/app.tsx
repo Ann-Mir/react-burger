@@ -8,6 +8,7 @@ import {AppRoutes} from '../../utils/constants';
 import AppHeader from '../app-header/app-header';
 import ErrorAlert from '../error-alert/error-alert';
 import IngredientModal from '../ingredient-modal/ingredient-modal';
+import FeedPage from '../pages/feed-page/feed-page';
 import ForgotPasswordPage from '../pages/forgot-password-page';
 import IngredientPage from '../pages/ingredient-page/ingredient-page';
 import MainPage from '../pages/main-page';
@@ -72,6 +73,9 @@ function App(): JSX.Element {
             </Route>
             <Route path={AppRoutes.INGREDIENTS}>
                <IngredientPage />
+            </Route>
+            <Route path={AppRoutes.FEED} exact>
+              <FeedPage />
             </Route>
             <ProtectedRoute path={AppRoutes.PROFILE} exact>
               <ProfilePage />

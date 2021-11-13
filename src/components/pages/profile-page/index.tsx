@@ -46,7 +46,7 @@ function ProfilePage(): JSX.Element {
           </li>
           <li className={styles.item}>
             <NavLink
-              to={AppRoutes.ORDERS}
+              to={AppRoutes.FEED}
               className={linkClasses}
               activeClassName={styles.active}
             >
