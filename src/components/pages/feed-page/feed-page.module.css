@@ -3,6 +3,12 @@
   margin: 0 auto;
 }
 
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 60px;
+}
+
 .title {
   margin-bottom: 20px;
 }

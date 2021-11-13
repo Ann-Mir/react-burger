@@ -1,7 +1,7 @@
 import React from 'react';
 import OrderCard from '../order-card/order-card';
 
-import styles from './index.module.css';
+import styles from './orders-feed.module.css';
 
 
 function OrdersFeed(): JSX.Element {

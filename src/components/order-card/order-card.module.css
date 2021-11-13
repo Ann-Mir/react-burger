@@ -54,6 +54,8 @@
 
 .image {
   z-index: 8;
+  width: 100%;
+  transform: scale(1.4);
 }
 
 .extra {
