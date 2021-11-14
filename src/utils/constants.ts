@@ -30,4 +30,6 @@ export const AppRoutes = {
   LOGOUT: '/logout',
   NOT_FOUND: '/not-found',
   FEED: '/feed',
+  FEED_ORDER: '/feed/:id',
+  ORDERS: '/orders',
 };
