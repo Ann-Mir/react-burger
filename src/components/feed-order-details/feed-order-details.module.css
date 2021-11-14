@@ -1,0 +1,82 @@
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 640px;
+  max-height: 620px;
+  margin: 0 auto;
+}
+
+.number {
+  margin-bottom: 40px;
+  align-self: center;
+}
+
+.title {
+  margin-bottom: 12px;
+}
+
+.status {
+  color: #00CCCC;
+  margin-bottom: 60px;
+}
+
+.ingredients {
+  margin-bottom: 24px;
+}
+
+.list {
+  height: 310px;
+  margin: 0 0 40px 0;
+  padding: 0 24px 0 0;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: #2F2F37;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+  border: 3px solid #8585AD;
+}
+
+.item {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.preview {
+  margin-right: 16px;
+}
+
+.name {
+  margin-right: 16px;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
