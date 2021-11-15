@@ -13,6 +13,7 @@ import FeedPage from '../pages/feed-page/feed-page';
 import ForgotPasswordPage from '../pages/forgot-password-page';
 import IngredientPage from '../pages/ingredient-page/ingredient-page';
 import MainPage from '../pages/main-page';
+import ProfileFeedPage from '../pages/profile-feed-page/profile-feed-page';
 import ProfilePage from '../pages/profile-page';
 import RegistrationPage from '../pages/registration-page';
 import ResetPasswordPage from '../pages/reset-password-page';
@@ -25,7 +26,7 @@ import styles from './app.module.css';
 
 function App(): JSX.Element {
 
-  const { isLoading, error } = useAppSelector((state: any) => state.user);
+  const { isLoading, error } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
   const location = useLocation<TLocationState>();
@@ -40,7 +41,7 @@ function App(): JSX.Element {
     history.goBack();
   };
 
-  const totalPrice = useAppSelector((state: any) => state.burgerConstructor.totalPrice);
+  const totalPrice = useAppSelector((state) => state.burgerConstructor.totalPrice);
 
   useEffect(() => {
     if (totalPrice) {
@@ -80,6 +81,9 @@ function App(): JSX.Element {
             </Route>
             <Route path={AppRoutes.FEED_ORDER}>
               <FeedOrderPage />
+            </Route>
+            <Route path={AppRoutes.ORDERS}>
+              <ProfileFeedPage />
             </Route>
             <ProtectedRoute path={AppRoutes.PROFILE} exact>
               <ProfilePage />

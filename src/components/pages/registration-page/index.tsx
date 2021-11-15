@@ -9,7 +9,7 @@ import styles from './index.module.css';
 
 function RegistrationPage(): JSX.Element {
 
-  const isAuthenticated = useAppSelector((state: any) => state.user.isAuthenticated);
+  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
   const { state } = useLocation<TLocationState>();
 
   const SignInLink = () => (

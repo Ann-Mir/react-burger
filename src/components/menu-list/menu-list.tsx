@@ -9,7 +9,7 @@ import styles from './menu-list.module.css';
 
 function MenuList(): JSX.Element {
 
-  const ingredients = useAppSelector((state: any) => state.ingredients.ingredients);
+  const ingredients = useAppSelector((state) => state.ingredients.ingredients);
   const itemsByType = useMemo(() => mapItemsByType(ingredients), [ingredients]);
   const dispatch = useAppDispatch();
 

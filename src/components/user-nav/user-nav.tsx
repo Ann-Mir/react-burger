@@ -17,7 +17,7 @@ function UserNav({ className }: TUserNavProps): JSX.Element {
 
   const classes = cn(styles.profile, className, 'text text_type_main-default text_color_inactive');
 
-  const {isAuthenticated} = useAppSelector((state: any) => state.user);
+  const {isAuthenticated} = useAppSelector((state) => state.user);
 
   return (
     <NavLink

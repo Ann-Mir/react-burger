@@ -1,17 +1,8 @@
-.wrapper {
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: min-content 1fr;
-}
-
-.main {
-  width: 1240px;
-  padding-top: 120px;
-  margin: 0 auto;
+.nav {
+  max-width: 320px;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .list {
@@ -53,10 +44,4 @@
 
 .link.active svg {
   fill: #FFFFFF;
-}
-
-.spinner {
-  position: fixed;
-  top: 50%;
-  left: 50%;
 }

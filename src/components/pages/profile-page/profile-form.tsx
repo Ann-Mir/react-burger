@@ -20,7 +20,7 @@ function ProfileForm(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const { email, name, isLoading, error } = useAppSelector((state: any) => state.user);
+  const { email, name, isLoading, error } = useAppSelector((state) => state.user);
   const [emailValue, setEmailValue] = React.useState<string>(email);
 
   const onEmailChange = (evt: React.ChangeEvent<HTMLInputElement>) => {

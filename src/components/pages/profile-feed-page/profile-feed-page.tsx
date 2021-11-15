@@ -1,15 +1,15 @@
 import React from 'react';
 import {useAppSelector} from '../../../hooks';
 import ErrorAlert from '../../error-alert/error-alert';
+import OrdersFeed from '../../orders-feed/orders-feed';
 import ProfileNav from '../../profile-nav/profile-nav';
 import Spinner from '../../spinner/spinner';
-import ProfileForm from './profile-form';
+import ProfileForm from '../profile-page/profile-form';
 
-import styles from './index.module.css';
+import styles from './profile-feed-page.module.css';
 
 
-function ProfilePage(): JSX.Element {
-
+function ProfileFeedPage() {
 
   const { isLoading, error } = useAppSelector((state) => state.user);
 
@@ -19,10 +19,11 @@ function ProfilePage(): JSX.Element {
       <main className={styles.main}>
         {isLoading && <Spinner className={styles.spinner}/>}
         <ProfileNav />
-        <ProfileForm />
+        <OrdersFeed />
       </main>
     </div>
   )
 }
 
-export default ProfilePage;
+
+export default ProfileFeedPage;

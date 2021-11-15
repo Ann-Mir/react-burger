@@ -21,7 +21,7 @@ function IngredientDetails({ className }: TIngredientDetailsProps): JSX.Element 
 
   const { id } = useParams<TParams>();
   const item = useAppSelector(
-    (state: any) => state.ingredients.ingredients).find(
+    (state) => state.ingredients.ingredients).find(
       ({ _id } : {_id: string}) => id === _id);
 
   const titleClasses = cn('text text_type_main-medium', styles.title);

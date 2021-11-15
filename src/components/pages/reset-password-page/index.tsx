@@ -12,8 +12,8 @@ function ResetPasswordPage(): JSX.Element {
   const history = useHistory();
   const {state} = useLocation<TLocationState>();
 
-  const isAuthenticated = useAppSelector((state: any) => state.user.isAuthenticated);
-  const {passwordIsChanged, isEmailConfirmed } = useAppSelector((state: any) => state.password);
+  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
+  const {passwordIsChanged, isEmailConfirmed } = useAppSelector((state) => state.password);
 
   useEffect(() => {
     if (passwordIsChanged) {

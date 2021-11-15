@@ -8,9 +8,9 @@ import PasswordPageWrapper from '../../password-page-wrapper/password-page-wrapp
 
 function ForgotPasswordPage(): JSX.Element {
 
-  const isAuthenticated = useAppSelector((state: any) => state.user.isAuthenticated);
+  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
 
-  const isEmailConfirmed = useAppSelector((state: any) => state.password.isEmailConfirmed);
+  const isEmailConfirmed = useAppSelector((state) => state.password.isEmailConfirmed);
   const location = useLocation();
 
   return (

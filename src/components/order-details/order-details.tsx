@@ -16,9 +16,9 @@ type TOrderDetails = {
 function OrderDetails({ onClose }: TOrderDetails): JSX.Element {
 
   const dispatch = useAppDispatch();
-  const number = useAppSelector((state: any) => state.order.number);
-  const isLoading = useAppSelector((state: any) => state.order.isLoading);
-  const error = useAppSelector((state: any) => state.order.error);
+  const number = useAppSelector((state) => state.order.number);
+  const isLoading = useAppSelector((state) => state.order.isLoading);
+  const error = useAppSelector((state) => state.order.error);
 
   const numberClasses = cn('text text_type_digits-large', styles.number);
   const idClasses = cn('text text_type_main-medium', styles.id);

@@ -11,6 +11,7 @@ import styles from './main-wrapper.module.css';
 function MainWrapper(): JSX.Element {
 
   const titleClasses = cn('text text_type_main-large', styles.title);
+
   return (
     <main className={styles.main}>
       <h1 className={titleClasses}>Соберите бургер</h1>

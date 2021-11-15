@@ -18,7 +18,7 @@ function TabBar({ className }: TTabBarProps): JSX.Element {
 
   const tabClasses = cn(className, styles.wrapper);
 
-  const activeTab = useAppSelector((state: any) => state.tab.activeTab);
+  const activeTab = useAppSelector((state) => state.tab.activeTab);
 
   const onTabClick = (item: string) => {
     dispatch(setActiveTab(item));

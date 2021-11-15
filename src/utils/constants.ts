@@ -32,4 +32,5 @@ export const AppRoutes = {
   FEED: '/feed',
   FEED_ORDER: '/feed/:id',
   ORDERS: '/orders',
+  ORDERS_ORDER: '/orders/:id',
 };
