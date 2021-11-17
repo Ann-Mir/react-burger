@@ -47,3 +47,14 @@ export type TOrder = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type TOrderStatus = 'done' | 'pending' | 'created';
+
+export type TFeedOrder = {
+  ingredients: string[];
+  _id: string;
+  status: TOrderStatus;
+  number: number;
+  createdAt: string;
+  updatedAt: string;
+};

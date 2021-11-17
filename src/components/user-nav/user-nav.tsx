@@ -2,7 +2,7 @@ import {ProfileIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
 import cn from 'classnames';
 import {NavLink} from 'react-router-dom';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/hooks';
 import {AppRoutes} from '../../utils/constants';
 
 import styles from './user-nav.module.css';

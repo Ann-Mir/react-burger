@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, Redirect, useLocation} from 'react-router-dom';
-import {useAppSelector} from '../../../hooks';
+import {useAppSelector} from '../../../hooks/hooks';
 import {TLocationState} from '../../../types';
 import {AppRoutes} from '../../../utils/constants';
 import RegistrationForm from './registration-form';

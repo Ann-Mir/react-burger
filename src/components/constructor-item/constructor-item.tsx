@@ -1,6 +1,6 @@
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import React, {useRef} from 'react';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch} from '../../hooks/hooks';
 import {TMenuItem} from '../../types';
 import {useDrag, useDrop} from 'react-dnd';
 import {useDispatch} from 'react-redux';

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useAppSelector} from '../../../hooks';
+import {useAppSelector} from '../../../hooks/hooks';
 import ErrorAlert from '../../error-alert/error-alert';
 import OrdersFeed from '../../orders-feed/orders-feed';
 import ProfileNav from '../../profile-nav/profile-nav';

@@ -25,58 +25,58 @@ function FeedOrderDetails() {
         <li className={styles.item}>
           <IngredientPreview className={styles.preview}/>
           <p className={nameClasses}>Флюоресцентная булка R2 D2</p>
-          <p className={styles.price}>
+          <div className={styles.price}>
             <span className={quantityClasses}>2&nbsp;x&nbsp;</span>
             <Price price={300}/>
-          </p>
+          </div>
         </li>
         <li className={styles.item}>
           <IngredientPreview className={styles.preview}/>
           <p className={nameClasses}>Флюоресцентная булка R2 D2</p>
-          <p className={styles.price}>
+          <div className={styles.price}>
             <span className={quantityClasses}>10&nbsp;x&nbsp;</span>
             <Price price={3000}/>
-          </p>
+          </div>
         </li>
         <li className={styles.item}>
           <IngredientPreview className={styles.preview}/>
           <p className={nameClasses}>Флюоресцентная булка R2 D2</p>
-          <p className={styles.price}>
+          <div className={styles.price}>
             <span className={quantityClasses}>10&nbsp;x&nbsp;</span>
             <Price price={3000}/>
-          </p>
+          </div>
         </li>
         <li className={styles.item}>
           <IngredientPreview className={styles.preview}/>
           <p className={nameClasses}>Флюоресцентная булка R2 D2</p>
-          <p className={styles.price}>
+          <div className={styles.price}>
             <span className={quantityClasses}>10&nbsp;x&nbsp;</span>
             <Price price={3000}/>
-          </p>
+          </div>
         </li>
         <li className={styles.item}>
           <IngredientPreview className={styles.preview}/>
           <p className={nameClasses}>Флюоресцентная булка R2 D2</p>
-          <p className={styles.price}>
+          <div className={styles.price}>
             <span className={quantityClasses}>10&nbsp;x&nbsp;</span>
             <Price price={3000}/>
-          </p>
+          </div>
         </li>
         <li className={styles.item}>
           <IngredientPreview className={styles.preview}/>
           <p className={nameClasses}>Флюоресцентная булка R2 D2</p>
-          <p className={styles.price}>
+          <div className={styles.price}>
             <span className={quantityClasses}>10&nbsp;x&nbsp;</span>
             <Price price={3000}/>
-          </p>
+          </div>
         </li>
         <li className={styles.item}>
           <IngredientPreview className={styles.preview}/>
           <p className={nameClasses}>Флюоресцентная булка R2 D2</p>
-          <p className={styles.price}>
+          <div className={styles.price}>
             <span className={quantityClasses}>10&nbsp;x&nbsp;</span>
             <Price price={3000}/>
-          </p>
+          </div>
         </li>
       </ul>
       <div className={styles.bottom}>

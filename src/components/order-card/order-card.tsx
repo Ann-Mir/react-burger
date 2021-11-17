@@ -1,5 +1,5 @@
 import React from 'react';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/hooks';
 import {TMenuItem, TOrder} from '../../types';
 import Price from '../price/price';
 import cn from 'classnames';

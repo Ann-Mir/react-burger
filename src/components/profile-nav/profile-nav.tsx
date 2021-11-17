@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import React from 'react';
 import {NavLink, useHistory} from 'react-router-dom';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch} from '../../hooks/hooks';
 import {logout} from '../../store/slices/user-slice';
 import {AppRoutes} from '../../utils/constants';
 import styles from './profile-nav.module.css';

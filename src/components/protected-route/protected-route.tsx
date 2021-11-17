@@ -1,5 +1,5 @@
 import React from 'react';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/hooks';
 import {AppRoutes} from '../../utils/constants';
 import {Route, Redirect, RouteProps} from 'react-router-dom';
 

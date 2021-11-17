@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import cn from 'classnames';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import {clearOrder} from '../../store/slices/burger-constructor-slice';
 import {clearOrderDetails} from '../../store/slices/order-slice';
 import ErrorAlert from '../error-alert/error-alert';

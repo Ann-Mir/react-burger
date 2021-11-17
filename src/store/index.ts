@@ -1,10 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit';
+import socketMiddleware from './middlewares/socket-middleware';
 import {rootReducer} from './slices/root-reducer';
 import {getUserData} from './slices/user-slice';
 
 
 const store = configureStore({
   reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(socketMiddleware()),
 });
 
 store.dispatch(getUserData());

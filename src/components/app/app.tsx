@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import {useHistory, useLocation} from 'react-router';
 import { Switch, Route } from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import {fetchIngredients} from '../../store/slices/ingredients-slice';
 import {TLocationState} from '../../types';
 import {AppRoutes} from '../../utils/constants';
 import AppHeader from '../app-header/app-header';
 import ErrorAlert from '../error-alert/error-alert';
+import FeedOrderModal from '../feed-order-modal/feed-order-modal';
 import IngredientModal from '../ingredient-modal/ingredient-modal';
 import FeedOrderPage from '../pages/feed-order-page/feed-order-page';
 import FeedPage from '../pages/feed-page/feed-page';
@@ -96,6 +97,20 @@ function App(): JSX.Element {
             background && (
               <Route path={AppRoutes.INGREDIENTS}>
                 <IngredientModal onClose={onModalClose} />
+              </Route>
+            )
+          }
+          {
+            background && (
+              <Route path={AppRoutes.FEED_ORDER}>
+                <FeedOrderModal onClose={onModalClose} />
+              </Route>
+            )
+          }
+          {
+            background && (
+              <Route path={AppRoutes.ORDERS_ORDER}>
+                <FeedOrderModal onClose={onModalClose} />
               </Route>
             )
           }

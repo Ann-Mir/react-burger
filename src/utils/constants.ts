@@ -31,6 +31,12 @@ export const AppRoutes = {
   NOT_FOUND: '/not-found',
   FEED: '/feed',
   FEED_ORDER: '/feed/:id',
-  ORDERS: '/orders',
-  ORDERS_ORDER: '/orders/:id',
+  ORDERS: '/profile/orders',
+  ORDERS_ORDER: 'profile/orders/:id',
+};
+
+export const BASE_SOCKET_URL = 'wss://norma.nomoreparties.space/orders';
+
+export const SocketRoutes = {
+  ALL: '/all',
 };

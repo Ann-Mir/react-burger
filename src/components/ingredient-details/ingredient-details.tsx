@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import {useParams} from 'react-router';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/hooks';
 
 import styles from './ingredients-details.module.css';
 

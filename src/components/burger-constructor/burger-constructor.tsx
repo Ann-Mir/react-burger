@@ -6,7 +6,7 @@ import {
   Button
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import {useLocation, useHistory} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import {addBun, addIngredient, clearOrder} from '../../store/slices/burger-constructor-slice';
 import {addBunQuantity, clearQuantities, increaseQuantity} from '../../store/slices/ingredients-slice';
 import {postOrder} from '../../store/slices/order-slice';

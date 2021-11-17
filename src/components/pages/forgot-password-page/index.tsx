@@ -1,6 +1,6 @@
 import React from 'react';
 import {Redirect, useLocation} from 'react-router-dom';
-import {useAppSelector} from '../../../hooks';
+import {useAppSelector} from '../../../hooks/hooks';
 import {AppRoutes} from '../../../utils/constants';
 import ForgotPasswordForm from './forgot-password-form';
 import PasswordPageWrapper from '../../password-page-wrapper/password-page-wrapper';

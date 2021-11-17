@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import {setActiveTab} from '../../store/slices/tab-slice';
 import {TABS} from '../../utils/constants';
 

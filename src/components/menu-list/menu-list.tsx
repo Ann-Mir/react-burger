@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import {setActiveTab} from '../../store/slices/tab-slice';
 import {mapItemsByType} from '../../utils/common';
 import {TABS} from '../../utils/constants';
