@@ -34,8 +34,14 @@ function OrderCard({ className, order }: TOrderCardProps): JSX.Element {
   const allIngredients: TMenuItem[] = useAppSelector(
     (state) => state.ingredients.ingredients);
 
-  const currentIngredients: TMenuItem[] = allIngredients
-    .filter((item) => ingredients.includes(item._id));
+  const currentIngredients: TMenuItem[] = [];
+  allIngredients.forEach((item) => {
+    ingredients.forEach((ingredient) => {
+      if (ingredient === item._id) {
+        currentIngredients.push(item);
+      }
+    });
+  });
 
   const totalPrice = currentIngredients.reduce((total: number, item: TMenuItem) => {
     return total + item.price;

@@ -1,16 +1,18 @@
 import React from 'react';
 import {Link, useLocation} from 'react-router-dom';
-import {useAppSelector} from '../../hooks/hooks';
+import {TFeedOrder} from '../../types';
 import OrderCard from '../order-card/order-card';
 
 import styles from './orders-feed.module.css';
 
 
-function OrdersFeed(): JSX.Element {
+type TOrdersFeedProps = {
+  orders: TFeedOrder[];
+}
+
+function OrdersFeed({ orders }: TOrdersFeedProps): JSX.Element {
 
   const location = useLocation();
-
-  const { orders } = useAppSelector((state) => state.feed);
 
   return (
     <section className={styles.orders}>

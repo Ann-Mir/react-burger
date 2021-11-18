@@ -34,7 +34,7 @@ const userFeedSlice = createSlice({
         state.error = true;
         return;
       }
-      state.orders = orders;
+      state.orders = orders.reverse();
     }
   },
 });

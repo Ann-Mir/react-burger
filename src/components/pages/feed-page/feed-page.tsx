@@ -22,7 +22,7 @@ function FeedPage(): JSX.Element {
     dispatch(wsActions.wsInit.wsConnectionInit('getAllFeedOrders'));
 
     return () => {
-      dispatch(wsActions.common.wsConnectionClose());
+      dispatch(wsActions.wsInit.wsConnectionClose());
     }
   }, [dispatch]);
 
@@ -34,7 +34,7 @@ function FeedPage(): JSX.Element {
         {!wsConnected && <Spinner className={styles.spinner}/>}
         {!error && wsConnected &&
         <>
-          <OrdersFeed />
+          <OrdersFeed orders={orders} />
           <OrdersStatus />
         </>
         }

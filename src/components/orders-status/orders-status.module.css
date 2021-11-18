@@ -18,11 +18,13 @@
   flex-direction: column;
   flex-wrap: wrap;
   width: 272px;
-  height: 152px;
+  min-height: 270px;
+  max-height: 450px;
   list-style: none;
 }
 
 .ready_item {
+  margin-right: 8px;
   margin-bottom: 8px;
   color: #00CCCC;
 }

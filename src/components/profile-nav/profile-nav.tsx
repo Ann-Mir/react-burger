@@ -28,6 +28,7 @@ function ProfileNav() {
         <li className={styles.item}>
           <NavLink
             to={AppRoutes.PROFILE}
+            exact={true}
             className={linkClasses}
             activeClassName={styles.active}
           >

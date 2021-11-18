@@ -3,7 +3,7 @@ import {getCookie} from '../utils/common';
 
 
 interface IWsService {
-  [k: string]: () => WebSocket
+  [k: string]: () => WebSocket;
 }
 
 

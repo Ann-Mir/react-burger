@@ -1,25 +1,41 @@
-import React from 'react';
-import {useAppSelector} from '../../../hooks/hooks';
+import React, {useEffect} from 'react';
+import {useAppDispatch, useAppSelector} from '../../../hooks/hooks';
+import wsActions from '../../../store/action-types';
 import ErrorAlert from '../../error-alert/error-alert';
 import OrdersFeed from '../../orders-feed/orders-feed';
 import ProfileNav from '../../profile-nav/profile-nav';
 import Spinner from '../../spinner/spinner';
-import ProfileForm from '../profile-page/profile-form';
 
 import styles from './profile-feed-page.module.css';
 
 
 function ProfileFeedPage() {
 
+  const dispatch = useAppDispatch();
   const { isLoading, error } = useAppSelector((state) => state.user);
+  const {orders, error: wsError, wsConnected} = useAppSelector((state) => state.userFeed);
+
+  useEffect(() => {
+    dispatch(wsActions.wsInit.wsConnectionInit('getUserFeedOrders'));
+
+    return () => {
+      dispatch(wsActions.wsInit.wsConnectionClose());
+    }
+  }, [dispatch]);
 
   return (
     <div className={styles.wrapper}>
-      {error && <ErrorAlert />}
+      {(error || wsError) && <ErrorAlert />}
       <main className={styles.main}>
-        {isLoading && <Spinner className={styles.spinner}/>}
+        {(isLoading || !wsConnected) && <Spinner className={styles.spinner}/>}
         <ProfileNav />
-        <OrdersFeed />
+        {
+          !isLoading
+          && wsConnected
+          && !error
+          && !wsError
+          && <OrdersFeed orders={orders} />
+        }
       </main>
     </div>
   )

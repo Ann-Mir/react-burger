@@ -24,7 +24,6 @@ function UserNav({ className }: TUserNavProps): JSX.Element {
       to={isAuthenticated ? AppRoutes.PROFILE : AppRoutes.LOGIN}
       className={classes}
       activeClassName={styles.active}
-      exact={true}
     >
       <div className={styles.profile_icon}>
         <ProfileIcon type="secondary" />
