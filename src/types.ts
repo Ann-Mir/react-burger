@@ -57,4 +57,5 @@ export type TFeedOrder = {
   number: number;
   createdAt: string;
   updatedAt: string;
+  name: string;
 };

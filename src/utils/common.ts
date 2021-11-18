@@ -70,3 +70,8 @@ export const setSession = (data: any) => {
     setCookie('refreshToken', refreshToken);
   }
 };
+
+export const formatDate = (date: string) => {
+  const [day, time] = Array.from(date.split('.'))[0].split('T');
+  return time + ' ' + day;
+};

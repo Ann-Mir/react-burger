@@ -10,7 +10,7 @@ type TWsActions = {
   [k: string]: any;
 };
 
-const wsActions:TWsActions = {
+const wsActions: TWsActions = {
   getAllFeedOrders: ordersFeedActions ,
   getUserFeedOrders: userFeedActions,
   wsInit: wsInitActions,

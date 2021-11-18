@@ -11,14 +11,11 @@
   margin-bottom: 24px;
 }
 
-.title {
-  margin-bottom: 24px;
-}
-
 .bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 24px;
 }
 
 .images_wrapper {
@@ -63,4 +60,12 @@
   z-index: 9;
   top: 18px;
   right: 18px;
+}
+
+.status {
+  margin-top: 8px;
+}
+
+.ready {
+  color: #00cccc;
 }

@@ -40,3 +40,9 @@ export const BASE_SOCKET_URL = 'wss://norma.nomoreparties.space/orders';
 export const SocketRoutes = {
   ALL: '/all',
 };
+
+export const OrderStatus = {
+  done: 'Выполнен',
+  pending: 'Готовится',
+  created: 'Создан',
+};
