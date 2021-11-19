@@ -27,6 +27,7 @@ const userFeedSlice = createSlice({
     },
     wsConnectionClosed: (state) => {
       state.wsConnected = false;
+      state.error = false;
     },
     wsGetMessage: (state, action) => {
       const { orders, success } = action.payload;
@@ -35,6 +36,7 @@ const userFeedSlice = createSlice({
         return;
       }
       state.orders = orders.reverse();
+      state.error = false;
     }
   },
 });

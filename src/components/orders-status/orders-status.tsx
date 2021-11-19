@@ -20,7 +20,7 @@ function OrdersStatus(): JSX.Element {
       ? ordersByStatus.get('done').push(order.number)
       : ordersByStatus.get('in progress').push(order.number);
   })
-  console.log(ordersByStatus);
+
   return (
     <section className={styles.orders}>
       <div className={styles.orders_wrapper}>

@@ -17,13 +17,18 @@ type TParams = {
 
 function FeedOrderDetails() {
 
+
+  const { id } = useParams<TParams>();
   const allIngredients: TMenuItem[] = useAppSelector(
     (state) => state.ingredients.ingredients);
   const location = useLocation<TLocationState>();
   const {state} = location;
-  const {currentOrders: orders} = state;
 
-  const { id } = useParams<TParams>();
+  if (!state) {
+    return (<p className={'text text_type_main-medium'}>Заказ не найден</p>)
+  }
+
+  const {currentOrders: orders} = state;
 
   if (!orders) {
     return (<p className={'text text_type_main-medium'}>Заказ не найден</p>)

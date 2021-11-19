@@ -31,6 +31,7 @@ const ordersFeedSlice = createSlice({
     },
     wsConnectionClosed: (state) => {
       state.wsConnected = false;
+      state.error = false;
     },
     wsGetMessage: (state, action) => {
       const { orders, total, totalToday, success } = action.payload;
@@ -41,6 +42,7 @@ const ordersFeedSlice = createSlice({
       state.orders = orders;
       state.total = total;
       state.totalToday = totalToday;
+      state.error = false;
     }
   },
 });

@@ -16,8 +16,6 @@ function FeedPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const {orders, error, wsConnected} = useAppSelector((state) => state.feed);
 
-  console.log(orders);
-
   useEffect(() => {
     dispatch(wsActions.wsInit.wsConnectionInit('getAllFeedOrders'));
 

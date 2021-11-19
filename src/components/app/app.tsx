@@ -83,12 +83,12 @@ function App(): JSX.Element {
             <Route path={AppRoutes.FEED_ORDER}>
               <FeedOrderPage />
             </Route>
-            <Route path={AppRoutes.ORDERS} exact>
+            <ProtectedRoute path={AppRoutes.ORDERS} exact>
               <ProfileFeedPage />
-            </Route>
-            <Route path={AppRoutes.ORDERS_ORDER}>
+            </ProtectedRoute>
+            <ProtectedRoute path={AppRoutes.ORDERS_ORDER}>
               <FeedOrderPage />
-            </Route>
+            </ProtectedRoute>
             <ProtectedRoute path={AppRoutes.PROFILE} exact>
               <ProfilePage />
             </ProtectedRoute>

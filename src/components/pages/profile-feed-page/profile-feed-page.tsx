@@ -16,6 +16,7 @@ function ProfileFeedPage() {
   const {orders, error: wsError, wsConnected} = useAppSelector((state) => state.userFeed);
 
   useEffect(() => {
+
     dispatch(wsActions.wsInit.wsConnectionInit('getUserFeedOrders'));
 
     return () => {
