@@ -32,7 +32,7 @@ export const AppRoutes = {
   FEED: '/feed',
   FEED_ORDER: '/feed/:id',
   ORDERS: '/profile/orders',
-  ORDERS_ORDER: 'profile/orders/:id',
+  ORDERS_ORDER: '/profile/orders/:id',
 };
 
 export const BASE_SOCKET_URL = 'wss://norma.nomoreparties.space/orders';

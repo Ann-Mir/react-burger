@@ -1,8 +1,8 @@
 import cn from 'classnames';
 import React from 'react';
-import {useParams} from 'react-router';
+import {useLocation, useParams} from 'react-router';
 import {useAppSelector} from '../../hooks/hooks';
-import {TMenuItem} from '../../types';
+import {TLocationState, TMenuItem} from '../../types';
 import {formatDate} from '../../utils/common';
 import {OrderStatus} from '../../utils/constants';
 import IngredientPreview from '../ingredient-preview/ingredient-preview';
@@ -17,17 +17,28 @@ type TParams = {
 
 function FeedOrderDetails() {
 
+  const allIngredients: TMenuItem[] = useAppSelector(
+    (state) => state.ingredients.ingredients);
+  const location = useLocation<TLocationState>();
+  const {state} = location;
+  const {currentOrders: orders} = state;
+
   const { id } = useParams<TParams>();
 
-  const orders = useAppSelector((state) => state.feed.orders);
+  if (!orders) {
+    return (<p className={'text text_type_main-medium'}>Заказ не найден</p>)
+  }
+
   const index = orders.findIndex((item) => item._id === id);
+
+  if (index < 0) {
+    return (<p className={'text text_type_main-medium'}>Заказ не найден</p>)
+  }
 
   const order = orders[index];
 
   const { ingredients, name, number, createdAt, status } = order;
 
-  const allIngredients: TMenuItem[] = useAppSelector(
-    (state) => state.ingredients.ingredients);
 
   const currentIngredients: TMenuItem[] = [];
   allIngredients.forEach((item) => {

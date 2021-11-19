@@ -22,7 +22,7 @@ function OrdersFeed({ orders }: TOrdersFeedProps): JSX.Element {
             <Link
               to={{
                 pathname: `${location.pathname}/${order._id}`,
-                state: {background: location}
+                state: {background: location, currentOrders: orders}
               }}
               key={order._id}
             >

@@ -3,6 +3,7 @@ import { Location } from 'history';
 export type TLocationState = {
   background?: Location;
   from?: string;
+  currentOrders?: TFeedOrder[];
 };
 
 export type TMenuItem = {
