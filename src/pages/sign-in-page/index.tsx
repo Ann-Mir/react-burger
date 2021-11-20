@@ -1,8 +1,8 @@
 import React from 'react';
 import {Redirect, useLocation, Link} from 'react-router-dom';
-import {useAppSelector} from '../../../hooks/hooks';
-import {TLocationState} from '../../../types';
-import {AppRoutes} from '../../../utils/constants';
+import {useAppSelector} from '../../hooks/hooks';
+import {TLocationState} from '../../types';
+import {AppRoutes} from '../../utils/constants';
 import SignInForm from './sign-in-form';
 import cn from 'classnames';
 import styles from './index.module.css';

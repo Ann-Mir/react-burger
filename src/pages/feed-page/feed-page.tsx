@@ -1,11 +1,11 @@
 import cn from 'classnames';
 import React, {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../hooks/hooks';
-import wsActions from '../../../store/action-types';
-import ErrorAlert from '../../error-alert/error-alert';
-import OrdersFeed from '../../orders-feed/orders-feed';
-import OrdersStatus from '../../orders-status/orders-status';
-import Spinner from '../../spinner/spinner';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
+import wsActions from '../../store/action-types';
+import ErrorAlert from '../../components/error-alert/error-alert';
+import OrdersFeed from '../../components/orders-feed/orders-feed';
+import OrdersStatus from '../../components/orders-status/orders-status';
+import Spinner from '../../components/spinner/spinner';
 import styles from './feed-page.module.css';
 
 

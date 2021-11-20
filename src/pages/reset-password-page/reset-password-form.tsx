@@ -1,8 +1,8 @@
 import {Input, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
-import {useAppDispatch} from '../../../hooks/hooks';
-import {updatePassword} from '../../../store/slices/password-slice';
-import Form from '../../form/form';
+import {useAppDispatch} from '../../hooks/hooks';
+import {updatePassword} from '../../store/slices/password-slice';
+import Form from '../../components/form/form';
 
 
 function ResetPasswordForm(): JSX.Element {

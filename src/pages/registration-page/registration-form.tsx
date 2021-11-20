@@ -1,8 +1,8 @@
 import {EmailInput, Input, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
-import {useAppDispatch} from '../../../hooks/hooks';
-import {registerUser} from '../../../store/slices/user-slice';
-import Form from '../../form/form';
+import {useAppDispatch} from '../../hooks/hooks';
+import {registerUser} from '../../store/slices/user-slice';
+import Form from '../../components/form/form';
 import cn from 'classnames';
 
 import styles from './registration-form.module.css';

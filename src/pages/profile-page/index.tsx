@@ -1,8 +1,8 @@
 import React from 'react';
-import {useAppSelector} from '../../../hooks/hooks';
-import ErrorAlert from '../../error-alert/error-alert';
-import ProfileNav from '../../profile-nav/profile-nav';
-import Spinner from '../../spinner/spinner';
+import {useAppSelector} from '../../hooks/hooks';
+import ErrorAlert from '../../components/error-alert/error-alert';
+import ProfileNav from '../../components/profile-nav/profile-nav';
+import Spinner from '../../components/spinner/spinner';
 import ProfileForm from './profile-form';
 
 import styles from './index.module.css';

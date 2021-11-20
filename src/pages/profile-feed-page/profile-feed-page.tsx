@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../hooks/hooks';
-import wsActions from '../../../store/action-types';
-import ErrorAlert from '../../error-alert/error-alert';
-import OrdersFeed from '../../orders-feed/orders-feed';
-import ProfileNav from '../../profile-nav/profile-nav';
-import Spinner from '../../spinner/spinner';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
+import wsActions from '../../store/action-types';
+import ErrorAlert from '../../components/error-alert/error-alert';
+import OrdersFeed from '../../components/orders-feed/orders-feed';
+import ProfileNav from '../../components/profile-nav/profile-nav';
+import Spinner from '../../components/spinner/spinner';
 
 import styles from './profile-feed-page.module.css';
 

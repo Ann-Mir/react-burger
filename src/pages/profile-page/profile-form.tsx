@@ -6,10 +6,10 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
 import cn from 'classnames';
-import {useAppDispatch, useAppSelector} from '../../../hooks/hooks';
-import {updateProfile} from '../../../store/slices/user-slice';
-import ErrorAlert from '../../error-alert/error-alert';
-import Spinner from '../../spinner/spinner';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
+import {updateProfile} from '../../store/slices/user-slice';
+import ErrorAlert from '../../components/error-alert/error-alert';
+import Spinner from '../../components/spinner/spinner';
 
 import styles from './profile-form.module.css';
 

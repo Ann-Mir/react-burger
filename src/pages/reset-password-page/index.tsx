@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import { Redirect, useHistory, useLocation } from 'react-router-dom';
-import {useAppSelector} from '../../../hooks/hooks';
-import {TLocationState} from '../../../types';
-import {AppRoutes} from '../../../utils/constants';
-import PasswordPageWrapper from '../../password-page-wrapper/password-page-wrapper';
+import {useAppSelector} from '../../hooks/hooks';
+import {TLocationState} from '../../types';
+import {AppRoutes} from '../../utils/constants';
+import PasswordPageWrapper from '../../components/password-page-wrapper/password-page-wrapper';
 import ResetPasswordForm from './reset-password-form';
 
 

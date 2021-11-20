@@ -23,7 +23,7 @@ import styles from './burger-constructor.module.css';
 function BurgerConstructor(): JSX.Element {
 
   const dispatch = useAppDispatch();
-  const isAuthenticated = useAppSelector((state: any) => state.user.isAuthenticated);
+  const isAuthenticated = useAppSelector((state) => state.user.isAuthenticated);
   const location = useLocation();
   const history = useHistory();
 

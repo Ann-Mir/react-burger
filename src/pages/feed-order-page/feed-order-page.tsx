@@ -1,5 +1,5 @@
 import React from 'react';
-import FeedOrderDetails from '../../feed-order-details/feed-order-details';
+import FeedOrderDetails from '../../components/feed-order-details/feed-order-details';
 
 import styles from './feed-order-page.module.css';
 
