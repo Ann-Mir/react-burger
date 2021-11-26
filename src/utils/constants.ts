@@ -27,7 +27,22 @@ export const AppRoutes = {
   RESET_PASSWORD: '/reset-password',
   PROFILE: '/profile',
   INGREDIENTS: '/ingredients/:id',
-  ORDERS: '/orders',
   LOGOUT: '/logout',
   NOT_FOUND: '/not-found',
+  FEED: '/feed',
+  FEED_ORDER: '/feed/:id',
+  ORDERS: '/profile/orders',
+  ORDERS_ORDER: '/profile/orders/:id',
+};
+
+export const BASE_SOCKET_URL = 'wss://norma.nomoreparties.space/orders';
+
+export const SocketRoutes = {
+  ALL: '/all',
+};
+
+export const OrderStatus = {
+  done: 'Выполнен',
+  pending: 'Готовится',
+  created: 'Создан',
 };

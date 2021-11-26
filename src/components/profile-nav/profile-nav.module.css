@@ -1,0 +1,47 @@
+.nav {
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.list {
+  min-width: 320px;
+  margin: 0 0 80px 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.item {
+  display: flex;
+}
+
+.link {
+  width: 100%;
+  border: none;
+  display: flex;
+  height: 64px;
+  align-items: center;
+  justify-content: flex-start;
+  background: transparent;
+}
+
+.link:hover {
+  opacity: 0.5;
+}
+
+.note {
+  opacity: 0.4;
+}
+
+.active {
+  color: #FFFFFF;
+  pointer-events: none;
+}
+
+.link.active svg {
+  fill: #FFFFFF;
+}

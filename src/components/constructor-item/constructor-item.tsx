@@ -1,5 +1,6 @@
 import {ConstructorElement, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import React, {useRef} from 'react';
+import {useAppDispatch} from '../../hooks/hooks';
 import {TMenuItem} from '../../types';
 import {useDrag, useDrop} from 'react-dnd';
 import {useDispatch} from 'react-redux';
@@ -17,8 +18,8 @@ type TConstructorItemProps = {
 
 function ConstructorItem({ ingredient, index, className }: TConstructorItemProps): JSX.Element {
 
-  const dispatch = useDispatch();
-  const ref = useRef( null );
+  const dispatch = useAppDispatch();
+  const ref = useRef<HTMLLIElement>( null );
 
   const [, drag] = useDrag( {
     type: 'constructorIngredient',

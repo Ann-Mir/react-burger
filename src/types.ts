@@ -3,6 +3,7 @@ import { Location } from 'history';
 export type TLocationState = {
   background?: Location;
   from?: string;
+  currentOrders?: TFeedOrder[];
 };
 
 export type TMenuItem = {
@@ -37,4 +38,25 @@ export type TServerMenuItem = {
   carbohydrates: string | number;
   count?: number;
   __v: number;
+};
+
+export type TOrder = {
+  ingredients: string[];
+  _id: string | number;
+  status: string;
+  number: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type TOrderStatus = 'done' | 'pending' | 'created';
+
+export type TFeedOrder = {
+  ingredients: string[];
+  _id: string;
+  status: TOrderStatus;
+  number: number;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
 };

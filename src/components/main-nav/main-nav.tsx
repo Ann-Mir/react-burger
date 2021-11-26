@@ -27,7 +27,7 @@ function MainNav({ className }: IMainNavProps): JSX.Element {
           Конструктор
         </p>
       </NavLink>
-      <NavLink to={AppRoutes.ORDERS} exact={true} className={linkClasses} activeClassName={styles.active}>
+      <NavLink to={AppRoutes.FEED} className={linkClasses} activeClassName={styles.active}>
         <div className={styles.list_icon}>
           <ListIcon type="secondary" />
         </div>

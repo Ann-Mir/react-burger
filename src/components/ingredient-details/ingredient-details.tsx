@@ -1,7 +1,7 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
 import cn from 'classnames';
 import {useParams} from 'react-router';
+import {useAppSelector} from '../../hooks/hooks';
 
 import styles from './ingredients-details.module.css';
 
@@ -20,7 +20,9 @@ function IngredientDetails({ className }: TIngredientDetailsProps): JSX.Element 
   const wrapperClasses = cn(styles.modal_wrapper, className);
 
   const { id } = useParams<TParams>();
-  const item = useSelector((state: any) => state.ingredients.ingredients).find(({ _id } : {_id: string}) => id === _id);
+  const item = useAppSelector(
+    (state) => state.ingredients.ingredients).find(
+      ({ _id } : {_id: string}) => id === _id);
 
   const titleClasses = cn('text text_type_main-medium', styles.title);
 

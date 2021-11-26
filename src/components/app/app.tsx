@@ -1,20 +1,24 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useLocation} from 'react-router';
 import { Switch, Route } from 'react-router-dom';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import {fetchIngredients} from '../../store/slices/ingredients-slice';
 import {TLocationState} from '../../types';
 import {AppRoutes} from '../../utils/constants';
 import AppHeader from '../app-header/app-header';
 import ErrorAlert from '../error-alert/error-alert';
+import FeedOrderModal from '../feed-order-modal/feed-order-modal';
 import IngredientModal from '../ingredient-modal/ingredient-modal';
-import ForgotPasswordPage from '../pages/forgot-password-page';
-import IngredientPage from '../pages/ingredient-page/ingredient-page';
-import MainPage from '../pages/main-page';
-import ProfilePage from '../pages/profile-page';
-import RegistrationPage from '../pages/registration-page';
-import ResetPasswordPage from '../pages/reset-password-page';
-import SignInPage from '../pages/sign-in-page';
+import FeedOrderPage from '../../pages/feed-order-page/feed-order-page';
+import FeedPage from '../../pages/feed-page/feed-page';
+import ForgotPasswordPage from '../../pages/forgot-password-page';
+import IngredientPage from '../../pages/ingredient-page/ingredient-page';
+import MainPage from '../../pages/main-page';
+import ProfileFeedPage from '../../pages/profile-feed-page/profile-feed-page';
+import ProfilePage from '../../pages/profile-page';
+import RegistrationPage from '../../pages/registration-page';
+import ResetPasswordPage from '../../pages/reset-password-page';
+import SignInPage from '../../pages/sign-in-page';
 import ProtectedRoute from '../protected-route/protected-route';
 import Spinner from '../spinner/spinner';
 
@@ -23,8 +27,8 @@ import styles from './app.module.css';
 
 function App(): JSX.Element {
 
-  const { isLoading, error } = useSelector((state: any) => state.user);
-  const dispatch = useDispatch();
+  const { isLoading, error } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
 
   const location = useLocation<TLocationState>();
   const history = useHistory();
@@ -38,7 +42,7 @@ function App(): JSX.Element {
     history.goBack();
   };
 
-  const totalPrice = useSelector((state: any) => state.burgerConstructor.totalPrice);
+  const totalPrice = useAppSelector((state) => state.burgerConstructor.totalPrice);
 
   useEffect(() => {
     if (totalPrice) {
@@ -73,6 +77,18 @@ function App(): JSX.Element {
             <Route path={AppRoutes.INGREDIENTS}>
                <IngredientPage />
             </Route>
+            <Route path={AppRoutes.FEED} exact>
+              <FeedPage />
+            </Route>
+            <Route path={AppRoutes.FEED_ORDER}>
+              <FeedOrderPage />
+            </Route>
+            <ProtectedRoute path={AppRoutes.ORDERS} exact>
+              <ProfileFeedPage />
+            </ProtectedRoute>
+            <ProtectedRoute path={AppRoutes.ORDERS_ORDER}>
+              <FeedOrderPage />
+            </ProtectedRoute>
             <ProtectedRoute path={AppRoutes.PROFILE} exact>
               <ProfilePage />
             </ProtectedRoute>
@@ -81,6 +97,20 @@ function App(): JSX.Element {
             background && (
               <Route path={AppRoutes.INGREDIENTS}>
                 <IngredientModal onClose={onModalClose} />
+              </Route>
+            )
+          }
+          {
+            background && (
+              <Route path={AppRoutes.FEED_ORDER}>
+                <FeedOrderModal onClose={onModalClose} />
+              </Route>
+            )
+          }
+          {
+            background && (
+              <Route path={AppRoutes.ORDERS_ORDER}>
+                <FeedOrderModal onClose={onModalClose} />
               </Route>
             )
           }

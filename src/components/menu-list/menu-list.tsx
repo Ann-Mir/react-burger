@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
 import {setActiveTab} from '../../store/slices/tab-slice';
 import {mapItemsByType} from '../../utils/common';
 import {TABS} from '../../utils/constants';
@@ -9,9 +9,9 @@ import styles from './menu-list.module.css';
 
 function MenuList(): JSX.Element {
 
-  const ingredients = useSelector((state: any) => state.ingredients.ingredients);
+  const ingredients = useAppSelector((state) => state.ingredients.ingredients);
   const itemsByType = useMemo(() => mapItemsByType(ingredients), [ingredients]);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const containerRef = React.useRef<HTMLElement>(null);
 
