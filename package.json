@@ -5,7 +5,6 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@ya.praktikum/react-developer-burger-ui-components": "^1.5.0",
     "classnames": "^2.3.1",
@@ -50,10 +49,17 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^12.1.2",
+    "@types/enzyme": "^3.10.10",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.6",
     "@types/react": "^16.14.13",
     "@types/react-dom": "^17.0.10",
-    "@types/react-router-dom": "^5.1.8"
+    "@types/react-router-dom": "^5.1.8",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "fetch-mock": "^9.11.0",
+    "redux-mock-store": "^1.5.4"
   }
 }
