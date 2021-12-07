@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {TMenuItem} from '../../types';
-import { nanoid } from 'nanoid';
 
 
 interface IBurgerConstructorState {
