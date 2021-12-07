@@ -3,18 +3,16 @@ import reducer, {
   wsConnectionError,
   wsConnectionClosed,
   wsGetMessage
-} from './ws-orders-feed-slice';
+} from './ws-user-feed-slice';
 
 
 const initialState = {
   orders: [],
-  total: 0,
-  totalToday: 0,
   wsConnected: false,
   error: false,
 };
 
-const orders = ['order']
+const orders = ['first', 'second'];
 
 test('should return the initial state', () => {
   expect(reducer(undefined, {})).toEqual(initialState);
@@ -48,13 +46,9 @@ test('should set state to received message', () => {
   expect(reducer(initialState,
     wsGetMessage({
       orders: orders,
-      total: 100,
-      totalToday: 5,
       success: true,
     }))).toEqual({
     ...initialState,
     orders: orders,
-    total: 100,
-    totalToday: 5,
   })
 });
