@@ -13,7 +13,7 @@ interface IIngredientsState {
 const initialState: IIngredientsState = {
   ingredients: [],
   isLoading: true,
-  error: null
+  error: null,
 };
 
 export const fetchIngredients = createAsyncThunk(
@@ -34,7 +34,6 @@ export const fetchIngredients = createAsyncThunk(
     }
   }
 );
-
 
 const ingredientsSlice = createSlice({
   name: 'ingredients',
