@@ -25,5 +25,5 @@ const tabSlice = createSlice({
 });
 
 
-export const {setActiveTab} = tabSlice.actions;
+export const {setActiveTab, setDefault} = tabSlice.actions;
 export default tabSlice.reducer;
