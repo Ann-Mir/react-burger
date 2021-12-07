@@ -20,7 +20,7 @@ const burgerConstructorSlice = createSlice({
   initialState,
   reducers: {
     addIngredient: (state, action: PayloadAction<TMenuItem>) => {
-      const ingredient = {...action.payload, constructorId: nanoid()};
+      const ingredient = {...action.payload, constructorId: state.ingredients.length};
       state.ingredients.push(ingredient);
       state.totalPrice = state.totalPrice + action.payload.price;
     },

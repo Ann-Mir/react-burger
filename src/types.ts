@@ -7,7 +7,7 @@ export type TLocationState = {
 };
 
 export type TMenuItem = {
-  constructorId?: string;
+  constructorId?: string | number;
   _id: string;
   name: string;
   type: string;
@@ -24,7 +24,6 @@ export type TMenuItem = {
 };
 
 export type TServerMenuItem = {
-  constructorId?: string;
   _id: string;
   name: string;
   type: string;
