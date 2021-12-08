@@ -91,8 +91,8 @@ function BurgerConstructor(): JSX.Element {
         {ingredients.length === 0 && !bun && (
           <p className={instructionClasses}>Перетащи сюда ингредиенты</p>
         )}
-        <div className={styles.wrapper} ref={dropTarget} style={hoverStyles}>
-          <div className={bunClasses}>
+        <div className={styles.wrapper} ref={dropTarget} style={hoverStyles} id='dropTarget'>
+          <div className={bunClasses} id='topBun'>
             {
               bun && (
                 <ConstructorElement
@@ -116,7 +116,7 @@ function BurgerConstructor(): JSX.Element {
                   />
               )}
             </ul>
-          <div className={bunClasses}>
+          <div className={bunClasses} id='bottomBun'>
             {
               bun && (
                 <ConstructorElement

@@ -55,7 +55,7 @@ function ConstructorItem({ ingredient, index, className }: TConstructorItemProps
   };
 
   return (
-    <li key={ingredient.constructorId} className={className} ref={ref}>
+    <li key={ingredient.constructorId} className={className} ref={ref} id={ingredient._id}>
       <div className={styles.drag}>
         <DragIcon type="primary" />
       </div>
