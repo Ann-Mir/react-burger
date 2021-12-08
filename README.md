@@ -1,6 +1,6 @@
 ## Published project
 
-[https://ann-mir.github.io/]
+https://ann-mir.github.io/
 
 ## Available Scripts
 
