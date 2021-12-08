@@ -1,7 +1,3 @@
-## Published project
-
-https://ann-mir.github.io/
-
 ## Available Scripts
 
 In the project directory, you can run:
