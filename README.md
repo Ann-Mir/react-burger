@@ -27,5 +27,4 @@ Web application for creating and ordering space burgers.
 ## Deployment
 
 - npm run deploy
- Published project is available at:
- https://ann-mir.github.io/react-burger/
+- Published project is available at https://ann-mir.github.io/react-burger/
