@@ -19,7 +19,7 @@ Web application for creating and ordering space burgers.
 - Open [http://localhost:3000](http://localhost:3000) to view it in the browser
 
 
-## Setting up testing enviroment
+## Setting up testing environment
 
 - npm run start
 - npm run cypress:open
@@ -27,4 +27,4 @@ Web application for creating and ordering space burgers.
 ## Deployment
 
 - npm run deploy
-- Published project is available at https://ann-mir.github.io/react-burger/
+

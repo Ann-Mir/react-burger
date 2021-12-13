@@ -27,12 +27,10 @@ function RegistrationPage(): JSX.Element {
         isAuthenticated
         && <Redirect to={state?.from || AppRoutes.ROOT } />
       }
-      <div className={styles.wrapper}>
-        <main className={styles.main}>
-          <RegistrationForm className={styles.form}/>
-          <SignInLink />
-        </main>
-      </div>
+      <main className={styles.main}>
+        <RegistrationForm className={styles.form}/>
+        <SignInLink />
+      </main>
     </>
   )
 }

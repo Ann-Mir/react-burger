@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import {useHistory, useLocation} from 'react-router';
 import { Switch, Route } from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks';
+import MainPage from '../../pages/main-page/main-page';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import {fetchIngredients} from '../../store/slices/ingredients-slice';
 import {TLocationState} from '../../types';
 import {AppRoutes} from '../../utils/constants';
@@ -13,7 +15,6 @@ import FeedOrderPage from '../../pages/feed-order-page/feed-order-page';
 import FeedPage from '../../pages/feed-page/feed-page';
 import ForgotPasswordPage from '../../pages/forgot-password-page';
 import IngredientPage from '../../pages/ingredient-page/ingredient-page';
-import MainPage from '../../pages/main-page';
 import ProfileFeedPage from '../../pages/profile-feed-page/profile-feed-page';
 import ProfilePage from '../../pages/profile-page';
 import RegistrationPage from '../../pages/registration-page';
@@ -92,6 +93,9 @@ function App(): JSX.Element {
             <ProtectedRoute path={AppRoutes.PROFILE} exact>
               <ProfilePage />
             </ProtectedRoute>
+            <Route>
+              <NotFoundPage />
+            </Route>
           </Switch>
           {
             background && (

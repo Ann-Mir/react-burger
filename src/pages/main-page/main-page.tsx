@@ -5,10 +5,10 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import BurgerConstructor from '../../components/burger-constructor/burger-constructor';
 import BurgerIngredients from '../../components/burger-ingredients/burger-ingredients';
 
-import styles from './main-wrapper.module.css';
+import styles from './main-page.module.css';
 
 
-function MainWrapper(): JSX.Element {
+function MainPage(): JSX.Element {
 
   const titleClasses = cn('text text_type_main-large', styles.title);
 
@@ -26,4 +26,4 @@ function MainWrapper(): JSX.Element {
 }
 
 
-export default MainWrapper;
+export default MainPage;
