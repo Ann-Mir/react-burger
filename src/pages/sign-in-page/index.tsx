@@ -37,13 +37,11 @@ function SignInPage(): JSX.Element {
         isAuthenticated
         && <Redirect to={state?.from || AppRoutes.ROOT } />
       }
-      <div className={styles.wrapper}>
-        <main className={styles.main}>
-          <SignInForm className={styles.form}/>
-          <RegisterLink />
-          <ResetPasswordLink />
-        </main>
-      </div>
+      <main className={styles.main}>
+        <SignInForm className={styles.form}/>
+        <RegisterLink />
+        <ResetPasswordLink />
+      </main>
     </>
   )
 }
