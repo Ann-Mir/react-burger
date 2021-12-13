@@ -1,6 +1,8 @@
 # Space Burger
 
 Web application for creating and ordering space burgers.
+Publishe project is available at
+https://react-burger-gamma.vercel.app/
 
 ## Used technologies
 
@@ -23,8 +25,3 @@ Web application for creating and ordering space burgers.
 
 - npm run start
 - npm run cypress:open
-
-## Deployment
-
-- npm run deploy
-
