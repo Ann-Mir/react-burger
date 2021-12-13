@@ -1,7 +1,7 @@
 # Space Burger
 
 Web application for creating and ordering space burgers.
-Publishe project is available at
+Published project is available at
 https://react-burger-gamma.vercel.app/
 
 ## Used technologies
